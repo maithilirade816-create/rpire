@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Rpire</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f4f7fc;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+      width: 220px;
+      background: white;
+      border-right: 1px solid #eef2f6;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+    .sidebar .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0a0a;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #f0f2f5;
+      margin-bottom: 24px;
+    }
+    .sidebar .logo span { color: #2563eb; }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #475569;
+      font-weight: 500;
+      font-size: 15px;
+      transition: 0.2s;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+    .sidebar a:hover { background: #f8fafc; color: #0a0a0a; }
+    .sidebar a.active { background: #e8edf5; color: #2563eb; font-weight: 600; }
+    .sidebar .bottom {
+      margin-top: auto;
+      border-top: 1px solid #f0f2f5;
+      padding-top: 16px;
+    }
+    .sidebar .bottom a { color: #94a3b8; font-size: 14px; }
+    .sidebar .bottom .logout { color: #dc2626; }
+
+    /* --- Main --- */
+    .main {
+      margin-left: 220px;
+      flex: 1;
+      padding: 32px 40px;
+    }
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .main-header h1 { font-size: 28px; font-weight: 700; }
+    .main-header .user { display: flex; align-items: center; gap: 12px; }
+    .main-header .user span { font-weight: 500; color: #1e293b; }
+    .main-header .user button {
+      background: #eef2f6;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .main-header .user button:hover { background: #dce2ec; }
+
+    /* --- Cards --- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #eef2f6;
+    }
+    .card h3 { font-size: 14px; color: #64748b; font-weight: 500; margin-bottom: 4px; }
+    .card .number { font-size: 32px; font-weight: 700; color: #0a0a0a; }
+    .card .label { font-size: 14px; color: #94a3b8; }
+
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .quick-actions .btn {
+      background: white;
+      border: 1px solid #dce2ec;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+      color: #0a0a0a;
+    }
+    .quick-actions .btn:hover { border-color: #2563eb; background: #f8fafc; }
+    .quick-actions .btn-primary {
+      background: #2563eb;
+      color: white;
+      border: none;
+    }
+    .quick-actions .btn-primary:hover { background: #1d4ed8; }
+
+    .section { display: none; margin-top: 24px; }
+    .section.active { display: block; }
+
+    /* --- Scheduler --- */
+    .email-box {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dce2ec;
+      border-radius: 12px;
+      font-size: 15px;
+      margin: 12px 0;
+      background: #fafbfc;
+      font-family: inherit;
+    }
+    .btn-secondary {
+      background: #e8edf5;
+      color: #1e293b;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 4px;
+    }
+    .btn-secondary:hover { background: #d0d9e6; }
+    .card-slot {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 16px;
+      margin: 12px 0;
+      border-left: 4px solid #2563eb;
+    }
+    .hidden { display: none; }
+    .status { color: #16a34a; font-weight: 500; margin-top: 10px; }
+    #log { font-size: 12px; color: #94a3b8; margin-top: 12px; border-top: 1px solid #eef2f6; padding-top: 12px; }
+
+    /* --- Settings --- */
+    .settings-group {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #eef2f6;
+      margin-bottom: 20px;
+    }
+    .settings-group h3 { font-size: 18px; margin-bottom: 12px; }
+    .settings-group .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+    .settings-group .row:last-child { border-bottom: none; }
+    .settings-group .row .label { font-weight: 500; color: #1e293b; }
+    .settings-group .row .value { color: #64748b; font-size: 14px; }
+    .settings-group .row .value input {
+      border: 1px solid #dce2ec;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 14px;
+      width: 200px;
+    }
+    .settings-group .row .value select {
+      border: 1px solid #dce2ec;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 14px;
+      background: white;
+    }
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #dce2ec;
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+    .toggle .slider:before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    .toggle input:checked + .slider { background: #2563eb; }
+    .toggle input:checked + .slider:before { transform: translateX(20px); }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-danger:hover { background: #fecaca; }
+    .btn-save {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-save:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="logo">Rpire<span>.</span></div>
+  <a class="active" data-section="dashboard">📊 Dashboard</a>
+  <a data-section="scheduler">📅 Scheduler</a>
+  <a data-section="drafts">✉️ Drafts</a>
+  <a data-section="inbox">📥 Inbox</a>
+  <div class="bottom">
+    <a data-section="settings">⚙️ Settings</a>
+    <a class="logout" onclick="logout()">🚪 Logout</a>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <div class="main-header">
+    <h1 id="pageTitle">Dashboard</h1>
+    <div class="user">
+      <span id="userEmail">user@example.com</span>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="section-dashboard" class="section active">
+    <div class="card-grid">
+      <div class="card"><h3>Meetings</h3><div class="number">3</div><div class="label">Scheduled this week</div></div>
+      <div class="card"><h3>Emails</h3><div class="number">12</div><div class="label">Waiting for reply</div></div>
+      <div class="card"><h3>Drafts</h3><div class="number">2</div><div class="label">Ready to review</div></div>
+    </div>
+    <div class="quick-actions">
+      <a class="btn btn-primary" onclick="switchSection('scheduler')">📅 Schedule Meeting</a>
+      <a class="btn" onclick="switchSection('drafts')">✉️ Draft Email</a>
+      <a class="btn" onclick="switchSection('inbox')">📥 Check Inbox</a>
+    </div>
+  </div>
+
+  <!-- Scheduler -->
+  <div id="section-scheduler" class="section">
+    <h2 style="margin-bottom: 8px;">📅 Meeting Scheduler</h2>
+    <p style="color: #64748b; margin-bottom: 16px;">Paste an email thread, and Rpire will suggest 3 available times.</p>
+    <textarea id="emailText" rows="4" class="email-box" placeholder="Paste email conversation here...">I'd like to discuss the project. Are you free Tuesday or Wednesday?</textarea>
+    <button class="btn-primary" id="findTimesBtn" style="padding: 12px 28px; border-radius: 40px; border: none; background: #2563eb; color: white; font-weight: 600; cursor: pointer;">🔍 Find Available Times</button>
+    <div id="step-options" class="hidden">
+      <p style="margin-top: 20px; font-weight: 600;">✅ You approve. Then it books.</p>
+      <div id="timeSlotContainer"></div>
+      <p id="confirmationMessage" class="status hidden">✅ Meeting booked! Check your calendar.</p>
+    </div>
+    <div id="log">Ready to schedule.</div>
+  </div>
+
+  <!-- Drafts -->
+  <div id="section-drafts" class="section">
+    <h2 style="margin-bottom: 8px;">✉️ Drafts</h2>
+    <p style="color: #64748b; margin-bottom: 16px;">AI-written replies ready for your review.</p>
+    <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid #eef2f6;">
+      <p style="color: #94a3b8;">No drafts yet. Connect your Gmail to get started.</p>
+    </div>
+  </div>
+
+  <!-- Inbox -->
+  <div id="section-inbox" class="section">
+    <h2 style="margin-bottom: 8px;">📥 Inbox Triage</h2>
+    <p style="color: #64748b; margin-bottom: 16px;">Your emails sorted by urgency.</p>
+    <div style="background: white; padding: 20px; border-radius: 16px; border: 1px solid #eef2f6;">
+      <p style="color: #94a3b8;">Connect your Gmail to start sorting.</p>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div id="section-settings" class="section">
+    <h2 style="margin-bottom: 8px;">⚙️ Settings</h2>
+    <p style="color: #64748b; margin-bottom: 16px;">Manage your account, preferences, and integrations.</p>
+
+    <!-- Account -->
+    <div class="settings-group">
+      <h3>Account</h3>
+      <div class="row">
+        <span class="label">Email</span>
+        <span class="value" id="settingsEmail">user@example.com</span>
+      </div>
+      <div class="row">
+        <span class="label">Password</span>
+        <span class="value"><a href="#" onclick="alert('Password reset link sent to your email.')" style="color: #2563eb; text-decoration: none;">Change password</a></span>
+      </div>
+      <div class="row" style="border-bottom: none;">
+        <span class="label">Delete account</span>
+        <span class="value"><button class="btn-danger" onclick="if(confirm('Are you sure? This cannot be undone.')){alert('Account deleted (demo)'); logout();}">Delete Account</button></span>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="settings-group">
+      <h3>Preferences</h3>
+      <div class="row">
+        <span class="label">Meeting duration</span>
+        <span class="value">
+          <select id="meetingDuration">
+            <option value="30">30 min</option>
+            <option value="45" selected>45 min</option>
+            <option value="60">60 min</option>
+          </select>
+        </span>
+      </div>
+      <div class="row">
+        <span class="label">Default time zone</span>
+        <span class="value">
+          <select id="timeZone">
+            <option value="PST">PST (Pacific)</option>
+            <option value="EST">EST (Eastern)</option>
+            <option value="GMT">GMT (London)</option>
+            <option value="IST" selected>IST (India)</option>
+          </select>
+        </span>
+      </div>
+      <div class="row" style="border-bottom: none;">
+        <span class="label">Email notifications</span>
+        <span class="value">
+          <label class="toggle">
+            <input type="checkbox" id="notifications" checked />
+            <span class="slider"></span>
+          </label>
+        </span>
+      </div>
+    </div>
+
+    <!-- Integrations -->
+    <div class="settings-group">
+      <h3>Integrations</h3>
+      <div class="row">
+        <span class="label">Gmail</span>
+        <span class="value"><span style="color: #16a34a;">✅ Connected</span> <a href="#" onclick="alert('Disconnect Gmail (demo)')" style="color: #dc2626; text-decoration: none; margin-left: 12px;">Disconnect</a></span>
+      </div>
+      <div class="row" style="border-bottom: none;">
+        <span class="label">Google Calendar</span>
+        <span class="value"><span style="color: #16a34a;">✅ Connected</span> <a href="#" onclick="alert('Disconnect Calendar (demo)')" style="color: #dc2626; text-decoration: none; margin-left: 12px;">Disconnect</a></span>
+      </div>
+    </div>
+
+    <!-- Save -->
+    <div style="text-align: right; margin-top: 16px;">
+      <button class="btn-save" onclick="saveSettings()">💾 Save Settings</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- Navigation ---
+  document.querySelectorAll('.sidebar a[data-section]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      switchSection(this.dataset.section);
+    });
+  });
+
+  function switchSection(section) {
+    document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+    document.getElementById(`section-${section}`).classList.add('active');
+    document.querySelectorAll('.sidebar a[data-section]').forEach(el => el.classList.remove('active'));
+    document.querySelector(`.sidebar a[data-section="${section}"]`).classList.add('active');
+    document.getElementById('pageTitle').textContent = section.charAt(0).toUpperCase() + section.slice(1);
+  }
+
+  // --- User ---
+  const user = JSON.parse(localStorage.getItem('rpire_user'));
+  if (user) {
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('settingsEmail').textContent = user.email;
+  }
+
+  function logout() {
+    localStorage.removeItem('rpire_user');
+    window.location.href = 'landing.html';
+  }
+
+  // --- Scheduler ---
+  document.getElementById('findTimesBtn').addEventListener('click', function() {
+    const log = document.getElementById('log');
+    const stepOptions = document.getElementById('step-options');
+    const container = document.getElementById('timeSlotContainer');
+    const confirmationMsg = document.getElementById('confirmationMessage');
+
+    log.innerText = '🧠 Rpire AI is analyzing your email...';
+    stepOptions.classList.add('hidden');
+    confirmationMsg.classList.add('hidden');
+
+    const mockTimes = [
+      { day: 'Tuesday, Oct 24', time: '10:00 AM (PST)', duration: '45 min' },
+      { day: 'Wednesday, Oct 25', time: '2:00 PM (PST)', duration: '45 min' },
+      { day: 'Thursday, Oct 26', time: '11:00 AM (PST)', duration: '45 min' }
+    ];
+
+    log.innerText = '✅ AI generated 3 options based on your email.';
+
+    container.innerHTML = '';
+    mockTimes.forEach((slot) => {
+      const div = document.createElement('div');
+      div.className = 'card-slot';
+      div.innerHTML = `
+        <strong>${slot.day}</strong><br>
+        ⏰ ${slot.time} (${slot.duration})
+        <button class="btn-secondary" style="float: right;" onclick="confirmBooking('${slot.day} ${slot.time}')">
+          ✅ Confirm
+        </button>
+      `;
+      container.appendChild(div);
+    });
+
+    stepOptions.classList.remove('hidden');
+  });
+
+  function confirmBooking(timeSelected) {
+    const msg = document.getElementById('confirmationMessage');
+    const log = document.getElementById('log');
+    log.innerText = `📅 Booking ${timeSelected}...`;
+    setTimeout(() => {
+      msg.classList.remove('hidden');
+      msg.innerText = `✅ Meeting confirmed for ${timeSelected}. Calendar invite ready!`;
+      log.innerText = '✅ Done. You approved. Rpire booked it.';
+    }, 1000);
+  }
+
+  // --- Settings ---
+  function saveSettings() {
+    const duration = document.getElementById('meetingDuration').value;
+    const timeZone = document.getElementById('timeZone').value;
+    const notifications = document.getElementById('notifications').checked;
+
+    localStorage.setItem('rpire_settings', JSON.stringify({
+      meetingDuration: duration,
+      timeZone: timeZone,
+      notifications: notifications
+    }));
+
+    alert('✅ Settings saved successfully!');
+  }
+
+  // Load saved settings
+  const savedSettings = JSON.parse(localStorage.getItem('rpire_settings'));
+  if (savedSettings) {
+    document.getElementById('meetingDuration').value = savedSettings.meetingDuration || '45';
+    document.getElementById('timeZone').value = savedSettings.timeZone || 'IST';
+    document.getElementById('notifications').checked = savedSettings.notifications !== false;
+  }
+</script>
+
+</body>
+</html>

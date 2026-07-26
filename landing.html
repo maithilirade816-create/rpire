@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rpire — Your AI Chief of Staff</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: #ffffff;
+      color: #0a0a0a;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+    .logo { font-size: 24px; font-weight: 700; color: #0a0a0a; }
+    .logo span { color: #2563eb; }
+    .nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #475569;
+      font-weight: 500;
+      font-size: 15px;
+    }
+    .nav a:hover { color: #2563eb; }
+    .btn-outline {
+      border: 1px solid #dce2ec;
+      padding: 8px 20px;
+      border-radius: 40px;
+      background: transparent;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+      color: #0a0a0a;
+    }
+    .btn-outline:hover { background: #f8fafc; }
+
+    .hero {
+      text-align: center;
+      padding: 72px 0 48px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      max-width: 800px;
+      margin: 0 auto 16px;
+    }
+    .hero h1 span { color: #2563eb; }
+    .hero p {
+      font-size: 20px;
+      color: #475569;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.25);
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+
+    .features {
+      padding: 64px 0;
+      border-top: 1px solid #f0f2f5;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .feature-card {
+      background: #f8fafc;
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid #eef2f6;
+      text-align: center;
+    }
+    .feature-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .feature-card p { color: #64748b; font-size: 15px; }
+    .feature-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+
+    .how-it-works {
+      padding: 64px 0;
+      background: #f8fafc;
+      border-top: 1px solid #f0f2f5;
+    }
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .step-number {
+      background: #2563eb;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-weight: 700;
+    }
+
+    .pricing {
+      padding: 64px 0;
+      text-align: center;
+      border-top: 1px solid #f0f2f5;
+    }
+    .pricing h2 { font-size: 32px; font-weight: 700; }
+    .pricing .price {
+      font-size: 48px;
+      font-weight: 800;
+      color: #0a0a0a;
+      margin: 16px 0 8px;
+    }
+    .pricing .price span { font-size: 18px; font-weight: 400; color: #64748b; }
+
+    footer {
+      border-top: 1px solid #f0f2f5;
+      padding: 24px 0;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="logo">Rpire<span>.</span></div>
+    <div class="nav">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="signup.html" class="btn-outline">Log In</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Your AI <span>Chief of Staff</span></h1>
+    <p>Auto-schedule meetings, draft emails in your voice, and triage your inbox—so you can focus on real work.</p>
+    <a href="signup.html" class="btn-primary">🚀 Get Started</a>
+    <p style="font-size: 14px; color: #94a3b8; margin-top: 16px;">First 50 users get 1 year free. No credit card required.</p>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Everything you need to reclaim your day</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h3>Auto-Schedule Meetings</h3>
+        <p>AI reads your emails, finds mutual availability, and suggests times—you approve, it books.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✉️</span>
+        <h3>Draft Emails in Your Voice</h3>
+        <p>Professional replies that sound like <em>you</em>, not a robot. You review and send.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📥</span>
+        <h3>Smart Inbox Triage</h3>
+        <p>Urgent, Basic, Scam—sorted automatically so you see what actually matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div>
+        <div class="step-number">1</div>
+        <h3>Connect</h3>
+        <p style="color: #64748b;">Link your Gmail and Calendar in seconds.</p>
+      </div>
+      <div>
+        <div class="step-number">2</div>
+        <h3>AI Works</h3>
+        <p style="color: #64748b;">Rpire reads, analyzes, and drafts behind the scenes.</p>
+      </div>
+      <div>
+        <div class="step-number">3</div>
+        <h3>You Approve</h3>
+        <p style="color: #64748b;">Review suggestions, click confirm, and get back to work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <h2>Simple, transparent pricing</h2>
+    <div class="price">$20 <span>/ month</span></div>
+    <p style="color: #475569; margin-bottom: 24px;">Cancel anytime. First 50 users get 1 year free.</p>
+    <a href="signup.html" class="btn-primary">🚀 Get Started</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Rpire. Built for people who value their time.</p>
+  </footer>
+
+</div>
+</body>
+</html>
