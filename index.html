@@ -157,7 +157,6 @@
       font-size: 14px;
     }
 
-    /* --- Waitlist Styles --- */
     #waitlist {
       background: #f8fafc;
       padding: 48px 20px;
@@ -243,7 +242,6 @@
 
 <div class="container">
 
-  <!-- Header -->
   <header>
     <div class="logo">Rpire<span>.</span></div>
     <div class="nav">
@@ -254,7 +252,6 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <h1>Your AI <span>Chief of Staff</span></h1>
     <p>Auto-schedule meetings, draft emails in your voice, and triage your inbox—so you can focus on real work.</p>
@@ -262,7 +259,6 @@
     <p style="font-size: 14px; color: #94a3b8; margin-top: 16px;">First 50 users get 1 year free. No credit card required.</p>
   </section>
 
-  <!-- Features -->
   <section class="features" id="features">
     <h2>Everything you need to reclaim your day</h2>
     <div class="feature-grid">
@@ -284,7 +280,6 @@
     </div>
   </section>
 
-  <!-- How It Works -->
   <section class="how-it-works" id="how-it-works">
     <h2>How it works</h2>
     <div class="steps">
@@ -306,7 +301,6 @@
     </div>
   </section>
 
-  <!-- Pricing -->
   <section class="pricing" id="pricing">
     <h2>Simple, transparent pricing</h2>
     <div class="price">$20 <span>/ month</span></div>
@@ -322,7 +316,8 @@
   <p class="prompt" id="waitlist-prompt">Be the first to try Rpire. Early users get <strong>1 year free</strong>.</p>
 
   <form class="waitlist-form" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
-    <input type="hidden" name="access_key" id="access-key-field" value="a42296bd-0198-47b1-a389-5c04bd73ea0f">
+    <!-- ⬇️ PASTE YOUR ACTUAL ACCESS KEY HERE (keep the quotes) ⬇️ -->
+    <input type="hidden" name="access_key" value="a42296bd-0198-47b1-a389-5c04bd73ea0f">
     <input type="hidden" name="subject" value="New Rpire Waitlist Signup">
     <input type="hidden" name="from_name" value="Rpire Waitlist">
     
@@ -339,7 +334,6 @@
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="container">
     <p>© 2026 Rpire. Built for people who value their time.</p>
@@ -347,16 +341,8 @@
 </footer>
 
 <script>
-  // --- Inject Web3Forms key from Render's environment variables ---
-  document.addEventListener('DOMContentLoaded', function() {
-    // Render injects environment variables as {{ env.VAR_NAME }}
-    const key = "{{ a42296bd-0198-47b1-a389-5c04bd73ea0f }}";
-    document.getElementById('access-key-field').value = key;
-  });
-
-  // --- Show thank-you message when form is submitted ---
+  // Show thank-you message when form is submitted
   document.getElementById('waitlist-form').addEventListener('submit', function(event) {
-    // Show thank you message immediately (form still submits in background)
     document.getElementById('waitlist-prompt').style.display = 'none';
     document.getElementById('waitlist-form').style.display = 'none';
     document.getElementById('thank-you').style.display = 'block';
