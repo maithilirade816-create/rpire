@@ -348,6 +348,29 @@
     document.getElementById('thank-you').style.display = 'block';
   });
 </script>
+  <!-- Feedback Section -->
+<section id="feedback" style="background: #ffffff; padding: 48px 20px; text-align: center; border-top: 1px solid #eef2f6;">
+  <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">💬 Your Feedback Matters</h2>
+  <p style="color: #475569; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto;">
+    What would make Rpire actually useful for you?<br>
+    <span style="font-size: 14px; color: #94a3b8;">(Even if it's brutal — I can take it 😂)</span>
+  </p>
+
+  <form action="https://api.web3forms.com/submit" method="POST" style="max-width: 500px; margin: 0 auto;">
+    <!-- Same access key as your waitlist -->
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+    <input type="hidden" name="subject" value="Rpire Feedback">
+    <input type="hidden" name="from_name" value="Rpire Feedback">
+
+    <!-- Email field (optional) -->
+    <input type="email" name="email" placeholder="Your email (optional)" style="width: 100%; padding: 14px 20px; border: 1px solid #dce2ec; border-radius: 40px; font-size: 16px; outline: none; margin-bottom: 12px;">
+
+    <!-- Feedback field -->
+    <textarea name="feedback" rows="4" placeholder="What would make this useful for you? What's missing? Any features you'd love?" style="width: 100%; padding: 14px 20px; border: 1px solid #dce2ec; border-radius: 16px; font-size: 16px; outline: none; font-family: inherit; resize: vertical; margin-bottom: 12px;"></textarea>
+
+    <button type="submit" style="background: #2563eb; color: white; border: none; padding: 14px 32px; border-radius: 40px; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.25);">Send Feedback</button>
+  </form>
+</section>
 
 </body>
 </html>
