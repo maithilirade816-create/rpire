@@ -316,14 +316,18 @@
 
 </div>
 
-<!-- Waitlist Section (Fully Self-Contained) -->
+<!-- Waitlist Section -->
 <section id="waitlist">
   <h2>🚀 Join the Waitlist</h2>
   <p class="prompt" id="waitlist-prompt">Be the first to try Rpire. Early users get <strong>1 year free</strong>.</p>
 
-  <form class="waitlist-form" id="waitlist-form">
+  <form class="waitlist-form" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" id="access-key-field" value="">
+    <input type="hidden" name="subject" value="New Rpire Waitlist Signup">
+    <input type="hidden" name="from_name" value="Rpire Waitlist">
+    
     <div class="input-group">
-      <input type="email" id="waitlist-email" placeholder="Enter your email" required />
+      <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit">Join Now</button>
     </div>
     <p class="hint">No spam. Unsubscribe anytime.</p>
@@ -343,30 +347,19 @@
 </footer>
 
 <script>
-  // --- WAITLIST LOGIC (No backend needed, saves to localStorage) ---
+  // --- Inject Web3Forms key from Render's environment variables ---
+  document.addEventListener('DOMContentLoaded', function() {
+    // Render injects environment variables as {{ env.VAR_NAME }}
+    const key = "{{ env.WEB3FORMS_KEY }}";
+    document.getElementById('access-key-field').value = key;
+  });
+
+  // --- Show thank-you message when form is submitted ---
   document.getElementById('waitlist-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Stop page from reloading
-
-    const email = document.getElementById('waitlist-email').value.trim();
-    if (!email) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
-    // --- Save to localStorage (for demo / testing) ---
-    let waitlist = JSON.parse(localStorage.getItem('rpire_waitlist')) || [];
-    if (!waitlist.includes(email)) {
-      waitlist.push(email);
-      localStorage.setItem('rpire_waitlist', JSON.stringify(waitlist));
-    }
-
-    // --- Show thank you message ---
+    // Show thank you message immediately (form still submits in background)
     document.getElementById('waitlist-prompt').style.display = 'none';
     document.getElementById('waitlist-form').style.display = 'none';
     document.getElementById('thank-you').style.display = 'block';
-
-    // --- For your eyes only: log all emails in the console ---
-    console.log('✅ Rpire Waitlist Emails:', waitlist);
   });
 </script>
 
