@@ -322,7 +322,7 @@
   <p class="prompt" id="waitlist-prompt">Be the first to try Rpire. Early users get <strong>1 year free</strong>.</p>
 
   <form class="waitlist-form" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
-    <input type="hidden" name="access_key" id="access-key-field" value="">
+    <input type="hidden" name="access_key" id="access-key-field" value="a42296bd-0198-47b1-a389-5c04bd73ea0f">
     <input type="hidden" name="subject" value="New Rpire Waitlist Signup">
     <input type="hidden" name="from_name" value="Rpire Waitlist">
     
@@ -350,7 +350,7 @@
   // --- Inject Web3Forms key from Render's environment variables ---
   document.addEventListener('DOMContentLoaded', function() {
     // Render injects environment variables as {{ env.VAR_NAME }}
-    const key = "{{ env.WEB3FORMS_KEY }}";
+    const key = "{{ a42296bd-0198-47b1-a389-5c04bd73ea0f }}";
     document.getElementById('access-key-field').value = key;
   });
 
