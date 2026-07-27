@@ -156,29 +156,113 @@
       color: #94a3b8;
       font-size: 14px;
     }
+
+    /* --- Waitlist Styles --- */
+    #waitlist {
+      background: #f8fafc;
+      padding: 48px 20px;
+      text-align: center;
+      border-top: 1px solid #eef2f6;
+    }
+    #waitlist h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    #waitlist .prompt {
+      color: #475569;
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .waitlist-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .waitlist-form .input-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .waitlist-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 20px;
+      border: 1px solid #dce2ec;
+      border-radius: 40px;
+      font-size: 16px;
+      outline: none;
+    }
+    .waitlist-form input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    }
+    .waitlist-form button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+      transition: 0.2s;
+    }
+    .waitlist-form button:hover {
+      background: #1d4ed8;
+      transform: scale(1.02);
+    }
+    .waitlist-form .hint {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 12px;
+    }
+    .thank-you {
+      display: none;
+      background: #ecfdf5;
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid #a7f3d0;
+    }
+    .thank-you p {
+      color: #065f46;
+    }
+    .thank-you .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
 
+  <!-- Header -->
   <header>
     <div class="logo">Rpire<span>.</span></div>
     <div class="nav">
       <a href="#features">Features</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#pricing">Pricing</a>
-      <a href="signup.html" class="btn-outline">Log In</a>
+      <a href="#waitlist" class="btn-outline">Join Waitlist</a>
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <h1>Your AI <span>Chief of Staff</span></h1>
     <p>Auto-schedule meetings, draft emails in your voice, and triage your inbox—so you can focus on real work.</p>
-    <a href="signup.html" class="btn-primary">🚀 Get Started</a>
+    <a href="#waitlist" class="btn-primary">🚀 Get Started</a>
     <p style="font-size: 14px; color: #94a3b8; margin-top: 16px;">First 50 users get 1 year free. No credit card required.</p>
   </section>
 
+  <!-- Features -->
   <section class="features" id="features">
     <h2>Everything you need to reclaim your day</h2>
     <div class="feature-grid">
@@ -200,6 +284,7 @@
     </div>
   </section>
 
+  <!-- How It Works -->
   <section class="how-it-works" id="how-it-works">
     <h2>How it works</h2>
     <div class="steps">
@@ -221,17 +306,69 @@
     </div>
   </section>
 
+  <!-- Pricing -->
   <section class="pricing" id="pricing">
     <h2>Simple, transparent pricing</h2>
     <div class="price">$20 <span>/ month</span></div>
     <p style="color: #475569; margin-bottom: 24px;">Cancel anytime. First 50 users get 1 year free.</p>
-    <a href="signup.html" class="btn-primary">🚀 Get Started</a>
+    <a href="#waitlist" class="btn-primary">🚀 Get Started</a>
   </section>
 
-  <footer>
-    <p>© 2026 Rpire. Built for people who value their time.</p>
-  </footer>
-
 </div>
+
+<!-- Waitlist Section (Fully Self-Contained) -->
+<section id="waitlist">
+  <h2>🚀 Join the Waitlist</h2>
+  <p class="prompt" id="waitlist-prompt">Be the first to try Rpire. Early users get <strong>1 year free</strong>.</p>
+
+  <form class="waitlist-form" id="waitlist-form">
+    <div class="input-group">
+      <input type="email" id="waitlist-email" placeholder="Enter your email" required />
+      <button type="submit">Join Now</button>
+    </div>
+    <p class="hint">No spam. Unsubscribe anytime.</p>
+  </form>
+
+  <div class="thank-you" id="thank-you">
+    <p class="title">✅ You're on the list!</p>
+    <p>Thank you for joining the waitlist! We'll inform you once the site is live.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>© 2026 Rpire. Built for people who value their time.</p>
+  </div>
+</footer>
+
+<script>
+  // --- WAITLIST LOGIC (No backend needed, saves to localStorage) ---
+  document.getElementById('waitlist-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop page from reloading
+
+    const email = document.getElementById('waitlist-email').value.trim();
+    if (!email) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // --- Save to localStorage (for demo / testing) ---
+    let waitlist = JSON.parse(localStorage.getItem('rpire_waitlist')) || [];
+    if (!waitlist.includes(email)) {
+      waitlist.push(email);
+      localStorage.setItem('rpire_waitlist', JSON.stringify(waitlist));
+    }
+
+    // --- Show thank you message ---
+    document.getElementById('waitlist-prompt').style.display = 'none';
+    document.getElementById('waitlist-form').style.display = 'none';
+    document.getElementById('thank-you').style.display = 'block';
+
+    // --- For your eyes only: log all emails in the console ---
+    console.log('✅ Rpire Waitlist Emails:', waitlist);
+  });
+</script>
+
 </body>
 </html>
