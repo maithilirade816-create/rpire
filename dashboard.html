@@ -77,19 +77,9 @@
       }
     }
 
-    /* --- GLASS --- */
-    .glass {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    /* --- SIDEBAR (Minimal) --- */
+    /* --- SIDEBAR --- */
     .sidebar {
-      width: 200px;
+      width: 180px;
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(255, 255, 255, 0.06);
@@ -103,9 +93,8 @@
       z-index: 1;
     }
     .sidebar .logo {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: -0.5px;
       color: #ffffff;
       padding-bottom: 20px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -121,42 +110,39 @@
       margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .sidebar .user-card .avatar {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       color: #fff;
     }
-    .sidebar .user-card .info {
-      flex: 1;
-    }
     .sidebar .user-card .info .name {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #e6edf3;
     }
     .sidebar .user-card .info .plan {
-      font-size: 12px;
+      font-size: 11px;
       color: #2ea043;
     }
     .sidebar nav a {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 10px 14px;
       border-radius: 10px;
       text-decoration: none;
       color: #8b949e;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.2s;
       margin-bottom: 2px;
       cursor: pointer;
@@ -178,12 +164,12 @@
     .sidebar .bottom a {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 10px 14px;
       border-radius: 10px;
       text-decoration: none;
       color: #8b949e;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       transition: all 0.2s;
       cursor: pointer;
@@ -201,176 +187,42 @@
 
     /* --- MAIN --- */
     .main {
-      margin-left: 200px;
+      margin-left: 180px;
       flex: 1;
       padding: 32px 40px 40px 40px;
-      max-width: calc(100% - 200px);
+      max-width: calc(100% - 180px);
       position: relative;
       z-index: 1;
     }
 
     /* --- HEADER --- */
     .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 12px;
     }
-    .main-header .greeting h1 {
+    .main-header h1 {
       font-size: 24px;
       font-weight: 700;
       color: #ffffff;
     }
-    .main-header .greeting p {
+    .main-header p {
       font-size: 14px;
       color: #8b949e;
       margin-top: 2px;
     }
 
-    /* --- CREDIT BAR --- */
-    .credit-bar {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      padding: 12px 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(46, 160, 67, 0.15);
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .credit-bar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .credit-bar .left .info h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: #e6edf3;
-    }
-    .credit-bar .left .info p {
-      font-size: 13px;
-      color: #8b949e;
-    }
-    .credit-bar .right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .credit-bar .right .credits {
-      font-size: 24px;
-      font-weight: 700;
-      color: #2ea043;
-    }
-    .credit-bar .right .btn-small {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: #e6edf3;
-    }
-    .credit-bar .right .btn-small:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .credit-bar .right .btn-small.green {
-      background: #2ea043;
-      border: none;
-      color: #fff;
-    }
-    .credit-bar .right .btn-small.green:hover {
-      background: #3fb950;
-    }
-    .progress-bar {
-      width: 120px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 4px;
-      margin-top: 4px;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      background: linear-gradient(90deg, #2ea043, #3fb950);
-      border-radius: 4px;
-      width: 100%;
-    }
-
-    /* --- STATS ROW --- */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .stat-card {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      padding: 14px 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.3s;
-    }
-    .stat-card:hover {
-      border-color: rgba(46, 160, 67, 0.15);
-    }
-    .stat-card .stat-label {
-      font-size: 11px;
-      color: #8b949e;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-    .stat-card .stat-number {
-      font-size: 22px;
-      font-weight: 700;
-      color: #e6edf3;
-      margin: 2px 0;
-    }
-    .stat-card .stat-change {
-      font-size: 11px;
-      color: #2ea043;
-    }
-
-    /* --- SYLVIE COMMAND CENTER --- */
+    /* --- COMMAND CENTER (Clean) --- */
     .command-center {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       border-radius: 16px;
-      border: 1px solid rgba(46, 160, 67, 0.1);
-      padding: 24px 28px;
-      margin-bottom: 24px;
+      border: 1px solid rgba(46, 160, 67, 0.08);
+      padding: 20px 24px;
+      margin-bottom: 20px;
       transition: all 0.3s;
     }
     .command-center:focus-within {
-      border-color: rgba(46, 160, 67, 0.3);
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
-    }
-    .command-center .label {
-      font-size: 13px;
-      color: #8b949e;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .command-center .label .dot {
-      width: 8px;
-      height: 8px;
-      background: #2ea043;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
+      border-color: rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.04);
     }
     .command-center .input-row {
       display: flex;
@@ -381,9 +233,9 @@
       flex: 1;
       background: rgba(0, 0, 0, 0.3);
       border: none;
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-radius: 12px;
-      font-size: 16px;
+      font-size: 15px;
       color: #e6edf3;
       font-family: inherit;
       outline: none;
@@ -395,7 +247,7 @@
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #fff;
       border: none;
-      padding: 14px 28px;
+      padding: 12px 24px;
       border-radius: 12px;
       font-weight: 600;
       font-size: 14px;
@@ -407,23 +259,23 @@
       box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
       transform: translateY(-1px);
     }
-    .command-center .suggestions {
+    .command-center .quick-actions {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 12px;
     }
-    .command-center .suggestions .chip {
+    .command-center .quick-actions .chip {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 6px 14px;
+      padding: 5px 14px;
       border-radius: 40px;
       font-size: 12px;
       color: #8b949e;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .command-center .suggestions .chip:hover {
+    .command-center .quick-actions .chip:hover {
       background: rgba(46, 160, 67, 0.08);
       border-color: rgba(46, 160, 67, 0.2);
       color: #e6edf3;
@@ -455,41 +307,88 @@
     }
     .sylvie-response .content {
       color: #e6edf3;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.7;
       white-space: pre-wrap;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* --- RECENT ACTIVITY --- */
+    /* --- STATS ROW (Clean) --- */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      border-color: rgba(46, 160, 67, 0.1);
+    }
+    .stat-card .stat-label {
+      font-size: 11px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .stat-card .stat-number {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin: 2px 0;
+    }
+    .stat-card .stat-change {
+      font-size: 11px;
+      color: #2ea043;
+    }
+    .stat-card .stat-change.down {
+      color: #f85149;
+    }
+
+    /* --- RECENT ACTIVITY (Clean) --- */
     .recent-activity {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
       padding: 16px 20px;
+      margin-bottom: 16px;
     }
     .recent-activity .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .recent-activity .header h3 {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      color: #e6edf3;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
     .activity-item {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 14px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 13px;
       color: #8b949e;
     }
     .activity-item:last-child {
@@ -516,8 +415,86 @@
     }
     .activity-item .time {
       margin-left: auto;
-      font-size: 12px;
+      font-size: 11px;
       color: #484f58;
+    }
+
+    /* --- CREDIT BAR (Clean) --- */
+    .credit-bar {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 12px;
+      border: 1px solid rgba(46, 160, 67, 0.1);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .credit-bar .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .credit-bar .left .info h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+    .credit-bar .left .info p {
+      font-size: 12px;
+      color: #8b949e;
+    }
+    .credit-bar .right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .credit-bar .right .credits {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2ea043;
+    }
+    .credit-bar .right .btn-small {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #e6edf3;
+    }
+    .credit-bar .right .btn-small:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .credit-bar .right .btn-small.green {
+      background: #2ea043;
+      border: none;
+      color: #fff;
+    }
+    .credit-bar .right .btn-small.green:hover {
+      background: #3fb950;
+    }
+    .progress-bar {
+      width: 100px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      margin-top: 3px;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2ea043, #3fb950);
+      border-radius: 4px;
+    }
+
+    /* --- SETTINGS --- */
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease;
     }
 
     /* --- CREDIT ALERT --- */
@@ -544,13 +521,37 @@
       animation: modalPop 0.3s ease;
     }
     @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
-    #creditAlert .modal .icon { font-size: 48px; margin-bottom: 12px; }
-    #creditAlert .modal h2 { font-size: 24px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
-    #creditAlert .modal p { color: #8b949e; font-size: 16px; margin-bottom: 24px; line-height: 1.6; }
-    #creditAlert .modal .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    #creditAlert .modal .icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    #creditAlert .modal h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 8px;
+    }
+    #creditAlert .modal p {
+      color: #8b949e;
+      font-size: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    #creditAlert .modal .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     #creditAlert .modal .btn-upgrade {
       background: #2ea043;
       color: white;
@@ -597,12 +598,26 @@
         font-size: 18px;
         text-align: center;
       }
-      .sidebar .logo span { display: none; }
-      .sidebar .user-card { display: none; }
-      .sidebar nav a span { display: none; }
-      .sidebar nav a { justify-content: center; padding: 12px; }
-      .sidebar .bottom a span { display: none; }
-      .sidebar .bottom a { justify-content: center; padding: 12px; }
+      .sidebar .logo span {
+        display: none;
+      }
+      .sidebar .user-card {
+        display: none;
+      }
+      .sidebar nav a span {
+        display: none;
+      }
+      .sidebar nav a {
+        justify-content: center;
+        padding: 12px;
+      }
+      .sidebar .bottom a span {
+        display: none;
+      }
+      .sidebar .bottom a {
+        justify-content: center;
+        padding: 12px;
+      }
       .main {
         margin-left: 64px;
         padding: 16px;
@@ -618,17 +633,18 @@
         width: 100%;
         justify-content: center;
       }
-      .credit-bar .progress-bar {
-        width: 80px;
-      }
     }
     @media (max-width: 480px) {
       .stats-row {
         grid-template-columns: 1fr;
       }
-      .main-header {
+      .credit-bar {
         flex-direction: column;
-        align-items: stretch;
+        text-align: center;
+      }
+      .credit-bar .left {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -662,7 +678,7 @@
       <div class="avatar">M</div>
       <div class="info">
         <div class="name" id="sidebarName">Maithili</div>
-        <div class="plan" id="sidebarPlan">Free Plan</div>
+        <div class="plan">Free Plan</div>
       </div>
     </div>
     <nav>
@@ -679,31 +695,34 @@
 
     <!-- HEADER -->
     <div class="main-header">
-      <div class="greeting">
-        <h1 id="greetingText">Good morning, Maithili</h1>
-        <p id="creditStatus">50 credits remaining</p>
+      <h1 id="greetingText">Good morning, Maithili</h1>
+      <p id="creditStatus">50 credits remaining</p>
+    </div>
+
+    <!-- COMMAND CENTER -->
+    <div class="command-center">
+      <div class="input-row">
+        <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
+        <button class="btn-send" onclick="sendToSylvie()">Send</button>
+      </div>
+      <div class="quick-actions">
+        <span class="chip" onclick="setCommand('Schedule a meeting')">📅 Schedule</span>
+        <span class="chip" onclick="setCommand('Summarize')">📄 Summarize</span>
+        <span class="chip" onclick="setCommand('Draft a reply')">✉️ Draft</span>
+        <span class="chip" onclick="setCommand('Show urgent emails')">📥 Urgent</span>
       </div>
     </div>
 
-    <!-- CREDIT BAR -->
-    <div class="credit-bar">
-      <div class="left">
-        <div class="info">
-          <h3>Credits Remaining</h3>
-          <p id="creditBarText">50 credits · Resets Aug 1</p>
-        </div>
-        <div class="progress-bar">
-          <div class="fill" id="creditProgress" style="width: 100%;"></div>
-        </div>
+    <!-- SYLVIE RESPONSE -->
+    <div id="sylvieResponse" class="sylvie-response">
+      <div class="header">
+        <span class="icon">💬</span>
+        <span class="name">Sylvie</span>
       </div>
-      <div class="right">
-        <span class="credits" id="creditDisplay">50</span>
-        <button class="btn-small green" onclick="window.location.href='#pricing'">Upgrade</button>
-        <button class="btn-small" onclick="alert('Buy credits feature coming soon.')">Buy</button>
-      </div>
+      <div id="sylvieOutput" class="content"></div>
     </div>
 
-    <!-- STATS ROW -->
+    <!-- STATS -->
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Meetings</div>
@@ -723,34 +742,8 @@
       <div class="stat-card">
         <div class="stat-label">Urgent</div>
         <div class="stat-number">3</div>
-        <div class="stat-change down" style="color:#f85149;">Need reply today</div>
+        <div class="stat-change down">Need reply today</div>
       </div>
-    </div>
-
-    <!-- SYLVIE COMMAND CENTER -->
-    <div class="command-center">
-      <div class="label">
-        <span class="dot"></span> Sylvie is listening
-      </div>
-      <div class="input-row">
-        <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
-        <button class="btn-send" onclick="sendToSylvie()">Send</button>
-      </div>
-      <div class="suggestions">
-        <span class="chip" onclick="setCommand('Schedule a meeting with Sarah at 2 PM tomorrow')">📅 Schedule meeting</span>
-        <span class="chip" onclick="setCommand('Summarize the Q4 budget thread')">📄 Summarize</span>
-        <span class="chip" onclick="setCommand('Draft a reply to Michael about the project')">✉️ Draft reply</span>
-        <span class="chip" onclick="setCommand('Show me urgent emails')">📥 Urgent emails</span>
-      </div>
-    </div>
-
-    <!-- SYLVIE RESPONSE -->
-    <div id="sylvieResponse" class="sylvie-response">
-      <div class="header">
-        <span class="icon">💬</span>
-        <span class="name">Sylvie</span>
-      </div>
-      <div id="sylvieOutput" class="content"></div>
     </div>
 
     <!-- RECENT ACTIVITY -->
@@ -760,29 +753,46 @@
       </div>
       <div class="activity-item">
         <span class="dot green"></span>
-        <span class="text">Meeting scheduled with <strong>Sarah Johnson</strong> — Q4 Budget Review</span>
+        <span class="text">Meeting scheduled with <strong>Sarah Johnson</strong></span>
         <span class="time">2 min ago</span>
       </div>
       <div class="activity-item">
         <span class="dot blue"></span>
-        <span class="text">Draft generated for <strong>Michael Chen</strong> — Project Timeline</span>
+        <span class="text">Draft generated for <strong>Michael Chen</strong></span>
         <span class="time">1h ago</span>
       </div>
       <div class="activity-item">
         <span class="dot yellow"></span>
-        <span class="text">Email triaged as <strong>Urgent</strong> — Budget Review</span>
+        <span class="text">Email triaged as <strong>Urgent</strong></span>
         <span class="time">3h ago</span>
       </div>
     </div>
 
-    <!-- SETTINGS SECTION (Hidden by default) -->
-    <div id="section-settings" class="section" style="display:none;">
-      <h2 style="margin-bottom: 20px; font-size: 22px;">Settings</h2>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:20px;">
+    <!-- CREDIT BAR -->
+    <div class="credit-bar">
+      <div class="left">
+        <div class="info">
+          <h3>Credits Remaining</h3>
+          <p id="creditBarText">50 credits · Resets Aug 1</p>
+          <div class="progress-bar">
+            <div class="fill" id="creditProgress" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <span class="credits" id="creditDisplay">50</span>
+        <button class="btn-small green" onclick="window.location.href='#pricing'">Upgrade</button>
+        <button class="btn-small" onclick="alert('Buy credits coming soon.')">Buy</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="section-settings" class="section">
+      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-top:20px;">
         <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Profile</h3>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <span style="font-weight:500;color:#e6edf3;">Name</span>
-          <span style="color:#8b949e;font-size:14px;"><input type="text" value="Maithili Rade" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;" /></span>
+          <input type="text" value="Maithili Rade" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;background:rgba(0,0,0,0.3);color:#e6edf3;" />
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <span style="font-weight:500;color:#e6edf3;">Email</span>
@@ -790,18 +800,20 @@
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
           <span style="font-weight:500;color:#e6edf3;">Timezone</span>
-          <span style="color:#8b949e;font-size:14px;"><select style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;"><option>PST</option><option>EST</option><option selected>IST</option></select></span>
+          <select style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;background:rgba(0,0,0,0.3);color:#e6edf3;">
+            <option>PST</option><option>EST</option><option selected>IST</option>
+          </select>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);">
+      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-top:16px;">
         <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Account</h3>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <span style="font-weight:500;color:#e6edf3;">Plan</span>
-          <span style="color:#8b949e;font-size:14px;"><span style="background:rgba(46,160,67,0.1);color:#3fb950;border:1px solid rgba(46,160,67,0.1);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Free</span></span>
+          <span style="background:rgba(46,160,67,0.1);color:#3fb950;border:1px solid rgba(46,160,67,0.1);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Free</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
           <span style="font-weight:500;color:#e6edf3;">Delete</span>
-          <span style="color:#8b949e;font-size:14px;"><button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:6px 16px;border-radius:30px;cursor:pointer;">Delete</button></span>
+          <button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:6px 16px;border-radius:30px;cursor:pointer;">Delete</button>
         </div>
       </div>
     </div>
@@ -855,7 +867,7 @@
     });
 
     // ============================================
-    // SYLVIE ENGINE (In-house AI)
+    // SYLVIE ENGINE (Auto 3 Options)
     // ============================================
 
     function setCommand(text) {
@@ -874,7 +886,6 @@
       responseDiv.style.display = 'block';
       outputDiv.textContent = 'Sylvie is thinking...';
 
-      // Simulate AI processing (replace with actual Sylvie logic)
       const response = await processSylvieCommand(text);
 
       outputDiv.textContent = response;
@@ -885,7 +896,6 @@
     async function processSylvieCommand(command) {
       const lower = command.toLowerCase();
 
-      // Detect intent
       if (lower.includes('schedule') || lower.includes('meeting') || lower.includes('calendar')) {
         return handleSchedule(command);
       }
@@ -905,6 +915,22 @@
     }
 
     function handleSchedule(command) {
+      const hasPerson = /with|and|meet|sarah|michael|alex|john|jane/i.test(command);
+      const hasTime = /\d{1,2}(?::\d{2})?\s*(?:am|pm|morning|afternoon|evening)/i.test(command);
+      const hasTopic = /about|regarding|for|budget|project|review|sync/i.test(command);
+
+      if (!hasPerson || !hasTime || !hasTopic) {
+        return `🤔 I'd love to schedule that for you. Here are 3 options:
+
+  Option 1: 📅 Schedule with Sarah at 2 PM tomorrow (Q4 Budget Review)
+  Option 2: 📅 Schedule with Michael at 10 AM Thursday (Project Sync)
+  Option 3: 📅 Schedule with Alex at 3 PM Friday (Client Presentation)
+
+  Reply with Option 1, 2, or 3 — or tell me your own details.
+
+  (e.g., "Schedule with [name] at [time] [day] about [topic]")`;
+      }
+
       return `📅 Booking meeting...
 
   ✅ Meeting added to your calendar.
@@ -915,13 +941,24 @@
     }
 
     function handleSummarize(command) {
+      const hasContent = command.length > 20;
+
+      if (!hasContent) {
+        return `📄 I can summarize any of these recent threads:
+
+  Option 1: 📄 Q4 Budget Review (Sarah Johnson) — 5 messages
+  Option 2: 📄 Project Timeline Update (Michael Chen) — 8 messages
+  Option 3: 📄 Client Presentation (Alex Rivera) — 3 messages
+
+  Reply with Option 1, 2, or 3 — or paste the content you want me to summarize.`;
+      }
+
       return `📄 Here's your summary:
 
   Key points:
   • Budget approved for Q4
   • Marketing spend increased by 15%
   • New hire budget added
-  • Project timeline confirmed
 
   Action items:
   • Send updated timeline to team
@@ -937,18 +974,29 @@
     }
 
     function handleDraft(command) {
+      const hasRecipient = /to|for|sarah|michael|alex|john|jane/i.test(command);
+
+      if (!hasRecipient) {
+        return `✉️ I can draft a reply for you. Here are 3 options:
+
+  Option 1: ✉️ Draft reply to Sarah about the Q4 budget
+  Option 2: ✉️ Draft reply to Michael about the project timeline
+  Option 3: ✉️ Draft reply to Alex about the client presentation
+
+  Reply with Option 1, 2, or 3 — or tell me who you want to reply to and what about.`;
+      }
+
       return `✉️ Here's a draft:
 
-  Subject: Project Update — Q4 Timeline
+  Subject: Re: [Topic]
 
   Hi [Name],
 
-  The project is on track for the Q4 deadline. I'll share the updated timeline by Friday.
+  Thanks for your message. I've reviewed everything and here's what I think:
 
-  Key milestones:
-  • Phase 1 completed
-  • Phase 2 in progress
-  • Phase 3 scheduled for next week
+  • Point 1
+  • Point 2
+  • Point 3
 
   Let me know if you have any questions.
 
@@ -959,18 +1007,21 @@
     }
 
     function handleTriage(command) {
-      return `📥 Urgent emails (3):
+      return `📥 Here are your urgent emails:
 
   1. 📧 Q4 Budget Review — Sarah Johnson
-     "We need to finalize the budget by Friday. Please review the attached document."
+     "We need to finalize the budget by Friday."
 
   2. 📧 Client Contract Deadline — Alex Rivera
-     "The client needs the signed contract by end of day tomorrow."
+     "The client needs the signed contract by EOD tomorrow."
 
   3. 📧 Team Sync — Michael Chen
-     "Can we have a quick sync today? Need to discuss the project timeline."
+     "Can we have a quick sync today?"
 
-  👀 Ready to reply? Just say "Draft a reply to [name]".`;
+  👀 What would you like to do?
+  • "Draft a reply to Sarah"
+  • "Show me the full email"
+  • "Mark as read"`;
     }
 
     function handleGreeting(command) {
@@ -987,21 +1038,20 @@
   • 📄 Summarizing emails and threads
   • ✉️ Drafting replies
   • 📥 Triaging your inbox
-  • 🔍 Finding anything you need
 
-  What can I do for you today?`;
+  What would you like to do today?`;
     }
 
     function handleGeneral(command) {
-      return `🤔 I understand you're asking about: "${command}"
+      return `🤔 I understand you want to: "${command}"
 
-  I'm still learning, but here's what I can do:
-  • 📅 "Schedule a meeting with Sarah at 2 PM"
+  Here's what I can do:
+  • 📅 "Schedule a meeting with Sarah at 2 PM tomorrow"
   • 📄 "Summarize the Q4 budget thread"
-  • ✉️ "Draft a reply to Michael"
+  • ✉️ "Draft a reply to Michael about the project"
   • 📥 "Show me urgent emails"
 
-  What would you like me to do?`;
+  Try one of these or tell me what you need.`;
     }
 
     // ============================================
@@ -1020,7 +1070,10 @@
     else if (hour < 17) greeting = 'Good afternoon';
     document.getElementById('greetingText').textContent = greeting + ', ' + name.charAt(0).toUpperCase() + name.slice(1);
 
-    function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
+    function logout() {
+      localStorage.removeItem('rpire_user');
+      window.location.href = 'index.html';
+    }
 
     // --- Navigation ---
     document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
@@ -1034,7 +1087,7 @@
       });
     });
 
-    // Enter key to send
+    // --- Enter key ---
     document.getElementById('sylvieInput').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
