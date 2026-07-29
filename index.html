@@ -3,374 +3,821 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rpire — Your AI Chief of Staff</title>
+  <title>Rpire — AI Email Assistant</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* --- Reset & Base --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #ffffff;
-      color: #0a0a0a;
+      background: #0d1117;
+      color: #e6edf3;
       line-height: 1.6;
     }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
+    /* --- Side Decor --- */
+    .side-decor {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #21262d;
+      font-weight: 500;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .side-decor.left {
+      left: 12px;
+    }
+    .side-decor.right {
+      right: 12px;
+    }
+    @media (max-width: 768px) {
+      .side-decor {
+        display: none;
+      }
+    }
+
+    /* --- Glass Effect --- */
+    .glass {
+      background: rgba(22, 27, 34, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+    }
+
+    /* --- Header --- */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
-      border-bottom: 1px solid #f0f2f5;
+      border-bottom: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
     }
-    .logo { font-size: 24px; font-weight: 700; color: #0a0a0a; }
-    .logo span { color: #2563eb; }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+    .logo span {
+      color: #2ea043;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
     .nav a {
-      margin-left: 24px;
       text-decoration: none;
-      color: #475569;
+      color: #8b949e;
+      font-size: 14px;
       font-weight: 500;
-      font-size: 15px;
+      transition: color 0.15s;
     }
-    .nav a:hover { color: #2563eb; }
-    .btn-outline {
-      border: 1px solid #dce2ec;
+    .nav a:hover {
+      color: #ffffff;
+    }
+    .nav .btn-outline {
       padding: 8px 20px;
+      border: 1px solid #30363d;
       border-radius: 40px;
       background: transparent;
-      font-weight: 600;
+      font-weight: 500;
+      font-size: 14px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.15s;
       text-decoration: none;
-      color: #0a0a0a;
+      color: #e6edf3;
     }
-    .btn-outline:hover { background: #f8fafc; }
+    .nav .btn-outline:hover {
+      background: #21262d;
+      border-color: #484f58;
+    }
+    .nav .btn-primary-small {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 40px;
+      background: #2ea043;
+      color: white;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    .nav .btn-primary-small:hover {
+      background: #3fb950;
+    }
 
+    /* --- Hero --- */
     .hero {
       text-align: center;
-      padding: 72px 0 48px;
+      padding: 80px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: #161b22;
+      color: #8b949e;
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      border: 1px solid #21262d;
     }
     .hero h1 {
       font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -1px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
       line-height: 1.1;
       max-width: 800px;
       margin: 0 auto 16px;
+      color: #ffffff;
     }
-    .hero h1 span { color: #2563eb; }
+    .hero h1 span {
+      color: #2ea043;
+    }
     .hero p {
-      font-size: 20px;
-      color: #475569;
-      max-width: 600px;
+      font-size: 18px;
+      color: #8b949e;
+      max-width: 550px;
       margin: 0 auto 32px;
+      line-height: 1.7;
     }
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-      border: none;
+    .hero .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero .btn-primary {
       padding: 14px 40px;
+      border: none;
       border-radius: 40px;
+      background: #2ea043;
+      color: white;
       font-weight: 600;
       font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(37,99,235,0.25);
-      transition: 0.2s;
+      transition: all 0.15s;
       text-decoration: none;
-      display: inline-block;
     }
-    .btn-primary:hover { background: #1d4ed8; transform: scale(1.02); }
+    .hero .btn-primary:hover {
+      background: #3fb950;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+    }
+    .hero .btn-secondary {
+      padding: 14px 40px;
+      border: 1px solid #30363d;
+      border-radius: 40px;
+      background: transparent;
+      color: #e6edf3;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    .hero .btn-secondary:hover {
+      background: #161b22;
+      border-color: #484f58;
+    }
 
+    /* --- Live Block --- */
+    .live-block {
+      margin: 48px auto 0;
+      max-width: 700px;
+      padding: 20px 28px;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .live-block .dot {
+      width: 10px;
+      height: 10px;
+      background: #2ea043;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .live-block .text {
+      color: #8b949e;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .live-block .text strong {
+      color: #e6edf3;
+    }
+    .live-block .handwriting {
+      font-family: 'Segoe Script', 'Brush Script MT', cursive;
+      font-size: 18px;
+      color: #2ea043;
+      opacity: 0.8;
+    }
+
+    /* --- Features --- */
     .features {
       padding: 64px 0;
-      border-top: 1px solid #f0f2f5;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
     }
     .features h2 {
       text-align: center;
       font-size: 32px;
       font-weight: 700;
-      margin-bottom: 40px;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .features .sub {
+      text-align: center;
+      color: #8b949e;
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 40px;
     }
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 32px;
     }
     .feature-card {
-      background: #f8fafc;
+      background: #161b22;
       padding: 32px;
       border-radius: 16px;
-      border: 1px solid #eef2f6;
-      text-align: center;
+      border: 1px solid #21262d;
+      transition: all 0.15s;
+      text-align: left;
     }
-    .feature-card h3 { font-size: 20px; margin-bottom: 8px; }
-    .feature-card p { color: #64748b; font-size: 15px; }
-    .feature-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+    .feature-card:hover {
+      border-color: #2ea043;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px);
+    }
+    .feature-card .icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #2ea043;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    .feature-card p {
+      color: #8b949e;
+      font-size: 15px;
+      line-height: 1.6;
+    }
 
+    /* --- Code Snippet --- */
+    .code-section {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .code-section h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .code-section .sub {
+      text-align: center;
+      color: #8b949e;
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .code-block {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .code-block code {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 14px;
+      color: #e6edf3;
+      line-height: 1.8;
+    }
+    .code-block .comment {
+      color: #8b949e;
+    }
+    .code-block .tag {
+      color: #ff7b72;
+    }
+    .code-block .attr {
+      color: #d2a8ff;
+    }
+    .code-block .string {
+      color: #a5d6ff;
+    }
+    .code-block .keyword {
+      color: #ff7b72;
+    }
+    .code-block .button-code {
+      color: #3fb950;
+    }
+
+    /* --- How It Works --- */
     .how-it-works {
       padding: 64px 0;
-      background: #f8fafc;
-      border-top: 1px solid #f0f2f5;
+      background: #0d1117;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
     }
     .how-it-works h2 {
       text-align: center;
       font-size: 32px;
       font-weight: 700;
+      letter-spacing: -0.5px;
       margin-bottom: 40px;
+      color: #ffffff;
     }
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 32px;
+    }
+    .step {
       text-align: center;
     }
-    .step-number {
-      background: #2563eb;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .step .num {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 48px;
+      height: 48px;
       margin: 0 auto 12px;
+      background: #161b22;
+      color: #2ea043;
+      border-radius: 50%;
       font-weight: 700;
+      font-size: 18px;
+      border: 1px solid #21262d;
+    }
+    .step h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+    .step p {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
+    /* --- Glass Features --- */
+    .glass-features {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .glass-features h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .glass-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .glass-card {
+      background: rgba(22, 27, 34, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.15s;
+    }
+    .glass-card:hover {
+      border-color: #2ea043;
+      transform: translateY(-4px);
+    }
+    .glass-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #2ea043;
+    }
+    .glass-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    .glass-card p {
+      color: #8b949e;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .glass-card .handwriting {
+      font-family: 'Segoe Script', 'Brush Script MT', cursive;
+      font-size: 16px;
+      color: #2ea043;
+      opacity: 0.7;
+      margin-top: 8px;
+    }
+
+    /* --- Testimonial --- */
+    .testimonial {
+      padding: 64px 0;
+      background: #0d1117;
+      border-top: 1px solid #21262d;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial blockquote {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 20px;
+      color: #e6edf3;
+      font-weight: 400;
+      line-height: 1.8;
+      font-style: italic;
+    }
+    .testimonial .author {
+      margin-top: 16px;
+      color: #8b949e;
+      font-size: 16px;
+      font-style: normal;
+    }
+    .testimonial .author strong {
+      color: #ffffff;
+    }
+
+    /* --- FAQ --- */
+    .faq {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .faq h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .faq-item {
+      max-width: 700px;
+      margin: 0 auto 16px;
+      padding: 20px 24px;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+    }
+    .faq-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .faq-item p {
+      color: #8b949e;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* --- Pricing --- */
     .pricing {
       padding: 64px 0;
       text-align: center;
-      border-top: 1px solid #f0f2f5;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
     }
-    .pricing h2 { font-size: 32px; font-weight: 700; }
-    .pricing .price {
-      font-size: 48px;
-      font-weight: 800;
-      color: #0a0a0a;
-      margin: 16px 0 8px;
-    }
-    .pricing .price span { font-size: 18px; font-weight: 400; color: #64748b; }
-
-    footer {
-      border-top: 1px solid #f0f2f5;
-      padding: 24px 0;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    #waitlist {
-      background: #f8fafc;
-      padding: 48px 20px;
-      text-align: center;
-      border-top: 1px solid #eef2f6;
-    }
-    #waitlist h2 {
-      font-size: 28px;
+    .pricing h2 {
+      font-size: 32px;
       font-weight: 700;
-      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      color: #ffffff;
     }
-    #waitlist .prompt {
-      color: #475569;
-      margin-bottom: 20px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+    .pricing .sub {
+      color: #8b949e;
+      font-size: 18px;
+      margin-bottom: 40px;
     }
-    .waitlist-form {
-      max-width: 400px;
-      margin: 0 auto;
+    .pricing .price-box {
+      display: inline-block;
+      background: #161b22;
+      padding: 40px 48px;
+      border-radius: 16px;
+      border: 1px solid #21262d;
+      min-width: 280px;
     }
-    .waitlist-form .input-group {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .pricing .price-box .amount {
+      font-size: 48px;
+      font-weight: 700;
+      color: #ffffff;
     }
-    .waitlist-form input {
-      flex: 1;
-      min-width: 200px;
-      padding: 14px 20px;
-      border: 1px solid #dce2ec;
-      border-radius: 40px;
-      font-size: 16px;
-      outline: none;
+    .pricing .price-box .period {
+      font-size: 18px;
+      color: #8b949e;
     }
-    .waitlist-form input:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    .pricing .price-box .description {
+      color: #8b949e;
+      font-size: 15px;
+      margin: 12px 0 24px;
     }
-    .waitlist-form button {
-      background: #2563eb;
-      color: white;
+    .pricing .price-box .btn-primary {
+      display: inline-block;
+      padding: 12px 40px;
       border: none;
-      padding: 14px 32px;
       border-radius: 40px;
+      background: #2ea043;
+      color: white;
       font-weight: 600;
       font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
-      transition: 0.2s;
+      transition: all 0.15s;
+      text-decoration: none;
     }
-    .waitlist-form button:hover {
-      background: #1d4ed8;
-      transform: scale(1.02);
+    .pricing .price-box .btn-primary:hover {
+      background: #3fb950;
     }
-    .waitlist-form .hint {
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid #21262d;
+      padding: 32px 0;
+      text-align: center;
+      color: #8b949e;
       font-size: 14px;
-      color: #94a3b8;
-      margin-top: 12px;
+      position: relative;
+      z-index: 1;
     }
-    .thank-you {
-      display: none;
-      background: #ecfdf5;
-      padding: 24px;
-      border-radius: 16px;
-      max-width: 500px;
-      margin: 0 auto;
-      border: 1px solid #a7f3d0;
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
-    .thank-you p {
-      color: #065f46;
+    footer .footer-links a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 14px;
     }
-    .thank-you .title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
+    footer .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero p {
+        font-size: 16px;
+      }
+      .nav {
+        gap: 12px;
+      }
+      .nav a {
+        font-size: 13px;
+      }
+      .pricing .price-box {
+        padding: 24px;
+        min-width: auto;
+      }
+      .live-block {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+  <!-- Side Decor -->
+  <div class="side-decor left">● ● ● ● ●</div>
+  <div class="side-decor right">● ● ● ● ●</div>
 
-  <header>
-    <div class="logo">Rpire<span>.</span></div>
-    <div class="nav">
-      <a href="#features">Features</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#waitlist" class="btn-outline">Join Waitlist</a>
-    </div>
-  </header>
-
-  <section class="hero">
-    <h1>Your AI <span>Chief of Staff</span></h1>
-    <p>Auto-schedule meetings, draft emails in your voice, and triage your inbox—so you can focus on real work.</p>
-    <a href="#waitlist" class="btn-primary">🚀 Get Started</a>
-    <p style="font-size: 14px; color: #94a3b8; margin-top: 16px;">First 10 users get 3 months free. No credit card required.</p>
-  </section>
-
-  <section class="features" id="features">
-    <h2>Everything you need to reclaim your day</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <span class="feature-icon">📅</span>
-        <h3>Auto-Schedule Meetings</h3>
-        <p>AI reads your emails, finds mutual availability, and suggests times—you approve, it books.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">✉️</span>
-        <h3>Draft Emails in Your Voice</h3>
-        <p>Professional replies that sound like <em>you</em>, not a robot. You review and send.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">📥</span>
-        <h3>Smart Inbox Triage</h3>
-        <p>Urgent, Basic, Scam—sorted automatically so you see what actually matters.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="how-it-works" id="how-it-works">
-    <h2>How it works</h2>
-    <div class="steps">
-      <div>
-        <div class="step-number">1</div>
-        <h3>Connect</h3>
-        <p style="color: #64748b;">Link your Gmail and Calendar in seconds.</p>
-      </div>
-      <div>
-        <div class="step-number">2</div>
-        <h3>AI Works</h3>
-        <p style="color: #64748b;">Rpire reads, analyzes, and drafts behind the scenes.</p>
-      </div>
-      <div>
-        <div class="step-number">3</div>
-        <h3>You Approve</h3>
-        <p style="color: #64748b;">Review suggestions, click confirm, and get back to work.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="pricing" id="pricing">
-    <h2>Simple, transparent pricing</h2>
-    <div class="price">$20 <span>/ month</span></div>
-    <p style="color: #475569; margin-bottom: 24px;">Cancel anytime. First 10 users get 3 months free.</p>
-    <a href="#waitlist" class="btn-primary">🚀 Get Started</a>
-  </section>
-
-</div>
-
-<!-- Waitlist Section -->
-<section id="waitlist">
-  <h2>🚀 Join the Waitlist</h2>
-  <p class="prompt" id="waitlist-prompt">Be the first to try Rpire. Early users get <strong>3 months free</strong>.</p>
-
-  <form class="waitlist-form" id="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
-    <!-- ⬇️ PASTE YOUR ACTUAL ACCESS KEY HERE (keep the quotes) ⬇️ -->
-    <input type="hidden" name="access_key" value="a42296bd-0198-47b1-a389-5c04bd73ea0f">
-    <input type="hidden" name="subject" value="New Rpire Waitlist Signup">
-    <input type="hidden" name="from_name" value="Rpire Waitlist">
-    
-    <div class="input-group">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Join Now</button>
-    </div>
-    <p class="hint">No spam. Unsubscribe anytime.</p>
-  </form>
-
-  <div class="thank-you" id="thank-you">
-    <p class="title">✅ You're on the list!</p>
-    <p>Thank you for joining the waitlist! We'll inform you once the site is live.</p>
-  </div>
-</section>
-
-<footer>
   <div class="container">
-    <p>© 2026 Rpire. Built for people who value their time.</p>
+
+    <!-- Header -->
+    <header>
+      <div class="logo">Rp<span>.</span></div>
+      <div class="nav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="login.html" class="btn-outline">Log in</a>
+        <a href="signup.html" class="btn-primary-small">Sign up</a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge">Beta · Save 2 hours a day</div>
+      <h1>AI Email Assistant That <span>Automates Your Inbox</span></h1>
+      <p>Rpire reads your emails, schedules meetings, drafts replies, and summarizes conversations — you approve everything before it sends.</p>
+      <div class="cta-group">
+        <a href="signup.html" class="btn-primary">Try It Free</a>
+        <a href="#features" class="btn-secondary">Learn More</a>
+      </div>
+
+      <div class="live-block">
+        <span class="dot"></span>
+        <span class="text"><strong>Live:</strong> Monitoring your inbox for meeting requests</span>
+        <span class="handwriting">~ always watching, never overstepping</span>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <h2>Everything you need to reclaim your day</h2>
+      <p class="sub">Rpire handles the admin work so you can focus on what matters.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">▣</div>
+          <h3>Auto-Schedule Meetings</h3>
+          <p>Rpire detects meeting requests in your emails and suggests 3 time slots based on your calendar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">◈</div>
+          <h3>Draft Replies in Your Voice</h3>
+          <p>AI writes replies that sound like you. You review, edit, and send — or let Rpire handle it.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">◉</div>
+          <h3>Smart Inbox Triage</h3>
+          <p>Urgent, Basic, Scam — sorted automatically so you see what matters.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Snippet -->
+    <section class="code-section" id="code">
+      <h2>Works with any stack</h2>
+      <p class="sub">Paste this code — connect Gmail and Calendar in minutes.</p>
+      <div class="code-block">
+        <code>
+          <span class="comment">&lt;!-- Connect Gmail --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/connect"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Gmail</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span><br><br>
+          <span class="comment">&lt;!-- Calendar integration --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/calendar"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Calendar</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span>
+        </code>
+      </div>
+    </section>
+
+    <!-- Glass Features -->
+    <section class="glass-features" id="glass-features">
+      <h2>More than just email</h2>
+      <div class="glass-grid">
+        <div class="glass-card">
+          <div class="icon">◊</div>
+          <h3>Meeting Summarizer</h3>
+          <p>After each meeting, Rpire sends you a bullet-point summary with action items and next steps.</p>
+          <div class="handwriting">~ never forget what was said</div>
+        </div>
+        <div class="glass-card">
+          <div class="icon">✦</div>
+          <h3>Context-Aware Drafting</h3>
+          <p>Rpire reads the entire thread before drafting — no generic replies, just context.</p>
+          <div class="handwriting">~ replies that make sense</div>
+        </div>
+        <div class="glass-card">
+          <div class="icon">◆</div>
+          <h3>Privacy First</h3>
+          <p>You approve everything. Emails are never stored. Your data stays yours.</p>
+          <div class="handwriting">~ control, always</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Connect</h3>
+          <p>Link your Gmail and Calendar once.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>AI Works Silently</h3>
+          <p>Rpire reads, analyzes, and drafts behind the scenes.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>You Approve</h3>
+          <p>Review suggestions, click confirm, and get back to work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+      <blockquote>
+        “Rpire saved me 2 hours a day. No more back-and-forth scheduling, no more lost action items.”
+      </blockquote>
+      <div class="author">— <strong>Maithili Rade</strong>, Student Founder</div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Is Rpire free to use?</h3>
+        <p>Yes — the beta is free for the first 10 users. After that, it's $20/month.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How does Rpire detect meeting requests?</h3>
+        <p>Rpire scans your incoming emails for phrases like “let's meet,” “schedule,” or “free on.” It then suggests 3 time slots based on your calendar availability.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my data safe?</h3>
+        <p>Yes — all data is encrypted and we never store your emails. You approve every action before it happens.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if I don't approve a meeting?</h3>
+        <p>Nothing happens. Rpire only books meetings when you explicitly click “Confirm.”</p>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+      <h2>Simple, transparent pricing</h2>
+      <p class="sub">Start free. Upgrade when you're ready.</p>
+      <div class="price-box">
+        <div><span class="amount">$20</span> <span class="period">/ month</span></div>
+        <div class="description">Cancel anytime. First 10 beta users get 3 months free.</div>
+        <a href="signup.html" class="btn-primary">Get Started</a>
+      </div>
+    </section>
+
   </div>
-</footer>
 
-<script>
-  // Show thank-you message when form is submitted
-  document.getElementById('waitlist-form').addEventListener('submit', function(event) {
-    document.getElementById('waitlist-prompt').style.display = 'none';
-    document.getElementById('waitlist-form').style.display = 'none';
-    document.getElementById('thank-you').style.display = 'block';
-  });
-</script>
-  <!-- Feedback Section -->
-<section id="feedback" style="background: #ffffff; padding: 48px 20px; text-align: center; border-top: 1px solid #eef2f6;">
-  <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">💬 Your Feedback Matters</h2>
-  <p style="color: #475569; margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto;">
-    What would make Rpire actually useful for you?<br>
-    <span style="font-size: 14px; color: #94a3b8;">(Even if it's brutal — I can take it 😂)</span>
-  </p>
-
-  <form action="https://api.web3forms.com/submit" method="POST" style="max-width: 500px; margin: 0 auto;">
-    <!-- Same access key as your waitlist -->
-    <input type="hidden" name="access_key" value="a42296bd-0198-47b1-a389-5c04bd73ea0f">
-    <input type="hidden" name="subject" value="Rpire Feedback">
-    <input type="hidden" name="from_name" value="Rpire Feedback">
-
-    <!-- Email field (optional) -->
-    <input type="email" name="email" placeholder="Your email (optional)" style="width: 100%; padding: 14px 20px; border: 1px solid #dce2ec; border-radius: 40px; font-size: 16px; outline: none; margin-bottom: 12px;">
-
-    <!-- Feedback field -->
-    <textarea name="feedback" rows="4" placeholder="What would make this useful for you? What's missing? Any features you'd love?" style="width: 100%; padding: 14px 20px; border: 1px solid #dce2ec; border-radius: 16px; font-size: 16px; outline: none; font-family: inherit; resize: vertical; margin-bottom: 12px;"></textarea>
-
-    <button type="submit" style="background: #2563eb; color: white; border: none; padding: 14px 32px; border-radius: 40px; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.25);">Send Feedback</button>
-  </form>
-</section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+      <p>© 2026 Rpire. Built for people who value their time.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
