@@ -898,4 +898,151 @@
       if (lower.includes('urgent') || lower.includes('inbox') || lower.includes('triage')) {
         return handleTriage(command);
       }
-      if (lower
+      if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+        return handleGreeting(command);
+      }
+      return handleGeneral(command);
+    }
+
+    function handleSchedule(command) {
+      return `📅 Booking meeting...
+
+  ✅ Meeting added to your calendar.
+  📧 Invitation sent to the participant.
+  ⏰ Reminder set for 15 minutes before.
+
+  Would you like me to add any notes to this meeting?`;
+    }
+
+    function handleSummarize(command) {
+      return `📄 Here's your summary:
+
+  Key points:
+  • Budget approved for Q4
+  • Marketing spend increased by 15%
+  • New hire budget added
+  • Project timeline confirmed
+
+  Action items:
+  • Send updated timeline to team
+  • Schedule client review meeting
+
+  Decisions made:
+  • Q4 budget approved
+  • Team expansion approved
+
+  Next steps:
+  • Finalize budget details
+  • Share meeting notes with team`;
+    }
+
+    function handleDraft(command) {
+      return `✉️ Here's a draft:
+
+  Subject: Project Update — Q4 Timeline
+
+  Hi [Name],
+
+  The project is on track for the Q4 deadline. I'll share the updated timeline by Friday.
+
+  Key milestones:
+  • Phase 1 completed
+  • Phase 2 in progress
+  • Phase 3 scheduled for next week
+
+  Let me know if you have any questions.
+
+  Best regards,
+  [Your Name]
+
+  ✅ Should I send this? (Reply "yes" or "no")`;
+    }
+
+    function handleTriage(command) {
+      return `📥 Urgent emails (3):
+
+  1. 📧 Q4 Budget Review — Sarah Johnson
+     "We need to finalize the budget by Friday. Please review the attached document."
+
+  2. 📧 Client Contract Deadline — Alex Rivera
+     "The client needs the signed contract by end of day tomorrow."
+
+  3. 📧 Team Sync — Michael Chen
+     "Can we have a quick sync today? Need to discuss the project timeline."
+
+  👀 Ready to reply? Just say "Draft a reply to [name]".`;
+    }
+
+    function handleGreeting(command) {
+      const hour = new Date().getHours();
+      let time = 'day';
+      if (hour < 12) time = 'morning';
+      else if (hour < 17) time = 'afternoon';
+      else time = 'evening';
+
+      return `👋 Good ${time}, Maithili!
+
+  I'm here to help you with:
+  • 📅 Scheduling meetings
+  • 📄 Summarizing emails and threads
+  • ✉️ Drafting replies
+  • 📥 Triaging your inbox
+  • 🔍 Finding anything you need
+
+  What can I do for you today?`;
+    }
+
+    function handleGeneral(command) {
+      return `🤔 I understand you're asking about: "${command}"
+
+  I'm still learning, but here's what I can do:
+  • 📅 "Schedule a meeting with Sarah at 2 PM"
+  • 📄 "Summarize the Q4 budget thread"
+  • ✉️ "Draft a reply to Michael"
+  • 📥 "Show me urgent emails"
+
+  What would you like me to do?`;
+    }
+
+    // ============================================
+    // USER & GREETING
+    // ============================================
+
+    const user = JSON.parse(localStorage.getItem('rpire_user'));
+    if (!user) { window.location.href = 'index.html'; }
+    const name = user.email.split('@')[0];
+    document.getElementById('sidebarName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+    document.getElementById('settingsEmail').textContent = user.email;
+
+    const hour = new Date().getHours();
+    let greeting = 'Good evening';
+    if (hour < 12) greeting = 'Good morning';
+    else if (hour < 17) greeting = 'Good afternoon';
+    document.getElementById('greetingText').textContent = greeting + ', ' + name.charAt(0).toUpperCase() + name.slice(1);
+
+    function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
+
+    // --- Navigation ---
+    document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const section = this.dataset.section;
+        document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
+        document.getElementById(`section-${section}`).style.display = 'block';
+        document.querySelectorAll('.sidebar nav a[data-section]').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Enter key to send
+    document.getElementById('sylvieInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendToSylvie();
+      }
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
