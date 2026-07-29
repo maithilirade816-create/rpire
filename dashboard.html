@@ -19,6 +19,7 @@
       overflow-x: hidden;
     }
 
+    /* --- ICE BACKGROUND --- */
     .bg-ice {
       position: fixed;
       top: 0;
@@ -76,6 +77,7 @@
       }
     }
 
+    /* --- GLASS --- */
     .glass {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -85,9 +87,9 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR (Minimal) --- */
     .sidebar {
-      width: 240px;
+      width: 200px;
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(255, 255, 255, 0.06);
@@ -199,18 +201,20 @@
 
     /* --- MAIN --- */
     .main {
-      margin-left: 240px;
+      margin-left: 200px;
       flex: 1;
       padding: 32px 40px 40px 40px;
-      max-width: calc(100% - 240px);
+      max-width: calc(100% - 200px);
       position: relative;
       z-index: 1;
     }
+
+    /* --- HEADER --- */
     .main-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -224,62 +228,15 @@
       color: #8b949e;
       margin-top: 2px;
     }
-    .main-header .actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .main-header .actions .search {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 40px;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #8b949e;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .main-header .actions .search:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .main-header .actions .search input {
-      background: none;
-      border: none;
-      color: #e6edf3;
-      font-size: 14px;
-      outline: none;
-      width: 140px;
-    }
-    .main-header .actions .search input::placeholder {
-      color: #484f58;
-    }
-    .main-header .actions .btn-primary {
-      background: linear-gradient(135deg, #2ea043, #1a7a3a);
-      color: #fff;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .main-header .actions .btn-primary:hover {
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
-      transform: translateY(-1px);
-    }
 
     /* --- CREDIT BAR --- */
     .credit-bar {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
-      padding: 16px 24px;
+      padding: 12px 20px;
       border-radius: 12px;
       border: 1px solid rgba(46, 160, 67, 0.15);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -303,10 +260,10 @@
     .credit-bar .right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
     .credit-bar .right .credits {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       color: #2ea043;
     }
@@ -333,7 +290,7 @@
       background: #3fb950;
     }
     .progress-bar {
-      width: 160px;
+      width: 120px;
       height: 4px;
       background: rgba(255, 255, 255, 0.06);
       border-radius: 4px;
@@ -346,245 +303,224 @@
       width: 100%;
     }
 
-    /* --- STATS --- */
-    .stats-grid {
+    /* --- STATS ROW --- */
+    .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 12px;
       margin-bottom: 24px;
     }
     .stat-card {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
-      padding: 18px 20px;
+      padding: 14px 18px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
       transition: all 0.3s;
     }
     .stat-card:hover {
-      border-color: rgba(46, 160, 67, 0.2);
-      transform: translateY(-2px);
+      border-color: rgba(46, 160, 67, 0.15);
     }
     .stat-card .stat-label {
-      font-size: 12px;
+      font-size: 11px;
       color: #8b949e;
       text-transform: uppercase;
       letter-spacing: 0.4px;
     }
     .stat-card .stat-number {
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 700;
       color: #e6edf3;
-      margin: 4px 0 2px;
+      margin: 2px 0;
     }
     .stat-card .stat-change {
-      font-size: 12px;
+      font-size: 11px;
       color: #2ea043;
     }
-    .stat-card .stat-change.down {
-      color: #f85149;
-    }
 
-    /* --- TWO COLUMN --- */
-    .two-col {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 24px;
+    /* --- SYLVIE COMMAND CENTER --- */
+    .command-center {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      border: 1px solid rgba(46, 160, 67, 0.1);
+      padding: 24px 28px;
       margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+    .command-center:focus-within {
+      border-color: rgba(46, 160, 67, 0.3);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
+    }
+    .command-center .label {
+      font-size: 13px;
+      color: #8b949e;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .command-center .label .dot {
+      width: 8px;
+      height: 8px;
+      background: #2ea043;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .command-center .input-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .command-center input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 16px;
+      color: #e6edf3;
+      font-family: inherit;
+      outline: none;
+    }
+    .command-center input::placeholder {
+      color: #484f58;
+    }
+    .command-center .btn-send {
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .command-center .btn-send:hover {
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
+      transform: translateY(-1px);
+    }
+    .command-center .suggestions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .command-center .suggestions .chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 12px;
+      color: #8b949e;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .command-center .suggestions .chip:hover {
+      background: rgba(46, 160, 67, 0.08);
+      border-color: rgba(46, 160, 67, 0.2);
+      color: #e6edf3;
     }
 
-    /* --- ACTIVITY --- */
+    /* --- SYLVIE RESPONSE --- */
+    .sylvie-response {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .sylvie-response .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .sylvie-response .header .icon {
+      font-size: 18px;
+    }
+    .sylvie-response .header .name {
+      font-weight: 600;
+      color: #2ea043;
+    }
+    .sylvie-response .content {
+      color: #e6edf3;
+      font-size: 15px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- RECENT ACTIVITY --- */
     .recent-activity {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 20px 24px;
+      padding: 16px 20px;
     }
-    .recent-activity .section-header {
+    .recent-activity .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
-    .recent-activity .section-header h3 {
-      font-size: 16px;
+    .recent-activity .header h3 {
+      font-size: 14px;
       font-weight: 600;
-      color: #e6edf3;
-    }
-    .recent-activity .section-header a {
-      font-size: 13px;
-      color: #8b949e;
-      text-decoration: none;
-    }
-    .recent-activity .section-header a:hover {
       color: #e6edf3;
     }
     .activity-item {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
-      padding: 12px 0;
+      padding: 8px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 14px;
+      color: #8b949e;
     }
     .activity-item:last-child {
       border-bottom: none;
     }
-    .activity-item .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
+    .activity-item .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
-    .activity-item .icon.green {
-      background: rgba(46, 160, 67, 0.1);
-      color: #2ea043;
+    .activity-item .dot.green {
+      background: #2ea043;
     }
-    .activity-item .icon.blue {
-      background: rgba(59, 130, 246, 0.1);
-      color: #3b82f6;
+    .activity-item .dot.blue {
+      background: #3b82f6;
     }
-    .activity-item .icon.yellow {
-      background: rgba(234, 179, 8, 0.1);
-      color: #eab308;
+    .activity-item .dot.yellow {
+      background: #eab308;
     }
-    .activity-item .content {
-      flex: 1;
-    }
-    .activity-item .content .title {
-      font-size: 14px;
+    .activity-item .text strong {
       color: #e6edf3;
-    }
-    .activity-item .content .title strong {
-      color: #ffffff;
-    }
-    .activity-item .content .desc {
-      font-size: 13px;
-      color: #8b949e;
+      font-weight: 500;
     }
     .activity-item .time {
+      margin-left: auto;
       font-size: 12px;
       color: #484f58;
-      white-space: nowrap;
     }
 
-    /* --- UPCOMING --- */
-    .upcoming {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 20px 24px;
-    }
-    .upcoming .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .upcoming .section-header h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #e6edf3;
-    }
-    .upcoming .section-header a {
-      font-size: 13px;
-      color: #8b949e;
-      text-decoration: none;
-    }
-    .upcoming .section-header a:hover {
-      color: #e6edf3;
-    }
-    .upcoming-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    .upcoming-item:last-child {
-      border-bottom: none;
-    }
-    .upcoming-item .time-badge {
-      font-size: 12px;
-      font-weight: 600;
-      color: #2ea043;
-      background: rgba(46, 160, 67, 0.08);
-      padding: 2px 10px;
-      border-radius: 40px;
-      white-space: nowrap;
-    }
-    .upcoming-item .info {
-      flex: 1;
-    }
-    .upcoming-item .info .title {
-      font-size: 14px;
-      color: #e6edf3;
-    }
-    .upcoming-item .info .with {
-      font-size: 13px;
-      color: #8b949e;
-    }
-
-    /* --- QUICK ACTIONS --- */
-    .quick-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-    .quick-actions .btn {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 10px 20px;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: #e6edf3;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .quick-actions .btn:hover {
-      border-color: rgba(46, 160, 67, 0.3);
-      background: rgba(46, 160, 67, 0.04);
-    }
-    .quick-actions .btn-primary {
-      background: linear-gradient(135deg, #2ea043, #1a7a3a);
-      color: #fff;
-      border: none;
-    }
-    .quick-actions .btn-primary:hover {
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
-      transform: translateY(-1px);
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-    .section.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- CREDIT ALERT MODAL --- */
+    /* --- CREDIT ALERT --- */
     #creditAlert {
       position: fixed;
       inset: 0;
@@ -608,37 +544,13 @@
       animation: modalPop 0.3s ease;
     }
     @keyframes modalPop {
-      from {
-        opacity: 0;
-        transform: scale(0.95) translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
-    #creditAlert .modal .icon {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
-    #creditAlert .modal h2 {
-      font-size: 24px;
-      font-weight: 700;
-      color: #e6edf3;
-      margin-bottom: 8px;
-    }
-    #creditAlert .modal p {
-      color: #8b949e;
-      font-size: 16px;
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-    #creditAlert .modal .btn-group {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    #creditAlert .modal .icon { font-size: 48px; margin-bottom: 12px; }
+    #creditAlert .modal h2 { font-size: 24px; font-weight: 700; color: #e6edf3; margin-bottom: 8px; }
+    #creditAlert .modal p { color: #8b949e; font-size: 16px; margin-bottom: 24px; line-height: 1.6; }
+    #creditAlert .modal .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     #creditAlert .modal .btn-upgrade {
       background: #2ea043;
       color: white;
@@ -670,71 +582,10 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* --- SYLVIE SECTION STYLES --- */
-    .sylvie-box {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      padding: 24px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      margin-bottom: 20px;
-    }
-    .sylvie-box h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #e6edf3;
-    }
-    .sylvie-box textarea,
-    .sylvie-box input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 8px;
-      font-size: 14px;
-      background: rgba(0, 0, 0, 0.3);
-      color: #e6edf3;
-      font-family: inherit;
-      margin-bottom: 8px;
-      resize: vertical;
-    }
-    .sylvie-box textarea:focus,
-    .sylvie-box input:focus {
-      outline: none;
-      border-color: rgba(46, 160, 67, 0.3);
-    }
-    .sylvie-box .btn-sylvie {
-      background: linear-gradient(135deg, #2ea043, #1a7a3a);
-      color: #fff;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .sylvie-box .btn-sylvie:hover {
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
-      transform: translateY(-1px);
-    }
-    .sylvie-output {
-      margin-top: 12px;
-      padding: 16px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: #e6edf3;
-      white-space: pre-wrap;
-      min-height: 50px;
-    }
-
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
-      .stats-grid {
+      .stats-row {
         grid-template-columns: repeat(2, 1fr);
-      }
-      .two-col {
-        grid-template-columns: 1fr;
       }
     }
     @media (max-width: 768px) {
@@ -746,60 +597,38 @@
         font-size: 18px;
         text-align: center;
       }
-      .sidebar .logo span {
-        display: none;
-      }
-      .sidebar .user-card {
-        display: none;
-      }
-      .sidebar nav a span {
-        display: none;
-      }
-      .sidebar nav a {
-        justify-content: center;
-        padding: 12px;
-      }
-      .sidebar .bottom a span {
-        display: none;
-      }
-      .sidebar .bottom a {
-        justify-content: center;
-        padding: 12px;
-      }
+      .sidebar .logo span { display: none; }
+      .sidebar .user-card { display: none; }
+      .sidebar nav a span { display: none; }
+      .sidebar nav a { justify-content: center; padding: 12px; }
+      .sidebar .bottom a span { display: none; }
+      .sidebar .bottom a { justify-content: center; padding: 12px; }
       .main {
         margin-left: 64px;
-        padding: 20px;
+        padding: 16px;
         max-width: 100%;
       }
-      .stats-grid {
+      .stats-row {
         grid-template-columns: 1fr 1fr;
       }
-      .main-header .actions .search input {
-        width: 100px;
+      .command-center .input-row {
+        flex-direction: column;
+      }
+      .command-center .btn-send {
+        width: 100%;
+        justify-content: center;
       }
       .credit-bar .progress-bar {
-        width: 100px;
-      }
-      #creditAlert .modal {
-        padding: 28px 20px;
+        width: 80px;
       }
     }
     @media (max-width: 480px) {
-      .stats-grid {
+      .stats-row {
         grid-template-columns: 1fr;
       }
       .main-header {
         flex-direction: column;
         align-items: stretch;
-      }
-      .main-header .actions {
-        flex-wrap: wrap;
-      }
-      .main-header .actions .search {
-        flex: 1;
-      }
-      #creditAlert .modal .btn-group {
-        flex-direction: column;
       }
     }
   </style>
@@ -813,7 +642,7 @@
     <div class="ice ice3"></div>
   </div>
 
-  <!-- CREDIT ALERT MODAL -->
+  <!-- CREDIT ALERT -->
   <div id="creditAlert">
     <div class="modal">
       <div class="icon">⚡</div>
@@ -838,11 +667,6 @@
     </div>
     <nav>
       <a class="active" data-section="dashboard"><span>Dashboard</span></a>
-      <a data-section="scheduler"><span>Scheduler</span></a>
-      <a data-section="drafts"><span>Drafts</span></a>
-      <a data-section="inbox"><span>Inbox</span></a>
-      <a data-section="sylvie"><span>Sylvie AI</span></a>
-      <a data-section="onboarding"><span>Onboarding</span></a>
       <a data-section="settings"><span>Settings</span></a>
     </nav>
     <div class="bottom">
@@ -859,272 +683,126 @@
         <h1 id="greetingText">Good morning, Maithili</h1>
         <p id="creditStatus">50 credits remaining</p>
       </div>
-      <div class="actions">
-        <div class="search">
-          <span>🔍</span>
-          <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- CREDIT BAR -->
+    <div class="credit-bar">
+      <div class="left">
+        <div class="info">
+          <h3>Credits Remaining</h3>
+          <p id="creditBarText">50 credits · Resets Aug 1</p>
         </div>
-        <button class="btn-primary" onclick="switchSection('scheduler')">New Meeting</button>
+        <div class="progress-bar">
+          <div class="fill" id="creditProgress" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div class="right">
+        <span class="credits" id="creditDisplay">50</span>
+        <button class="btn-small green" onclick="window.location.href='#pricing'">Upgrade</button>
+        <button class="btn-small" onclick="alert('Buy credits feature coming soon.')">Buy</button>
       </div>
     </div>
 
-    <!-- DASHBOARD -->
-    <div id="section-dashboard" class="section active">
-
-      <!-- CREDIT BAR -->
-      <div class="credit-bar">
-        <div class="left">
-          <div class="info">
-            <h3>Credits Remaining</h3>
-            <p id="creditBarText">50 credits · Resets Aug 1</p>
-          </div>
-          <div class="progress-bar">
-            <div class="fill" id="creditProgress" style="width: 100%;"></div>
-          </div>
-        </div>
-        <div class="right">
-          <span class="credits" id="creditDisplay">50</span>
-          <button class="btn-small green" onclick="window.location.href='#pricing'">Upgrade</button>
-          <button class="btn-small" onclick="alert('Buy credits feature coming soon.')">Buy</button>
-        </div>
+    <!-- STATS ROW -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Meetings</div>
+        <div class="stat-number">3</div>
+        <div class="stat-change">↑ 2 this week</div>
       </div>
-
-      <!-- STATS -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label">Meetings</div>
-          <div class="stat-number">3</div>
-          <div class="stat-change">↑ 2 this week</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Emails</div>
-          <div class="stat-number">14</div>
-          <div class="stat-change">↓ 4 from yesterday</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Drafts</div>
-          <div class="stat-number">2</div>
-          <div class="stat-change">Ready to review</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Urgent</div>
-          <div class="stat-number">3</div>
-          <div class="stat-change down">Need reply today</div>
-        </div>
+      <div class="stat-card">
+        <div class="stat-label">Emails</div>
+        <div class="stat-number">14</div>
+        <div class="stat-change">↓ 4 from yesterday</div>
       </div>
-
-      <!-- TWO COLUMN -->
-      <div class="two-col">
-
-        <div class="recent-activity">
-          <div class="section-header">
-            <h3>Recent Activity</h3>
-            <a href="#">View all</a>
-          </div>
-          <div class="activity-item">
-            <div class="icon green">✓</div>
-            <div class="content">
-              <div class="title">Meeting scheduled with <strong>Sarah Johnson</strong></div>
-              <div class="desc">Q4 Budget Review · 45 min</div>
-            </div>
-            <div class="time">2 min ago</div>
-          </div>
-          <div class="activity-item">
-            <div class="icon blue">✎</div>
-            <div class="content">
-              <div class="title">Draft generated for <strong>Michael Chen</strong></div>
-              <div class="desc">Project Timeline Update</div>
-            </div>
-            <div class="time">1h ago</div>
-          </div>
-          <div class="activity-item">
-            <div class="icon yellow">⚡</div>
-            <div class="content">
-              <div class="title">Email triaged as <strong>Urgent</strong></div>
-              <div class="desc">Budget Review — needs reply</div>
-            </div>
-            <div class="time">3h ago</div>
-          </div>
-        </div>
-
-        <div class="upcoming">
-          <div class="section-header">
-            <h3>Upcoming</h3>
-            <a href="#">View all</a>
-          </div>
-          <div class="upcoming-item">
-            <span class="time-badge">Today 10:00</span>
-            <div class="info">
-              <div class="title">Q4 Budget Review</div>
-              <div class="with">with Sarah Johnson</div>
-            </div>
-          </div>
-          <div class="upcoming-item">
-            <span class="time-badge">Today 14:30</span>
-            <div class="info">
-              <div class="title">Project Sync</div>
-              <div class="with">with Michael Chen</div>
-            </div>
-          </div>
-          <div class="upcoming-item">
-            <span class="time-badge">Tomorrow 09:00</span>
-            <div class="info">
-              <div class="title">Client Presentation</div>
-              <div class="with">with Alex Rivera</div>
-            </div>
-          </div>
-          <div class="quick-actions" style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.04);">
-            <button class="btn btn-primary" onclick="switchSection('scheduler')">Schedule</button>
-            <button class="btn" onclick="switchSection('drafts')">Drafts</button>
-            <button class="btn" onclick="switchSection('inbox')">Inbox</button>
-            <button class="btn" onclick="refreshData()">⟳ Refresh</button>
-          </div>
-        </div>
-
+      <div class="stat-card">
+        <div class="stat-label">Drafts</div>
+        <div class="stat-number">2</div>
+        <div class="stat-change">Ready to review</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Urgent</div>
+        <div class="stat-number">3</div>
+        <div class="stat-change down" style="color:#f85149;">Need reply today</div>
       </div>
     </div>
 
-    <!-- SCHEDULER -->
-    <div id="section-scheduler" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">Scheduler</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Paste an email to get 3 time options. (Costs 10 credits)</p>
-      <textarea id="emailText" rows="4" style="width:100%;padding:14px 18px;border:1px solid rgba(255,255,255,0.06);border-radius:12px;font-size:15px;margin:12px 0;background:rgba(0,0,0,0.3);color:#e6edf3;font-family:inherit;backdrop-filter:blur(10px);resize:vertical;" placeholder="Paste email conversation here...">I'd like to discuss the project. Are you free Tuesday or Wednesday?</textarea>
-      <button class="btn-primary" id="findTimesBtn" style="background:linear-gradient(135deg,#2ea043,#1a7a3a);color:#fff;border:none;padding:12px 28px;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;">Find Times (10 credits)</button>
-      <div id="step-options" class="hidden">
-        <p style="margin-top:20px;font-weight:600;color:#e6edf3;">You approve. Then it books.</p>
-        <div id="timeSlotContainer"></div>
-        <p id="confirmationMessage" class="status hidden" style="color:#3fb950;font-weight:500;margin-top:10px;padding:12px 16px;background:rgba(46,160,67,0.05);border-radius:12px;border:1px solid rgba(46,160,67,0.2);">Meeting booked!</p>
+    <!-- SYLVIE COMMAND CENTER -->
+    <div class="command-center">
+      <div class="label">
+        <span class="dot"></span> Sylvie is listening
       </div>
-      <div id="log" style="font-size:13px;color:#8b949e;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);">Ready.</div>
-    </div>
-
-    <!-- DRAFTS -->
-    <div id="section-drafts" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">Drafts</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">AI-generated replies ready for your review. (Costs 5 credits per draft)</p>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:16px;">
-        <p style="font-weight:500;margin-bottom:8px;color:#e6edf3;">Sarah Johnson — "Meeting follow-up"</p>
-        <p style="color:#8b949e;font-size:14px;margin-bottom:12px;">"Hi Sarah, thanks for your time today. I've attached the proposal as discussed. Let me know if you have any questions."</p>
-        <button class="btn" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:6px 16px;border-radius:30px;font-weight:500;cursor:pointer;color:#e6edf3;">Edit</button>
-        <button class="btn-primary" onclick="handleDraftSend()" style="background:linear-gradient(135deg,#2ea043,#1a7a3a);color:#fff;border:none;padding:6px 18px;border-radius:30px;font-weight:600;font-size:13px;cursor:pointer;">Send (5 credits)</button>
+      <div class="input-row">
+        <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
+        <button class="btn-send" onclick="sendToSylvie()">Send</button>
       </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);">
-        <p style="font-weight:500;margin-bottom:8px;color:#e6edf3;">Michael Chen — "Project timeline"</p>
-        <p style="color:#8b949e;font-size:14px;margin-bottom:12px;">"Hi Michael, we're on track for the Q4 deadline. The next milestone is due on Friday."</p>
-        <button class="btn" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:6px 16px;border-radius:30px;font-weight:500;cursor:pointer;color:#e6edf3;">Edit</button>
-        <button class="btn-primary" onclick="handleDraftSend()" style="background:linear-gradient(135deg,#2ea043,#1a7a3a);color:#fff;border:none;padding:6px 18px;border-radius:30px;font-weight:600;font-size:13px;cursor:pointer;">Send (5 credits)</button>
+      <div class="suggestions">
+        <span class="chip" onclick="setCommand('Schedule a meeting with Sarah at 2 PM tomorrow')">📅 Schedule meeting</span>
+        <span class="chip" onclick="setCommand('Summarize the Q4 budget thread')">📄 Summarize</span>
+        <span class="chip" onclick="setCommand('Draft a reply to Michael about the project')">✉️ Draft reply</span>
+        <span class="chip" onclick="setCommand('Show me urgent emails')">📥 Urgent emails</span>
       </div>
     </div>
 
-    <!-- INBOX -->
-    <div id="section-inbox" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">Inbox Triage</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Your emails sorted by urgency. (Costs 1 credit per triage)</p>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
-        <span><strong>Urgent:</strong> Q4 Budget Review</span>
-        <span style="padding:4px 12px;border-radius:30px;font-size:12px;font-weight:600;background:rgba(248,81,73,0.1);color:#f85149;border:1px solid rgba(248,81,73,0.1);">Urgent</span>
-        <button onclick="handleTriage()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:4px 12px;border-radius:30px;font-size:12px;cursor:pointer;color:#e6edf3;">Triage (1 credit)</button>
+    <!-- SYLVIE RESPONSE -->
+    <div id="sylvieResponse" class="sylvie-response">
+      <div class="header">
+        <span class="icon">💬</span>
+        <span class="name">Sylvie</span>
       </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
-        <span><strong>Basic:</strong> Team Weekly Update</span>
-        <span style="padding:4px 12px;border-radius:30px;font-size:12px;font-weight:600;background:rgba(255,255,255,0.04);color:#8b949e;border:1px solid rgba(255,255,255,0.06);">Basic</span>
-        <button onclick="handleTriage()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:4px 12px;border-radius:30px;font-size:12px;cursor:pointer;color:#e6edf3;">Triage (1 credit)</button>
+      <div id="sylvieOutput" class="content"></div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="recent-activity">
+      <div class="header">
+        <h3>Recent Activity</h3>
       </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:16px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
-        <span><strong>Scam:</strong> "You've won a prize!"</span>
-        <span style="padding:4px 12px;border-radius:30px;font-size:12px;font-weight:600;background:rgba(210,153,34,0.1);color:#d29922;border:1px solid rgba(210,153,34,0.1);">Scam</span>
-        <button onclick="handleTriage()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:4px 12px;border-radius:30px;font-size:12px;cursor:pointer;color:#e6edf3;">Triage (1 credit)</button>
+      <div class="activity-item">
+        <span class="dot green"></span>
+        <span class="text">Meeting scheduled with <strong>Sarah Johnson</strong> — Q4 Budget Review</span>
+        <span class="time">2 min ago</span>
+      </div>
+      <div class="activity-item">
+        <span class="dot blue"></span>
+        <span class="text">Draft generated for <strong>Michael Chen</strong> — Project Timeline</span>
+        <span class="time">1h ago</span>
+      </div>
+      <div class="activity-item">
+        <span class="dot yellow"></span>
+        <span class="text">Email triaged as <strong>Urgent</strong> — Budget Review</span>
+        <span class="time">3h ago</span>
       </div>
     </div>
 
-    <!-- SYLVIE AI SECTION -->
-    <div id="section-sylvie" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">🧠 Sylvie — Your AI Assistant</h2>
-      <p style="color: #8b949e; margin-bottom: 20px;">Draft emails, summarize content, and triage your inbox.</p>
-
-      <!-- Draft -->
-      <div class="sylvie-box">
-        <h3>✉️ Draft Email</h3>
-        <textarea id="draftThread" rows="2" placeholder="Paste email thread..."></textarea>
-        <input id="draftInstruction" type="text" placeholder="What should the draft say?" />
-        <button class="btn-sylvie" onclick="generateDraft()">Generate Draft</button>
-        <div id="draftOutput" class="sylvie-output"></div>
-      </div>
-
-      <!-- Summarize -->
-      <div class="sylvie-box">
-        <h3>📄 Summarize</h3>
-        <textarea id="summarizeInput" rows="3" placeholder="Paste email thread or meeting notes..."></textarea>
-        <button class="btn-sylvie" onclick="summarizeContent()">Summarize</button>
-        <div id="summarizeOutput" class="sylvie-output"></div>
-      </div>
-
-      <!-- Triage -->
-      <div class="sylvie-box">
-        <h3>📥 Triage Email</h3>
-        <textarea id="triageInput" rows="2" placeholder="Paste email content..."></textarea>
-        <button class="btn-sylvie" onclick="triageEmail()">Classify</button>
-        <div id="triageOutput" class="sylvie-output"></div>
-      </div>
-
-      <!-- Voice Learning -->
-      <div class="sylvie-box">
-        <h3>🎤 Teach Sylvie Your Voice</h3>
-        <textarea id="voiceSample" rows="3" placeholder="Paste a sample of your writing (e.g., an email you wrote)"></textarea>
-        <button class="btn-sylvie" onclick="learnVoice()">Teach Sylvie</button>
-        <div id="voiceOutput" class="sylvie-output"></div>
-      </div>
-    </div>
-
-    <!-- ONBOARDING -->
-    <div id="section-onboarding" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">Connect Gmail & Calendar</h2>
-      <p style="color: #8b949e; margin-bottom: 20px;">Follow these steps.</p>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:16px;">
-        <h3 style="font-size:18px;margin-bottom:6px;color:#e6edf3;">Step 1: Connect Gmail</h3>
-        <p style="color:#8b949e;font-size:15px;margin-bottom:12px;">Rpire needs permission to read and draft emails.</p>
-        <ol style="padding-left:20px;color:#8b949e;">
-          <li style="margin-bottom:6px;">Click "Connect Gmail" below.</li>
-          <li style="margin-bottom:6px;">Allow permissions.</li>
-          <li style="margin-bottom:6px;">You'll be redirected back.</li>
-        </ol>
-        <button class="btn-primary" onclick="alert('Gmail Connect will open here.')" style="background:linear-gradient(135deg,#2ea043,#1a7a3a);color:#fff;border:none;padding:12px 28px;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;">Connect Gmail</button>
-      </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:16px;">
-        <h3 style="font-size:18px;margin-bottom:6px;color:#e6edf3;">Step 2: Connect Calendar</h3>
-        <p style="color:#8b949e;font-size:15px;margin-bottom:12px;">Rpire needs access to check availability.</p>
-        <ol style="padding-left:20px;color:#8b949e;">
-          <li style="margin-bottom:6px;">Click "Connect Calendar" below.</li>
-          <li style="margin-bottom:6px;">Allow permissions.</li>
-          <li style="margin-bottom:6px;">You'll be redirected back.</li>
-        </ol>
-        <button class="btn-primary" onclick="alert('Calendar Connect will open here.')" style="background:linear-gradient(135deg,#2ea043,#1a7a3a);color:#fff;border:none;padding:12px 28px;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;">Connect Calendar</button>
-      </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);">
-        <h3 style="font-size:18px;margin-bottom:6px;color:#e6edf3;">Step 3: Start Scheduling</h3>
-        <p style="color:#8b949e;font-size:15px;">Go to Scheduler, paste an email, and confirm a time.</p>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
-    <div id="section-settings" class="section">
-      <h2 style="margin-bottom: 4px; font-size: 22px;">Settings</h2>
-      <p style="color: #8b949e; margin-bottom: 20px;">Manage your account.</p>
+    <!-- SETTINGS SECTION (Hidden by default) -->
+    <div id="section-settings" class="section" style="display:none;">
+      <h2 style="margin-bottom: 20px; font-size: 22px;">Settings</h2>
       <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:20px;">
         <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Profile</h3>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Name</span><span style="color:#8b949e;font-size:14px;"><input type="text" value="Maithili Rade" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;" /></span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Email</span><span style="color:#8b949e;font-size:14px;" id="settingsEmail">user@example.com</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Timezone</span><span style="color:#8b949e;font-size:14px;"><select style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;"><option>PST</option><option>EST</option><option selected>IST</option></select></span></div>
-      </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:20px;">
-        <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Integrations</h3>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Gmail</span><span style="color:#8b949e;font-size:14px;"><span style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Gmail')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:6px 16px;border-radius:30px;font-weight:500;cursor:pointer;color:#e6edf3;">Connect</button></span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Calendar</span><span style="color:#8b949e;font-size:14px;"><span style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Calendar')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:6px 16px;border-radius:30px;font-weight:500;cursor:pointer;color:#e6edf3;">Connect</button></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <span style="font-weight:500;color:#e6edf3;">Name</span>
+          <span style="color:#8b949e;font-size:14px;"><input type="text" value="Maithili Rade" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;" /></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <span style="font-weight:500;color:#e6edf3;">Email</span>
+          <span style="color:#8b949e;font-size:14px;" id="settingsEmail">user@example.com</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+          <span style="font-weight:500;color:#e6edf3;">Timezone</span>
+          <span style="color:#8b949e;font-size:14px;"><select style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;font-family:inherit;background:rgba(0,0,0,0.3);color:#e6edf3;"><option>PST</option><option>EST</option><option selected>IST</option></select></span>
+        </div>
       </div>
       <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);">
         <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Account</h3>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);"><span style="font-weight:500;color:#e6edf3;">Plan</span><span style="color:#8b949e;font-size:14px;"><span style="background:rgba(46,160,67,0.1);color:#3fb950;border:1px solid rgba(46,160,67,0.1);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Free</span></span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;"><span style="font-weight:500;color:#e6edf3;">Delete</span><span style="color:#8b949e;font-size:14px;"><button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:6px 16px;border-radius:30px;cursor:pointer;">Delete</button></span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <span style="font-weight:500;color:#e6edf3;">Plan</span>
+          <span style="color:#8b949e;font-size:14px;"><span style="background:rgba(46,160,67,0.1);color:#3fb950;border:1px solid rgba(46,160,67,0.1);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Free</span></span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+          <span style="font-weight:500;color:#e6edf3;">Delete</span>
+          <span style="color:#8b949e;font-size:14px;"><button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:6px 16px;border-radius:30px;cursor:pointer;">Delete</button></span>
+        </div>
       </div>
     </div>
 
@@ -1132,9 +810,8 @@
 
   <script>
     // ============================================
-    // FULLY FUNCTIONAL CREDIT SYSTEM
+    // CREDIT SYSTEM
     // ============================================
-
     let userCredits = parseInt(localStorage.getItem('rpire_credits')) || 50;
     const MAX_CREDITS = 50;
 
@@ -1177,295 +854,48 @@
       if (e.target === this) closeCreditAlert();
     });
 
-    // --- ACTION HANDLERS ---
-
-    document.getElementById('findTimesBtn').addEventListener('click', function() {
-      if (!checkCredits(10)) return;
-      const log = document.getElementById('log');
-      const stepOptions = document.getElementById('step-options');
-      const container = document.getElementById('timeSlotContainer');
-      const confirmationMsg = document.getElementById('confirmationMessage');
-      deductCredits(10);
-      log.innerText = 'Analyzing... (10 credits used)';
-      stepOptions.classList.add('hidden');
-      confirmationMsg.classList.add('hidden');
-      const mockTimes = [
-        { day: 'Tuesday, Oct 24', time: '10:00 AM', duration: '45 min' },
-        { day: 'Wednesday, Oct 25', time: '2:00 PM', duration: '45 min' },
-        { day: 'Thursday, Oct 26', time: '11:00 AM', duration: '45 min' }
-      ];
-      log.innerText = '3 options ready.';
-      container.innerHTML = '';
-      mockTimes.forEach((slot) => {
-        const div = document.createElement('div');
-        div.style.cssText = 'background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:16px 20px;border-radius:12px;margin:12px 0;border-left:4px solid #2ea043;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border:1px solid rgba(255,255,255,0.04);';
-        div.innerHTML = `<span><strong>${slot.day}</strong><br>⏰ ${slot.time} (${slot.duration})</span><button onclick="confirmBooking('${slot.day} ${slot.time}')" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:6px 16px;border-radius:30px;font-weight:500;cursor:pointer;color:#e6edf3;">Confirm</button>`;
-        container.appendChild(div);
-      });
-      stepOptions.classList.remove('hidden');
-    });
-
-    function confirmBooking(timeSelected) {
-      const msg = document.getElementById('confirmationMessage');
-      const log = document.getElementById('log');
-      log.innerText = `Booking ${timeSelected}...`;
-      setTimeout(() => {
-        msg.classList.remove('hidden');
-        msg.innerText = `Confirmed for ${timeSelected}.`;
-        log.innerText = 'Done. You approved.';
-      }, 1000);
-    }
-
-    function handleDraftSend() {
-      if (!checkCredits(5)) return;
-      deductCredits(5);
-      alert('Draft sent! (5 credits used)');
-    }
-
-    function handleTriage() {
-      if (!checkCredits(1)) return;
-      deductCredits(1);
-      alert('Email triaged! (1 credit used)');
-    }
-
-    function refreshData() {
-      updateUI();
-      alert('Refreshed! Credits: ' + userCredits);
-    }
-
     // ============================================
-    // SYLVIE AI ENGINE
+    // SYLVIE ENGINE (In-house AI)
     // ============================================
 
-    class Sylvie {
-      constructor(config = {}) {
-        this.model = config.model || 'mock';
-        this.apiUrl = config.apiUrl || '';
-        this.apiKey = config.apiKey || '';
-        this.userVoice = this.loadUserVoice();
-      }
-
-      async process(request) {
-        const { action, input, context } = request;
-        const prompt = this.buildPrompt(action, input, context);
-        const response = await this.callModel(prompt);
-        return this.formatResponse(action, response);
-      }
-
-      buildPrompt(action, input, context) {
-        const base = `You are Sylvie, an AI assistant for Rpire. 
-          You help professionals manage their emails, meetings, and inbox.
-          Your tone is professional, clear, and helpful.`;
-
-        switch (action) {
-          case 'draft':
-            const thread = context?.thread || 'No previous conversation.';
-            return `${base}
-              Task: Write a professional email draft.
-              User's writing style: ${this.userVoice || 'professional'}.
-              Thread: ${thread}
-              Instruction: ${input}
-              Draft:`;
-          case 'summarize':
-            const type = context?.type || 'content';
-            return `${base}
-              Task: Summarize this ${type}.
-              Content: ${input}
-              Provide: Key points, action items, next steps.`;
-          case 'triage':
-            return `${base}
-              Task: Classify this email as URGENT, BASIC, or SCAM.
-              Email: ${input}
-              Respond with only one word: URGENT, BASIC, or SCAM.`;
-          case 'learn':
-            return `${base}
-              Task: Analyze this writing sample to learn the user's voice.
-              Sample: ${input}
-              Extract: tone, sentence structure, common phrases, greetings.`;
-          default:
-            return `${base}\n\nUser request: ${input}`;
-        }
-      }
-
-      formatResponse(action, response) {
-        if (action === 'triage') return 'Classification: ' + response.trim();
-        return response;
-      }
-
-      async callModel(prompt) {
-        try {
-          if (this.model === 'mock') {
-            return this.mockResponse(prompt);
-          }
-          if (this.model === 'ollama') {
-            return await this.callOllama(prompt);
-          }
-          if (this.model === 'openai') {
-            return await this.callOpenAI(prompt);
-          }
-          return this.mockResponse(prompt);
-        } catch (error) {
-          console.error('Sylvie error:', error);
-          return this.mockResponse(prompt);
-        }
-      }
-
-      async callOllama(prompt) {
-        const res = await fetch('http://localhost:11434/api/generate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'llama3', prompt, stream: false })
-        });
-        const data = await res.json();
-        return data.response;
-      }
-
-      async callOpenAI(prompt) {
-        const res = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.apiKey}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: prompt }],
-            temperature: 0.7
-          })
-        });
-        const data = await res.json();
-        return data.choices[0].message.content;
-      }
-
-      mockResponse(prompt) {
-        if (prompt.includes('draft')) {
-          return `Subject: Follow-up
-
-Hi,
-
-Thanks for your time. I've attached the documents we discussed.
-
-Please let me know if you have any questions.
-
-Best regards,
-[Your Name]`;
-        }
-        if (prompt.includes('summarize')) {
-          return `Summary:
-• Project is on track
-• Budget approved
-• Next milestone: Friday
-
-Action items:
-- Send updated timeline
-- Schedule client review`;
-        }
-        if (prompt.includes('URGENT')) return 'URGENT';
-        if (prompt.includes('BASIC')) return 'BASIC';
-        if (prompt.includes('SCAM')) return 'SCAM';
-        return 'Sylvie is ready. How can I help?';
-      }
-
-      loadUserVoice() {
-        const saved = localStorage.getItem('sylvie_voice');
-        return saved ? JSON.parse(saved) : null;
-      }
-
-      saveUserVoice(voice) {
-        localStorage.setItem('sylvie_voice', JSON.stringify(voice));
-        this.userVoice = voice;
-      }
-
-      learnFromSample(sample) {
-        const result = this.process({ action: 'learn', input: sample });
-        this.saveUserVoice(result);
-        return result;
-      }
+    function setCommand(text) {
+      document.getElementById('sylvieInput').value = text;
+      sendToSylvie();
     }
 
-    // --- INIT SYLVIE ---
-    const sylvie = new Sylvie({ model: 'mock' });
+    async function sendToSylvie() {
+      const input = document.getElementById('sylvieInput');
+      const text = input.value.trim();
+      if (!text) return;
 
-    // --- SYLVIE FUNCTIONS ---
-    async function generateDraft() {
-      const thread = document.getElementById('draftThread')?.value || '';
-      const instruction = document.getElementById('draftInstruction')?.value || 'Write a professional reply';
-      const result = await sylvie.process({
-        action: 'draft',
-        input: instruction,
-        context: { thread }
-      });
-      document.getElementById('draftOutput').textContent = result;
+      const responseDiv = document.getElementById('sylvieResponse');
+      const outputDiv = document.getElementById('sylvieOutput');
+
+      responseDiv.style.display = 'block';
+      outputDiv.textContent = 'Sylvie is thinking...';
+
+      // Simulate AI processing (replace with actual Sylvie logic)
+      const response = await processSylvieCommand(text);
+
+      outputDiv.textContent = response;
+      input.value = '';
     }
 
-    async function summarizeContent() {
-      const input = document.getElementById('summarizeInput')?.value || '';
-      const result = await sylvie.process({
-        action: 'summarize',
-        input: input,
-        context: { type: 'content' }
-      });
-      document.getElementById('summarizeOutput').textContent = result;
-    }
+    // --- Sylvie's Intelligence Engine ---
+    async function processSylvieCommand(command) {
+      const lower = command.toLowerCase();
 
-    async function triageEmail() {
-      const input = document.getElementById('triageInput')?.value || '';
-      const result = await sylvie.process({
-        action: 'triage',
-        input: input
-      });
-      document.getElementById('triageOutput').textContent = result;
-    }
-
-    async function learnVoice() {
-      const input = document.getElementById('voiceSample')?.value || '';
-      const result = await sylvie.learnFromSample(input);
-      document.getElementById('voiceOutput').textContent = 'Voice learned! ' + result;
-    }
-
-    // --- Expose to window ---
-    window.generateDraft = generateDraft;
-    window.summarizeContent = summarizeContent;
-    window.triageEmail = triageEmail;
-    window.learnVoice = learnVoice;
-
-    // ============================================
-    // USER & GREETING
-    // ============================================
-
-    const user = JSON.parse(localStorage.getItem('rpire_user'));
-    if (!user) { window.location.href = 'index.html'; }
-    const name = user.email.split('@')[0];
-    document.getElementById('sidebarName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
-    document.getElementById('settingsEmail').textContent = user.email;
-
-    const hour = new Date().getHours();
-    let greeting = 'Good evening';
-    if (hour < 12) greeting = 'Good morning';
-    else if (hour < 17) greeting = 'Good afternoon';
-    document.getElementById('greetingText').textContent = greeting + ', ' + name.charAt(0).toUpperCase() + name.slice(1);
-
-    function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
-
-    document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = this.dataset.section;
-        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-        document.getElementById(`section-${section}`).classList.add('active');
-        document.querySelectorAll('.sidebar nav a[data-section]').forEach(el => el.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    function switchSection(section) {
-      document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-      document.getElementById(`section-${section}`).classList.add('active');
-      document.querySelectorAll('.sidebar nav a[data-section]').forEach(el => el.classList.remove('active'));
-      document.querySelector(`.sidebar nav a[data-section="${section}"]`).classList.add('active');
-    }
-
-    updateUI();
-  </script>
-</body>
-</html>
+      // Detect intent
+      if (lower.includes('schedule') || lower.includes('meeting') || lower.includes('calendar')) {
+        return handleSchedule(command);
+      }
+      if (lower.includes('summarize') || lower.includes('summary')) {
+        return handleSummarize(command);
+      }
+      if (lower.includes('draft') || lower.includes('reply') || lower.includes('email')) {
+        return handleDraft(command);
+      }
+      if (lower.includes('urgent') || lower.includes('inbox') || lower.includes('triage')) {
+        return handleTriage(command);
+      }
+      if (lower
