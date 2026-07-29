@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rpire — Email Chaos Solved</title>
   <style>
-    /* --- Reset & Base --- */
     * {
       margin: 0;
       padding: 0;
@@ -13,7 +12,7 @@
     }
     body {
       font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #0d1117;
+      background: #0b0f1a;
       color: #e6edf3;
       line-height: 1.6;
       overflow-x: hidden;
@@ -24,8 +23,8 @@
       padding: 0 24px;
     }
 
-    /* --- Background Quotes (Blurred) --- */
-    .bg-quotes {
+    /* --- BACKGROUND: Handwriting Sparkle + 3D Glass --- */
+    .bg-handwriting {
       position: fixed;
       top: 0;
       left: 0;
@@ -35,30 +34,108 @@
       z-index: 0;
       overflow: hidden;
     }
-    .bg-quotes .quote {
+    .bg-handwriting .sparkle {
       position: absolute;
+      font-family: 'Segoe Script', 'Brush Script MT', cursive;
+      color: rgba(255, 255, 255, 0.04);
       font-size: 28px;
-      font-weight: 500;
-      color: #2ea043;
-      letter-spacing: -0.5px;
-      opacity: 0.06;
-      filter: blur(4px);
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.02);
+      animation: sparkleFloat 25s infinite alternate ease-in-out;
       white-space: nowrap;
       user-select: none;
-      font-family: 'Inter', sans-serif;
-      pointer-events: none;
     }
-    .bg-quotes .q1 { top: 5%; left: 3%; transform: rotate(-6deg); font-size: 32px; }
-    .bg-quotes .q2 { bottom: 10%; right: 2%; transform: rotate(4deg); font-size: 26px; }
-    .bg-quotes .q3 { top: 40%; left: 2%; transform: rotate(-3deg); font-size: 22px; opacity: 0.04; }
-    .bg-quotes .q4 { top: 25%; right: 1%; transform: rotate(7deg); font-size: 24px; opacity: 0.05; }
-    .bg-quotes .q5 { bottom: 30%; left: 6%; transform: rotate(-5deg); font-size: 20px; opacity: 0.04; }
-    .bg-quotes .q6 { top: 70%; right: 4%; transform: rotate(3deg); font-size: 30px; opacity: 0.04; }
-    @media (max-width: 768px) {
-      .bg-quotes .quote { font-size: 18px !important; opacity: 0.04 !important; }
-      .bg-quotes .q1 { top: 5%; left: 2%; }
-      .bg-quotes .q2 { bottom: 8%; right: 2%; }
-      .bg-quotes .q3, .bg-quotes .q4, .bg-quotes .q5, .bg-quotes .q6 { display: none; }
+    .bg-handwriting .sparkle.s1 {
+      top: 8%;
+      left: 2%;
+      font-size: 36px;
+      animation-duration: 28s;
+      opacity: 0.6;
+    }
+    .bg-handwriting .sparkle.s2 {
+      bottom: 12%;
+      right: 2%;
+      font-size: 30px;
+      animation-duration: 32s;
+      animation-delay: 6s;
+      opacity: 0.5;
+    }
+    .bg-handwriting .sparkle.s3 {
+      top: 45%;
+      left: 1%;
+      font-size: 24px;
+      animation-duration: 26s;
+      animation-delay: 12s;
+      opacity: 0.4;
+    }
+    .bg-handwriting .sparkle.s4 {
+      top: 30%;
+      right: 1%;
+      font-size: 32px;
+      animation-duration: 30s;
+      animation-delay: 3s;
+      opacity: 0.5;
+    }
+    .bg-handwriting .sparkle.s5 {
+      bottom: 30%;
+      left: 6%;
+      font-size: 22px;
+      animation-duration: 34s;
+      animation-delay: 9s;
+      opacity: 0.3;
+    }
+    .bg-handwriting .sparkle.s6 {
+      top: 70%;
+      right: 4%;
+      font-size: 26px;
+      animation-duration: 29s;
+      animation-delay: 15s;
+      opacity: 0.4;
+    }
+    @keyframes sparkleFloat {
+      0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 0.3;
+      }
+      33% {
+        transform: translate(20px, -30px) scale(1.05) rotate(2deg);
+        opacity: 0.6;
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.95) rotate(-2deg);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translate(10px, -10px) scale(1.02) rotate(1deg);
+        opacity: 0.5;
+      }
+    }
+
+    /* --- 3D Glass Effect --- */
+    .glass-3d {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      transition: all 0.4s ease;
+    }
+    .glass-3d:hover {
+      border-color: rgba(46, 160, 67, 0.2);
+      box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    /* --- Neon Border --- */
+    .neon-border {
+      border: 1px solid rgba(46, 160, 67, 0.12);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.03), inset 0 0 30px rgba(46, 160, 67, 0.01);
+      transition: all 0.4s ease;
+    }
+    .neon-border:hover {
+      border-color: rgba(46, 160, 67, 0.4);
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.08), inset 0 0 40px rgba(46, 160, 67, 0.03);
     }
 
     /* --- Side Decor --- */
@@ -69,15 +146,23 @@
       writing-mode: vertical-rl;
       font-size: 12px;
       letter-spacing: 4px;
-      color: #21262d;
+      color: rgba(255, 255, 255, 0.03);
       font-weight: 500;
       user-select: none;
       pointer-events: none;
       z-index: 0;
     }
-    .side-decor.left { left: 12px; }
-    .side-decor.right { right: 12px; }
-    @media (max-width: 768px) { .side-decor { display: none; } }
+    .side-decor.left {
+      left: 12px;
+    }
+    .side-decor.right {
+      right: 12px;
+    }
+    @media (max-width: 768px) {
+      .side-decor {
+        display: none;
+      }
+    }
 
     /* --- Header --- */
     header {
@@ -85,7 +170,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
-      border-bottom: 1px solid #21262d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
       z-index: 1;
     }
@@ -97,6 +182,7 @@
     }
     .logo span {
       color: #2ea043;
+      text-shadow: 0 0 40px rgba(46, 160, 67, 0.2);
     }
     .nav {
       display: flex;
@@ -116,7 +202,7 @@
     }
     .nav .btn-outline {
       padding: 8px 20px;
-      border: 1px solid #30363d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 40px;
       background: transparent;
       font-weight: 500;
@@ -127,8 +213,8 @@
       color: #e6edf3;
     }
     .nav .btn-outline:hover {
-      background: #21262d;
-      border-color: #484f58;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
     }
     .nav .btn-primary-small {
       padding: 8px 20px;
@@ -141,12 +227,14 @@
       cursor: pointer;
       transition: all 0.15s;
       text-decoration: none;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
     }
     .nav .btn-primary-small:hover {
       background: #3fb950;
+      box-shadow: 0 0 50px rgba(46, 160, 67, 0.1);
     }
 
-    /* --- Hero (BIG KEYWORDS) --- */
+    /* --- Hero --- */
     .hero {
       text-align: center;
       padding: 80px 0 56px;
@@ -155,14 +243,14 @@
     }
     .hero .badge {
       display: inline-block;
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.03);
       color: #8b949e;
       padding: 4px 16px;
       border-radius: 40px;
       font-size: 13px;
       font-weight: 500;
       margin-bottom: 24px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
     .hero h1 {
       font-size: 72px;
@@ -177,6 +265,7 @@
       color: #2ea043;
       display: block;
       font-size: 76px;
+      text-shadow: 0 0 60px rgba(46, 160, 67, 0.1);
     }
     .hero .sub {
       font-size: 22px;
@@ -201,17 +290,18 @@
       font-weight: 600;
       font-size: 16px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.2s;
       text-decoration: none;
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
     }
     .hero .btn-primary:hover {
       background: #3fb950;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 8px 32px rgba(46, 160, 67, 0.2);
     }
     .hero .btn-secondary {
       padding: 14px 40px;
-      border: 1px solid #30363d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 40px;
       background: transparent;
       color: #e6edf3;
@@ -222,17 +312,17 @@
       text-decoration: none;
     }
     .hero .btn-secondary:hover {
-      background: #161b22;
-      border-color: #484f58;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
     }
 
-    /* --- Live Block (Minimal) --- */
     .live-block {
       margin: 48px auto 0;
       max-width: 700px;
       padding: 16px 24px;
-      background: #161b22;
-      border: 1px solid #21262d;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -246,6 +336,7 @@
       background: #2ea043;
       border-radius: 50%;
       animation: pulse 2s infinite;
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
     }
     @keyframes pulse {
       0% { opacity: 1; }
@@ -260,10 +351,10 @@
       color: #e6edf3;
     }
 
-    /* --- Features (3 Keywords) --- */
+    /* --- Features --- */
     .features {
       padding: 64px 0;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
       z-index: 1;
     }
@@ -289,17 +380,19 @@
       gap: 32px;
     }
     .feature-card {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 32px 24px;
       border-radius: 16px;
-      border: 1px solid #21262d;
-      transition: all 0.15s;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s ease;
       text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .feature-card:hover {
-      border-color: #2ea043;
+      border-color: rgba(46, 160, 67, 0.2);
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
     .feature-card .icon {
       font-size: 32px;
@@ -319,10 +412,78 @@
       line-height: 1.5;
     }
 
+    /* --- How It Works --- */
+    .how-it-works {
+      padding: 64px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      position: relative;
+      z-index: 1;
+    }
+    .how-it-works .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .step {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      padding: 32px 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .step:hover {
+      border-color: rgba(46, 160, 67, 0.1);
+      transform: translateY(-4px);
+    }
+    .step .num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      background: rgba(46, 160, 67, 0.1);
+      color: #2ea043;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 18px;
+      border: 1px solid rgba(46, 160, 67, 0.1);
+    }
+    .step h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+    .step p {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     /* --- Glass Features --- */
     .glass-features {
       padding: 64px 0;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
       z-index: 1;
     }
@@ -348,18 +509,20 @@
       gap: 32px;
     }
     .glass-card {
-      background: rgba(22, 27, 34, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 16px;
       padding: 32px 24px;
       text-align: center;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .glass-card:hover {
-      border-color: #2ea043;
+      border-color: rgba(46, 160, 67, 0.15);
       transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
     .glass-card .icon {
       font-size: 28px;
@@ -379,11 +542,104 @@
       line-height: 1.5;
     }
 
+    /* --- Code Snippet --- */
+    .code-section {
+      padding: 64px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      position: relative;
+      z-index: 1;
+    }
+    .code-section .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .code-section h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .code-section .sub {
+      text-align: center;
+      color: #8b949e;
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 28px;
+      overflow-x: auto;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    }
+    .code-block code {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 14px;
+      color: #e6edf3;
+      line-height: 1.8;
+    }
+    .code-block .comment {
+      color: #8b949e;
+    }
+    .code-block .tag {
+      color: #ff7b72;
+    }
+    .code-block .attr {
+      color: #d2a8ff;
+    }
+    .code-block .string {
+      color: #a5d6ff;
+    }
+    .code-block .keyword {
+      color: #ff7b72;
+    }
+    .code-block .button-code {
+      color: #3fb950;
+    }
+
+    /* --- Testimonial (Honest) --- */
+    .testimonial {
+      padding: 64px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial blockquote {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 22px;
+      color: #e6edf3;
+      font-weight: 400;
+      line-height: 1.8;
+      font-style: italic;
+    }
+    .testimonial .author {
+      margin-top: 16px;
+      color: #8b949e;
+      font-size: 16px;
+      font-style: normal;
+    }
+    .testimonial .author strong {
+      color: #ffffff;
+    }
+
     /* --- Pricing --- */
     .pricing {
       padding: 64px 0;
       text-align: center;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
       z-index: 1;
     }
@@ -414,25 +670,28 @@
       margin: 0 auto;
     }
     .pricing-card {
-      background: #161b22;
-      border: 1px solid #21262d;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 16px;
       padding: 32px 24px;
       text-align: center;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
       position: relative;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .pricing-card:hover {
       transform: translateY(-4px);
-      border-color: #30363d;
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
     }
     .pricing-card.popular {
-      border-color: #2ea043;
-      background: #1a2421;
+      border-color: rgba(46, 160, 67, 0.3);
+      background: rgba(46, 160, 67, 0.04);
     }
     .pricing-card.custom {
-      border-color: #8b5cf6;
-      background: #1a1625;
+      border-color: rgba(139, 92, 246, 0.2);
+      background: rgba(139, 92, 246, 0.03);
     }
     .popular-badge {
       display: inline-block;
@@ -445,6 +704,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 16px;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
     }
     .pricing-card .plan-name {
       font-size: 18px;
@@ -478,7 +738,7 @@
       color: #e6edf3;
       font-size: 13px;
       padding: 4px 0;
-      border-bottom: 1px solid #21262d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
     .pricing-card .plan-features li:last-child {
       border-bottom: none;
@@ -486,7 +746,7 @@
     .pricing-card .plan-features li:first-child {
       color: #2ea043;
       font-weight: 500;
-      border-bottom: 1px solid #21262d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       padding-bottom: 6px;
       margin-bottom: 4px;
     }
@@ -507,33 +767,34 @@
       font-weight: 600;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.2s;
       text-decoration: none;
       width: 100%;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.02);
     }
     .pricing-card .btn-primary:hover {
       background: #3fb950;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 8px 32px rgba(46, 160, 67, 0.15);
     }
     .pricing-card.free .btn-primary {
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.04);
     }
     .pricing-card.free .btn-primary:hover {
-      background: #30363d;
+      background: rgba(255, 255, 255, 0.08);
     }
     .pricing-card.custom .btn-primary {
       background: #8b5cf6;
     }
     .pricing-card.custom .btn-primary:hover {
       background: #7c3aed;
-      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
     }
 
     /* --- FAQ --- */
     .faq {
       padding: 64px 0;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
       z-index: 1;
     }
@@ -549,9 +810,14 @@
       max-width: 700px;
       margin: 0 auto 12px;
       padding: 16px 20px;
-      background: #161b22;
-      border: 1px solid #21262d;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: rgba(46, 160, 67, 0.05);
     }
     .faq-item h3 {
       font-size: 15px;
@@ -565,9 +831,9 @@
       line-height: 1.5;
     }
 
-    /* --- Footer --- */
+    /* --- Footer (Honest) --- */
     footer {
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 32px 0;
       text-align: center;
       color: #8b949e;
@@ -586,6 +852,7 @@
       color: #8b949e;
       text-decoration: none;
       font-size: 14px;
+      transition: color 0.15s;
     }
     footer .footer-links a:hover {
       color: #ffffff;
@@ -611,6 +878,12 @@
       .pricing h2 {
         font-size: 30px;
       }
+      .code-section h2 {
+        font-size: 30px;
+      }
+      .how-it-works h2 {
+        font-size: 30px;
+      }
       .nav {
         gap: 12px;
       }
@@ -631,19 +904,22 @@
         max-width: 350px;
         margin: 0 auto;
       }
+      .code-block code {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Quotes -->
-  <div class="bg-quotes">
-    <div class="quote q1">⏳ Time is money</div>
-    <div class="quote q2">⏳ Save 2 hours a day</div>
-    <div class="quote q3">⏳ Lost time is never found again</div>
-    <div class="quote q4">⏳ The key is in not spending time, but in investing it</div>
-    <div class="quote q5">⏳ Time is the only thing you can't buy back</div>
-    <div class="quote q6">⏳ Make every minute count</div>
+  <!-- Background Handwriting Sparkle -->
+  <div class="bg-handwriting">
+    <div class="sparkle s1">~ time is the only thing you can't buy back ~</div>
+    <div class="sparkle s2">~ save 2 hours a day ~</div>
+    <div class="sparkle s3">~ make every minute count ~</div>
+    <div class="sparkle s4">~ invest your time wisely ~</div>
+    <div class="sparkle s5">~ email chaos solved ~</div>
+    <div class="sparkle s6">~ you approve, we handle the rest ~</div>
   </div>
 
   <!-- Side Decor -->
@@ -657,6 +933,7 @@
       <div class="logo">Rp<span>.</span></div>
       <div class="nav">
         <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
         <a href="login.html" class="btn-outline">Log in</a>
         <a href="signup.html" class="btn-primary-small">Sign up</a>
@@ -683,20 +960,43 @@
       <p class="tagline">What Rpire Does</p>
       <h2>Schedule. Draft. Triage.</h2>
       <div class="feature-grid">
-        <div class="feature-card">
+        <div class="feature-card neon-border glass-3d">
           <div class="icon">▣</div>
           <h3>Schedule</h3>
           <p>Auto-detect meeting requests. 3 time options. You approve.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card neon-border glass-3d">
           <div class="icon">◈</div>
           <h3>Draft</h3>
           <p>AI writes replies in your voice. Review, edit, send.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card neon-border glass-3d">
           <div class="icon">◉</div>
           <h3>Triage</h3>
           <p>Urgent. Basic. Scam. Sorted automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+      <p class="tagline">How It Works</p>
+      <h2>Connect. AI Works. You Approve.</h2>
+      <div class="steps">
+        <div class="step glass-3d">
+          <div class="num">1</div>
+          <h3>Connect</h3>
+          <p>Link your Gmail and Calendar once.</p>
+        </div>
+        <div class="step glass-3d">
+          <div class="num">2</div>
+          <h3>AI Works</h3>
+          <p>Rpire reads, analyzes, and drafts behind the scenes.</p>
+        </div>
+        <div class="step glass-3d">
+          <div class="num">3</div>
+          <h3>You Approve</h3>
+          <p>Review suggestions, click confirm, get back to work.</p>
         </div>
       </div>
     </section>
@@ -706,22 +1006,51 @@
       <p class="tagline">Beyond The Basics</p>
       <h2>Summarize. Learn. Protect.</h2>
       <div class="glass-grid">
-        <div class="glass-card">
+        <div class="glass-card glass-3d">
           <div class="icon">◊</div>
           <h3>Summarize</h3>
           <p>Meeting summaries. Action items. Never forget.</p>
         </div>
-        <div class="glass-card">
+        <div class="glass-card glass-3d">
           <div class="icon">✦</div>
           <h3>Learn</h3>
           <p>AI adapts to your voice. Writes like you.</p>
         </div>
-        <div class="glass-card">
+        <div class="glass-card glass-3d">
           <div class="icon">◆</div>
           <h3>Protect</h3>
           <p>Your data, your control. Privacy first.</p>
         </div>
       </div>
+    </section>
+
+    <!-- Code Snippet -->
+    <section class="code-section" id="code">
+      <p class="tagline">Works With Any Stack</p>
+      <h2>Connect in Minutes.</h2>
+      <p class="sub">Paste this code to connect Gmail and Calendar.</p>
+      <div class="code-block glass-3d neon-border">
+        <code>
+          <span class="comment">&lt;!-- Connect Gmail --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/connect"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Gmail</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span><br><br>
+          <span class="comment">&lt;!-- Calendar integration --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/calendar"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Calendar</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span>
+        </code>
+      </div>
+    </section>
+
+    <!-- Testimonial (Honest) -->
+    <section class="testimonial">
+      <blockquote>
+        “I built Rpire to solve my own email chaos. Now I'm sharing it with the world.”
+      </blockquote>
+      <div class="author">— <strong>Maithili Rade</strong>, Founder</div>
     </section>
 
     <!-- Pricing -->
@@ -730,7 +1059,7 @@
       <h2>Start Free. Upgrade When Ready.</h2>
       <p class="sub">50 free credits. No commitment.</p>
       <div class="pricing-grid">
-        <div class="pricing-card free">
+        <div class="pricing-card free glass-3d">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0 <span>/ month</span></div>
           <div class="plan-description">For individuals</div>
@@ -743,7 +1072,7 @@
           <a href="signup.html" class="btn-primary">Get Started</a>
         </div>
 
-        <div class="pricing-card popular">
+        <div class="pricing-card popular glass-3d">
           <div class="popular-badge">Most Popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price">$20 <span>/ month</span></div>
@@ -758,7 +1087,7 @@
           <a href="signup.html" class="btn-primary">Upgrade</a>
         </div>
 
-        <div class="pricing-card team">
+        <div class="pricing-card team glass-3d">
           <div class="plan-name">Team</div>
           <div class="plan-price">$50 <span>/ month</span></div>
           <div class="plan-description">For teams</div>
@@ -777,15 +1106,15 @@
     <!-- FAQ -->
     <section class="faq" id="faq">
       <h2>Questions?</h2>
-      <div class="faq-item">
+      <div class="faq-item glass-3d">
         <h3>Is Rpire free?</h3>
         <p>Yes — 50 free credits/month.</p>
       </div>
-      <div class="faq-item">
+      <div class="faq-item glass-3d">
         <h3>What are credits?</h3>
         <p>1 credit = 1 email triage. 5 = draft. 10 = schedule.</p>
       </div>
-      <div class="faq-item">
+      <div class="faq-item glass-3d">
         <h3>Is my data safe?</h3>
         <p>Yes. Encrypted. Never stored. You approve everything.</p>
       </div>
@@ -793,16 +1122,16 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (Honest) -->
   <footer>
     <div class="container">
       <div class="footer-links">
         <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <a href="mailto:maithili@rpire.com">Contact</a>
       </div>
-      <p>© 2026 Rpire. Built for people who value their time.</p>
+      <p>© 2026 Rpire. Built by Maithili Rade.</p>
     </div>
   </footer>
 
