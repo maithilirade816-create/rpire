@@ -35,7 +35,7 @@
       border-radius: 50%;
       filter: blur(80px);
       animation: float 20s infinite alternate ease-in-out;
-      opacity: 0.15;
+      opacity: 0.12;
     }
     .bg-ice .ice1 {
       width: 500px;
@@ -44,7 +44,6 @@
       left: -10%;
       background: radial-gradient(circle, #2ea043, transparent 70%);
       animation-duration: 25s;
-      opacity: 0.12;
     }
     .bg-ice .ice2 {
       width: 600px;
@@ -54,7 +53,6 @@
       background: radial-gradient(circle, #1a7a3a, transparent 70%);
       animation-duration: 30s;
       animation-delay: 5s;
-      opacity: 0.1;
     }
     .bg-ice .ice3 {
       width: 400px;
@@ -79,9 +77,9 @@
       }
     }
 
-    /* --- GLASS EFFECT --- */
+    /* --- GLASS --- */
     .glass {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -89,15 +87,15 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
 
-    /* --- NEON BORDER (VISIBLE) --- */
+    /* --- NEON --- */
     .neon-border {
       border: 1px solid rgba(46, 160, 67, 0.15);
       box-shadow: 0 0 30px rgba(46, 160, 67, 0.05), inset 0 0 30px rgba(46, 160, 67, 0.02);
       transition: all 0.4s ease;
     }
     .neon-border:hover {
-      border-color: rgba(46, 160, 67, 0.6);
-      box-shadow: 0 0 60px rgba(46, 160, 67, 0.15), inset 0 0 40px rgba(46, 160, 67, 0.05);
+      border-color: rgba(46, 160, 67, 0.5);
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.12), inset 0 0 40px rgba(46, 160, 67, 0.05);
     }
 
     /* --- SIDEBAR --- */
@@ -105,7 +103,6 @@
       width: 240px;
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border-right: 1px solid rgba(255, 255, 255, 0.06);
       padding: 28px 16px;
       display: flex;
@@ -241,7 +238,7 @@
       }
     }
 
-    /* --- CARDS WITH NEON --- */
+    /* --- CARDS --- */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -258,7 +255,7 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .card:hover {
-      border-color: rgba(46, 160, 67, 0.5);
+      border-color: rgba(46, 160, 67, 0.4);
       box-shadow: 0 0 60px rgba(46, 160, 67, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
       transform: translateY(-4px);
     }
@@ -317,6 +314,153 @@
     .quick-actions .btn-primary:hover {
       box-shadow: 0 0 70px rgba(46, 160, 67, 0.2);
       transform: translateY(-2px);
+    }
+
+    /* --- CREDIT BAR (Premium) --- */
+    .credit-bar {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      padding: 24px 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(46, 160, 67, 0.2);
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05), inset 0 0 40px rgba(46, 160, 67, 0.02);
+      transition: all 0.4s ease;
+    }
+    .credit-bar:hover {
+      border-color: rgba(46, 160, 67, 0.5);
+      box-shadow: 0 0 80px rgba(46, 160, 67, 0.1), inset 0 0 60px rgba(46, 160, 67, 0.05);
+    }
+    .credit-bar .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .credit-bar .left .icon {
+      font-size: 28px;
+    }
+    .credit-bar .left .info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+    .credit-bar .left .info p {
+      font-size: 14px;
+      color: #8b949e;
+    }
+    .credit-bar .right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .credit-bar .right .credits {
+      font-size: 36px;
+      font-weight: 700;
+      color: #2ea043;
+      text-shadow: 0 0 50px rgba(46, 160, 67, 0.2);
+    }
+    .credit-bar .right .btn-small {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #e6edf3;
+    }
+    .credit-bar .right .btn-small:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .credit-bar .right .btn-small.green {
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
+      border: none;
+      color: #ffffff;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
+    }
+    .credit-bar .right .btn-small.green:hover {
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.2);
+      transform: translateY(-2px);
+    }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2ea043, #3fb950);
+      border-radius: 4px;
+      transition: width 0.6s ease;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
+    }
+
+    /* --- ACTIVITY FEED (Fills Empty Space) --- */
+    .activity-feed {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .activity-feed h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #e6edf3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+    .activity-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .activity-item .dot.green {
+      background: #2ea043;
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
+    }
+    .activity-item .dot.blue {
+      background: #3b82f6;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+    }
+    .activity-item .dot.yellow {
+      background: #eab308;
+      box-shadow: 0 0 20px rgba(234, 179, 8, 0.2);
+    }
+    .activity-item .text {
+      font-size: 14px;
+      color: #e6edf3;
+    }
+    .activity-item .text span {
+      color: #8b949e;
+    }
+    .activity-item .time {
+      margin-left: auto;
+      font-size: 12px;
+      color: #484f58;
     }
 
     /* --- SCHEDULER --- */
@@ -541,91 +685,6 @@
       border: 1px solid rgba(210, 153, 34, 0.1);
     }
 
-    /* --- CREDITS (NEON GLOW) --- */
-    .credit-bar {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      padding: 20px 24px;
-      border-radius: 16px;
-      border: 1px solid rgba(46, 160, 67, 0.2);
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05), inset 0 0 40px rgba(46, 160, 67, 0.02);
-      transition: all 0.4s ease;
-    }
-    .credit-bar:hover {
-      border-color: rgba(46, 160, 67, 0.5);
-      box-shadow: 0 0 80px rgba(46, 160, 67, 0.1), inset 0 0 60px rgba(46, 160, 67, 0.05);
-    }
-    .credit-bar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .credit-bar .left .info h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #e6edf3;
-    }
-    .credit-bar .left .info p {
-      font-size: 14px;
-      color: #8b949e;
-    }
-    .credit-bar .right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .credit-bar .right .credits {
-      font-size: 32px;
-      font-weight: 700;
-      color: #2ea043;
-      text-shadow: 0 0 50px rgba(46, 160, 67, 0.2);
-    }
-    .credit-bar .right .btn-small {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: #e6edf3;
-    }
-    .credit-bar .right .btn-small:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .credit-bar .right .btn-small.green {
-      background: linear-gradient(135deg, #2ea043, #1a7a3a);
-      border: none;
-      color: #ffffff;
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
-    }
-    .credit-bar .right .btn-small.green:hover {
-      box-shadow: 0 0 60px rgba(46, 160, 67, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 4px;
-      margin-top: 8px;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      background: linear-gradient(90deg, #2ea043, #3fb950);
-      border-radius: 4px;
-      transition: width 0.6s ease;
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
-    }
-
     /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
       .sidebar {
@@ -667,6 +726,14 @@
         gap: 8px;
         align-items: flex-start;
       }
+      .activity-item {
+        flex-wrap: wrap;
+      }
+      .activity-item .time {
+        margin-left: 0;
+        width: 100%;
+        padding-left: 22px;
+      }
     }
   </style>
 </head>
@@ -695,6 +762,7 @@
 
   <!-- MAIN -->
   <div class="main">
+    <!-- HEADER -->
     <div class="main-header">
       <h1>Dashboard</h1>
       <div class="user">
@@ -706,6 +774,8 @@
 
     <!-- DASHBOARD -->
     <div id="section-dashboard" class="section active">
+
+      <!-- CREDIT BAR -->
       <div class="credit-bar">
         <div class="left">
           <div class="info">
@@ -723,13 +793,15 @@
         </div>
       </div>
 
+      <!-- CARDS -->
       <div class="card-grid">
-        <div class="card"><h3>Meetings</h3><div class="number">0</div><div class="label">Scheduled</div></div>
-        <div class="card"><h3>Emails</h3><div class="number">0</div><div class="label">In inbox</div></div>
-        <div class="card"><h3>Drafts</h3><div class="number">0</div><div class="label">Ready to review</div></div>
-        <div class="card"><h3>Urgent</h3><div class="number">0</div><div class="label">Need reply</div></div>
+        <div class="card neon-border"><h3>Meetings</h3><div class="number">3</div><div class="label">Scheduled this week</div></div>
+        <div class="card neon-border"><h3>Emails</h3><div class="number">12</div><div class="label">In your inbox</div></div>
+        <div class="card neon-border"><h3>Drafts</h3><div class="number">2</div><div class="label">Ready to review</div></div>
+        <div class="card neon-border"><h3>Urgent</h3><div class="number">4</div><div class="label">Need reply today</div></div>
       </div>
 
+      <!-- QUICK ACTIONS -->
       <div class="quick-actions">
         <button class="btn btn-primary" onclick="switchSection('scheduler')">Schedule</button>
         <button class="btn" onclick="switchSection('drafts')">Drafts</button>
@@ -737,6 +809,37 @@
         <button class="btn" onclick="switchSection('onboarding')">Guide</button>
         <button class="btn" onclick="refreshData()">⟳ Refresh</button>
       </div>
+
+      <!-- ACTIVITY FEED (Fills Empty Space) -->
+      <div class="activity-feed">
+        <h3>Recent Activity</h3>
+        <div class="activity-item">
+          <span class="dot green"></span>
+          <span class="text">Meeting scheduled with <strong>Sarah Johnson</strong> <span>— Q4 Review</span></span>
+          <span class="time">2 min ago</span>
+        </div>
+        <div class="activity-item">
+          <span class="dot blue"></span>
+          <span class="text">Draft generated for <strong>Michael Chen</strong> <span>— Project Timeline</span></span>
+          <span class="time">1 hour ago</span>
+        </div>
+        <div class="activity-item">
+          <span class="dot yellow"></span>
+          <span class="text">Email triaged as <strong>Urgent</strong> <span>— Budget Review</span></span>
+          <span class="time">3 hours ago</span>
+        </div>
+        <div class="activity-item">
+          <span class="dot green"></span>
+          <span class="text">Calendar connected <span>— Google Calendar</span></span>
+          <span class="time">1 day ago</span>
+        </div>
+        <div class="activity-item">
+          <span class="dot blue"></span>
+          <span class="text">Welcome email sent <span>— Onboarding complete</span></span>
+          <span class="time">2 days ago</span>
+        </div>
+      </div>
+
     </div>
 
     <!-- SCHEDULER -->
@@ -756,21 +859,30 @@
     <!-- DRAFTS -->
     <div id="section-drafts" class="section">
       <h2 style="margin-bottom: 4px;">Drafts</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">No drafts yet. Connect Gmail to start.</p>
-      <div style="background: rgba(255,255,255,0.02); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
-        <p>Connect Gmail to start generating drafts</p>
-        <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
+      <p style="color: #8b949e; margin-bottom: 16px;">AI-generated replies ready for your review.</p>
+      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 16px;">
+        <p style="font-weight: 500; margin-bottom: 8px; color: #e6edf3;">Sarah Johnson — "Meeting follow-up"</p>
+        <p style="color: #8b949e; font-size: 14px; margin-bottom: 12px;">"Hi Sarah, thanks for your time today. I've attached the proposal as discussed. Let me know if you have any questions."</p>
+        <button class="btn-secondary">Edit</button>
+        <button class="btn-primary" style="padding: 6px 18px; font-size: 13px;">Send</button>
+      </div>
+      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
+        <p style="font-weight: 500; margin-bottom: 8px; color: #e6edf3;">Michael Chen — "Project timeline"</p>
+        <p style="color: #8b949e; font-size: 14px; margin-bottom: 12px;">"Hi Michael, we're on track for the Q4 deadline. The next milestone is due on Friday."</p>
+        <button class="btn-secondary">Edit</button>
+        <button class="btn-primary" style="padding: 6px 18px; font-size: 13px;">Send</button>
       </div>
     </div>
 
     <!-- INBOX -->
     <div id="section-inbox" class="section">
       <h2 style="margin-bottom: 4px;">Inbox Triage</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Connect Gmail to start sorting.</p>
-      <div style="background: rgba(255,255,255,0.02); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
-        <p>Connect Gmail to see your triaged inbox</p>
-        <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
-      </div>
+      <p style="color: #8b949e; margin-bottom: 16px;">Your emails sorted by urgency.</p>
+      <div class="inbox-item"><span><strong>Urgent:</strong> Q4 Budget Review</span><span class="tag urgent">Urgent</span></div>
+      <div class="inbox-item"><span><strong>Basic:</strong> Team Weekly Update</span><span class="tag basic">Basic</span></div>
+      <div class="inbox-item"><span><strong>Scam:</strong> "You've won a prize!"</span><span class="tag scam">Scam</span></div>
+      <div class="inbox-item"><span><strong>Urgent:</strong> Client Contract Deadline</span><span class="tag urgent">Urgent</span></div>
+      <div class="inbox-item"><span><strong>Basic:</strong> Newsletter — October Edition</span><span class="tag basic">Basic</span></div>
     </div>
 
     <!-- ONBOARDING -->
