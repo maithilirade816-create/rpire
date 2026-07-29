@@ -670,6 +670,64 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
+    /* --- SYLVIE SECTION STYLES --- */
+    .sylvie-box {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 20px;
+    }
+    .sylvie-box h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #e6edf3;
+    }
+    .sylvie-box textarea,
+    .sylvie-box input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #e6edf3;
+      font-family: inherit;
+      margin-bottom: 8px;
+      resize: vertical;
+    }
+    .sylvie-box textarea:focus,
+    .sylvie-box input:focus {
+      outline: none;
+      border-color: rgba(46, 160, 67, 0.3);
+    }
+    .sylvie-box .btn-sylvie {
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sylvie-box .btn-sylvie:hover {
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
+      transform: translateY(-1px);
+    }
+    .sylvie-output {
+      margin-top: 12px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: #e6edf3;
+      white-space: pre-wrap;
+      min-height: 50px;
+    }
+
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
       .stats-grid {
@@ -783,6 +841,7 @@
       <a data-section="scheduler"><span>Scheduler</span></a>
       <a data-section="drafts"><span>Drafts</span></a>
       <a data-section="inbox"><span>Inbox</span></a>
+      <a data-section="sylvie"><span>Sylvie AI</span></a>
       <a data-section="onboarding"><span>Onboarding</span></a>
       <a data-section="settings"><span>Settings</span></a>
     </nav>
@@ -978,6 +1037,45 @@
       </div>
     </div>
 
+    <!-- SYLVIE AI SECTION -->
+    <div id="section-sylvie" class="section">
+      <h2 style="margin-bottom: 4px; font-size: 22px;">🧠 Sylvie — Your AI Assistant</h2>
+      <p style="color: #8b949e; margin-bottom: 20px;">Draft emails, summarize content, and triage your inbox.</p>
+
+      <!-- Draft -->
+      <div class="sylvie-box">
+        <h3>✉️ Draft Email</h3>
+        <textarea id="draftThread" rows="2" placeholder="Paste email thread..."></textarea>
+        <input id="draftInstruction" type="text" placeholder="What should the draft say?" />
+        <button class="btn-sylvie" onclick="generateDraft()">Generate Draft</button>
+        <div id="draftOutput" class="sylvie-output"></div>
+      </div>
+
+      <!-- Summarize -->
+      <div class="sylvie-box">
+        <h3>📄 Summarize</h3>
+        <textarea id="summarizeInput" rows="3" placeholder="Paste email thread or meeting notes..."></textarea>
+        <button class="btn-sylvie" onclick="summarizeContent()">Summarize</button>
+        <div id="summarizeOutput" class="sylvie-output"></div>
+      </div>
+
+      <!-- Triage -->
+      <div class="sylvie-box">
+        <h3>📥 Triage Email</h3>
+        <textarea id="triageInput" rows="2" placeholder="Paste email content..."></textarea>
+        <button class="btn-sylvie" onclick="triageEmail()">Classify</button>
+        <div id="triageOutput" class="sylvie-output"></div>
+      </div>
+
+      <!-- Voice Learning -->
+      <div class="sylvie-box">
+        <h3>🎤 Teach Sylvie Your Voice</h3>
+        <textarea id="voiceSample" rows="3" placeholder="Paste a sample of your writing (e.g., an email you wrote)"></textarea>
+        <button class="btn-sylvie" onclick="learnVoice()">Teach Sylvie</button>
+        <div id="voiceOutput" class="sylvie-output"></div>
+      </div>
+    </div>
+
     <!-- ONBOARDING -->
     <div id="section-onboarding" class="section">
       <h2 style="margin-bottom: 4px; font-size: 22px;">Connect Gmail & Calendar</h2>
@@ -1037,7 +1135,6 @@
     // FULLY FUNCTIONAL CREDIT SYSTEM
     // ============================================
 
-    // --- CREDIT STATE (Persists in localStorage) ---
     let userCredits = parseInt(localStorage.getItem('rpire_credits')) || 50;
     const MAX_CREDITS = 50;
 
@@ -1053,7 +1150,6 @@
       document.getElementById('creditProgress').style.width = pct + '%';
     }
 
-    // --- CREDIT CHECK ---
     function checkCredits(cost) {
       if (userCredits < cost) {
         showCreditAlert();
@@ -1069,7 +1165,6 @@
       return userCredits;
     }
 
-    // --- CREDIT ALERT ---
     function showCreditAlert() {
       document.getElementById('creditAlert').style.display = 'flex';
     }
@@ -1078,28 +1173,22 @@
       document.getElementById('creditAlert').style.display = 'none';
     }
 
-    // Click outside to close
     document.getElementById('creditAlert').addEventListener('click', function(e) {
       if (e.target === this) closeCreditAlert();
     });
 
     // --- ACTION HANDLERS ---
 
-    // Scheduler: costs 10 credits
     document.getElementById('findTimesBtn').addEventListener('click', function() {
       if (!checkCredits(10)) return;
-
       const log = document.getElementById('log');
       const stepOptions = document.getElementById('step-options');
       const container = document.getElementById('timeSlotContainer');
       const confirmationMsg = document.getElementById('confirmationMessage');
-
-      // Deduct credits
       deductCredits(10);
       log.innerText = 'Analyzing... (10 credits used)';
       stepOptions.classList.add('hidden');
       confirmationMsg.classList.add('hidden');
-
       const mockTimes = [
         { day: 'Tuesday, Oct 24', time: '10:00 AM', duration: '45 min' },
         { day: 'Wednesday, Oct 25', time: '2:00 PM', duration: '45 min' },
@@ -1127,25 +1216,218 @@
       }, 1000);
     }
 
-    // Draft Send: costs 5 credits
     function handleDraftSend() {
       if (!checkCredits(5)) return;
       deductCredits(5);
       alert('Draft sent! (5 credits used)');
     }
 
-    // Triage: costs 1 credit
     function handleTriage() {
       if (!checkCredits(1)) return;
       deductCredits(1);
       alert('Email triaged! (1 credit used)');
     }
 
-    // --- REFRESH ---
     function refreshData() {
       updateUI();
       alert('Refreshed! Credits: ' + userCredits);
     }
+
+    // ============================================
+    // SYLVIE AI ENGINE
+    // ============================================
+
+    class Sylvie {
+      constructor(config = {}) {
+        this.model = config.model || 'mock';
+        this.apiUrl = config.apiUrl || '';
+        this.apiKey = config.apiKey || '';
+        this.userVoice = this.loadUserVoice();
+      }
+
+      async process(request) {
+        const { action, input, context } = request;
+        const prompt = this.buildPrompt(action, input, context);
+        const response = await this.callModel(prompt);
+        return this.formatResponse(action, response);
+      }
+
+      buildPrompt(action, input, context) {
+        const base = `You are Sylvie, an AI assistant for Rpire. 
+          You help professionals manage their emails, meetings, and inbox.
+          Your tone is professional, clear, and helpful.`;
+
+        switch (action) {
+          case 'draft':
+            const thread = context?.thread || 'No previous conversation.';
+            return `${base}
+              Task: Write a professional email draft.
+              User's writing style: ${this.userVoice || 'professional'}.
+              Thread: ${thread}
+              Instruction: ${input}
+              Draft:`;
+          case 'summarize':
+            const type = context?.type || 'content';
+            return `${base}
+              Task: Summarize this ${type}.
+              Content: ${input}
+              Provide: Key points, action items, next steps.`;
+          case 'triage':
+            return `${base}
+              Task: Classify this email as URGENT, BASIC, or SCAM.
+              Email: ${input}
+              Respond with only one word: URGENT, BASIC, or SCAM.`;
+          case 'learn':
+            return `${base}
+              Task: Analyze this writing sample to learn the user's voice.
+              Sample: ${input}
+              Extract: tone, sentence structure, common phrases, greetings.`;
+          default:
+            return `${base}\n\nUser request: ${input}`;
+        }
+      }
+
+      formatResponse(action, response) {
+        if (action === 'triage') return 'Classification: ' + response.trim();
+        return response;
+      }
+
+      async callModel(prompt) {
+        try {
+          if (this.model === 'mock') {
+            return this.mockResponse(prompt);
+          }
+          if (this.model === 'ollama') {
+            return await this.callOllama(prompt);
+          }
+          if (this.model === 'openai') {
+            return await this.callOpenAI(prompt);
+          }
+          return this.mockResponse(prompt);
+        } catch (error) {
+          console.error('Sylvie error:', error);
+          return this.mockResponse(prompt);
+        }
+      }
+
+      async callOllama(prompt) {
+        const res = await fetch('http://localhost:11434/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: 'llama3', prompt, stream: false })
+        });
+        const data = await res.json();
+        return data.response;
+      }
+
+      async callOpenAI(prompt) {
+        const res = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.apiKey}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.7
+          })
+        });
+        const data = await res.json();
+        return data.choices[0].message.content;
+      }
+
+      mockResponse(prompt) {
+        if (prompt.includes('draft')) {
+          return `Subject: Follow-up
+
+Hi,
+
+Thanks for your time. I've attached the documents we discussed.
+
+Please let me know if you have any questions.
+
+Best regards,
+[Your Name]`;
+        }
+        if (prompt.includes('summarize')) {
+          return `Summary:
+• Project is on track
+• Budget approved
+• Next milestone: Friday
+
+Action items:
+- Send updated timeline
+- Schedule client review`;
+        }
+        if (prompt.includes('URGENT')) return 'URGENT';
+        if (prompt.includes('BASIC')) return 'BASIC';
+        if (prompt.includes('SCAM')) return 'SCAM';
+        return 'Sylvie is ready. How can I help?';
+      }
+
+      loadUserVoice() {
+        const saved = localStorage.getItem('sylvie_voice');
+        return saved ? JSON.parse(saved) : null;
+      }
+
+      saveUserVoice(voice) {
+        localStorage.setItem('sylvie_voice', JSON.stringify(voice));
+        this.userVoice = voice;
+      }
+
+      learnFromSample(sample) {
+        const result = this.process({ action: 'learn', input: sample });
+        this.saveUserVoice(result);
+        return result;
+      }
+    }
+
+    // --- INIT SYLVIE ---
+    const sylvie = new Sylvie({ model: 'mock' });
+
+    // --- SYLVIE FUNCTIONS ---
+    async function generateDraft() {
+      const thread = document.getElementById('draftThread')?.value || '';
+      const instruction = document.getElementById('draftInstruction')?.value || 'Write a professional reply';
+      const result = await sylvie.process({
+        action: 'draft',
+        input: instruction,
+        context: { thread }
+      });
+      document.getElementById('draftOutput').textContent = result;
+    }
+
+    async function summarizeContent() {
+      const input = document.getElementById('summarizeInput')?.value || '';
+      const result = await sylvie.process({
+        action: 'summarize',
+        input: input,
+        context: { type: 'content' }
+      });
+      document.getElementById('summarizeOutput').textContent = result;
+    }
+
+    async function triageEmail() {
+      const input = document.getElementById('triageInput')?.value || '';
+      const result = await sylvie.process({
+        action: 'triage',
+        input: input
+      });
+      document.getElementById('triageOutput').textContent = result;
+    }
+
+    async function learnVoice() {
+      const input = document.getElementById('voiceSample')?.value || '';
+      const result = await sylvie.learnFromSample(input);
+      document.getElementById('voiceOutput').textContent = 'Voice learned! ' + result;
+    }
+
+    // --- Expose to window ---
+    window.generateDraft = generateDraft;
+    window.summarizeContent = summarizeContent;
+    window.triageEmail = triageEmail;
+    window.learnVoice = learnVoice;
 
     // ============================================
     // USER & GREETING
@@ -1165,7 +1447,6 @@
 
     function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
 
-    // --- NAVIGATION ---
     document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1176,6 +1457,7 @@
         this.classList.add('active');
       });
     });
+
     function switchSection(section) {
       document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
       document.getElementById(`section-${section}`).classList.add('active');
@@ -1183,7 +1465,6 @@
       document.querySelector(`.sidebar nav a[data-section="${section}"]`).classList.add('active');
     }
 
-    // --- INIT ---
     updateUI();
   </script>
 </body>
