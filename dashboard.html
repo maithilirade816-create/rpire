@@ -19,28 +19,7 @@
       overflow-x: hidden;
     }
 
-    /* --- Ice / Glass Effect --- */
-    .glass {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    /* --- Neon Glow --- */
-    .neon-border {
-      border: 1px solid rgba(46, 160, 67, 0.2);
-      box-shadow: 0 0 20px rgba(46, 160, 67, 0.05), inset 0 0 20px rgba(46, 160, 67, 0.02);
-      transition: all 0.3s ease;
-    }
-    .neon-border:hover {
-      border-color: rgba(46, 160, 67, 0.5);
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.1), inset 0 0 30px rgba(46, 160, 67, 0.05);
-    }
-
-    /* --- Background Ice Effect --- */
+    /* --- ICE BACKGROUND --- */
     .bg-ice {
       position: fixed;
       top: 0;
@@ -54,47 +33,74 @@
     .bg-ice .ice {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(46, 160, 67, 0.03), transparent 70%);
-      filter: blur(60px);
+      filter: blur(80px);
       animation: float 20s infinite alternate ease-in-out;
+      opacity: 0.15;
     }
     .bg-ice .ice1 {
-      top: 10%;
-      left: 5%;
-      width: 300px;
-      height: 300px;
-      animation-duration: 25s;
-    }
-    .bg-ice .ice2 {
-      bottom: 10%;
-      right: 5%;
-      width: 400px;
-      height: 400px;
-      animation-duration: 30s;
-      animation-delay: 5s;
-    }
-    .bg-ice .ice3 {
-      top: 50%;
-      left: 50%;
       width: 500px;
       height: 500px;
+      top: -10%;
+      left: -10%;
+      background: radial-gradient(circle, #2ea043, transparent 70%);
+      animation-duration: 25s;
+      opacity: 0.12;
+    }
+    .bg-ice .ice2 {
+      width: 600px;
+      height: 600px;
+      bottom: -20%;
+      right: -10%;
+      background: radial-gradient(circle, #1a7a3a, transparent 70%);
+      animation-duration: 30s;
+      animation-delay: 5s;
+      opacity: 0.1;
+    }
+    .bg-ice .ice3 {
+      width: 400px;
+      height: 400px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, #3fb950, transparent 70%);
       animation-duration: 35s;
       animation-delay: 10s;
-      opacity: 0.5;
+      opacity: 0.06;
     }
     @keyframes float {
       0% {
         transform: translate(0, 0) scale(1);
       }
       50% {
-        transform: translate(30px, -30px) scale(1.1);
+        transform: translate(40px, -40px) scale(1.1);
       }
       100% {
-        transform: translate(-20px, 20px) scale(0.9);
+        transform: translate(-30px, 30px) scale(0.9);
       }
     }
 
-    /* --- Sidebar --- */
+    /* --- GLASS EFFECT --- */
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- NEON BORDER (VISIBLE) --- */
+    .neon-border {
+      border: 1px solid rgba(46, 160, 67, 0.15);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05), inset 0 0 30px rgba(46, 160, 67, 0.02);
+      transition: all 0.4s ease;
+    }
+    .neon-border:hover {
+      border-color: rgba(46, 160, 67, 0.6);
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.15), inset 0 0 40px rgba(46, 160, 67, 0.05);
+    }
+
+    /* --- SIDEBAR --- */
     .sidebar {
       width: 240px;
       background: rgba(255, 255, 255, 0.02);
@@ -121,7 +127,7 @@
     }
     .sidebar .logo span {
       color: #2ea043;
-      text-shadow: 0 0 20px rgba(46, 160, 67, 0.3);
+      text-shadow: 0 0 40px rgba(46, 160, 67, 0.3);
     }
     .sidebar a {
       display: flex;
@@ -146,7 +152,7 @@
       color: #2ea043;
       font-weight: 600;
       border: 1px solid rgba(46, 160, 67, 0.2);
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.08);
     }
     .sidebar .bottom {
       margin-top: auto;
@@ -165,7 +171,7 @@
       color: #f85149;
     }
 
-    /* --- Main --- */
+    /* --- MAIN --- */
     .main {
       margin-left: 240px;
       flex: 1;
@@ -186,9 +192,6 @@
       font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.3px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
       color: #ffffff;
     }
     .main-header .user {
@@ -217,7 +220,7 @@
       justify-content: center;
       font-weight: 600;
       font-size: 14px;
-      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
     }
 
     .section {
@@ -238,7 +241,7 @@
       }
     }
 
-    /* --- Cards --- */
+    /* --- CARDS WITH NEON --- */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -251,12 +254,12 @@
       padding: 24px;
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .card:hover {
-      border-color: rgba(46, 160, 67, 0.3);
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05), 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-color: rgba(46, 160, 67, 0.5);
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
       transform: translateY(-4px);
     }
     .card h3 {
@@ -277,7 +280,7 @@
       color: #8b949e;
     }
 
-    /* --- Quick Actions --- */
+    /* --- QUICK ACTIONS --- */
     .quick-actions {
       display: flex;
       gap: 12px;
@@ -301,22 +304,22 @@
       gap: 8px;
     }
     .quick-actions .btn:hover {
-      border-color: rgba(46, 160, 67, 0.3);
+      border-color: rgba(46, 160, 67, 0.4);
       background: rgba(46, 160, 67, 0.05);
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
     }
     .quick-actions .btn-primary {
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #ffffff;
       border: none;
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.1);
     }
     .quick-actions .btn-primary:hover {
-      box-shadow: 0 0 50px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 70px rgba(46, 160, 67, 0.2);
       transform: translateY(-2px);
     }
 
-    /* --- Scheduler --- */
+    /* --- SCHEDULER --- */
     .email-box {
       width: 100%;
       padding: 14px 18px;
@@ -332,11 +335,8 @@
     }
     .email-box:focus {
       border-color: rgba(46, 160, 67, 0.4);
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
       outline: none;
-    }
-    .email-box::placeholder {
-      color: #484f58;
     }
     .btn-secondary {
       background: rgba(255, 255, 255, 0.04);
@@ -363,10 +363,10 @@
       font-size: 14px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05);
     }
     .btn-primary:hover {
-      box-shadow: 0 0 50px rgba(46, 160, 67, 0.15);
+      box-shadow: 0 0 70px rgba(46, 160, 67, 0.15);
       transform: translateY(-2px);
     }
     .card-slot {
@@ -404,7 +404,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* --- Onboarding --- */
+    /* --- ONBOARDING --- */
     .onboarding {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -440,7 +440,7 @@
       margin-bottom: 6px;
     }
 
-    /* --- Settings --- */
+    /* --- SETTINGS --- */
     .settings-group {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -501,14 +501,8 @@
       color: #e6edf3;
       backdrop-filter: blur(10px);
     }
-    .settings-group .row input:focus,
-    .settings-group .row select:focus {
-      border-color: rgba(46, 160, 67, 0.3);
-      outline: none;
-      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
-    }
 
-    /* --- Inbox --- */
+    /* --- INBOX --- */
     .inbox-item {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -547,32 +541,30 @@
       border: 1px solid rgba(210, 153, 34, 0.1);
     }
 
-    /* --- Credits --- */
+    /* --- CREDITS (NEON GLOW) --- */
     .credit-bar {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       padding: 20px 24px;
       border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(46, 160, 67, 0.2);
       margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05), inset 0 0 40px rgba(46, 160, 67, 0.02);
+      transition: all 0.4s ease;
     }
     .credit-bar:hover {
-      border-color: rgba(46, 160, 67, 0.1);
+      border-color: rgba(46, 160, 67, 0.5);
+      box-shadow: 0 0 80px rgba(46, 160, 67, 0.1), inset 0 0 60px rgba(46, 160, 67, 0.05);
     }
     .credit-bar .left {
       display: flex;
       align-items: center;
       gap: 16px;
-    }
-    .credit-bar .left .icon {
-      font-size: 24px;
     }
     .credit-bar .left .info h3 {
       font-size: 16px;
@@ -589,10 +581,10 @@
       gap: 12px;
     }
     .credit-bar .right .credits {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
       color: #2ea043;
-      text-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
+      text-shadow: 0 0 50px rgba(46, 160, 67, 0.2);
     }
     .credit-bar .right .btn-small {
       background: rgba(255, 255, 255, 0.04);
@@ -612,10 +604,10 @@
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
       border: none;
       color: #ffffff;
-      box-shadow: 0 0 20px rgba(46, 160, 67, 0.1);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
     }
     .credit-bar .right .btn-small.green:hover {
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 60px rgba(46, 160, 67, 0.2);
       transform: translateY(-2px);
     }
 
@@ -631,10 +623,10 @@
       background: linear-gradient(90deg, #2ea043, #3fb950);
       border-radius: 4px;
       transition: width 0.6s ease;
-      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
     }
 
-    /* --- Responsive --- */
+    /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
       .sidebar {
         width: 64px;
@@ -680,14 +672,14 @@
 </head>
 <body>
 
-  <!-- Background Ice Effect -->
+  <!-- ICE BACKGROUND -->
   <div class="bg-ice">
     <div class="ice ice1"></div>
     <div class="ice ice2"></div>
     <div class="ice ice3"></div>
   </div>
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="logo">Rp<span>.</span></div>
     <a class="active" data-section="dashboard"><span>Dashboard</span></a>
@@ -701,11 +693,10 @@
     </div>
   </div>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <div class="main">
-    <!-- Header -->
     <div class="main-header">
-      <h1 id="pageTitle">Dashboard</h1>
+      <h1>Dashboard</h1>
       <div class="user">
         <span id="userEmail">user@example.com</span>
         <div class="avatar">M</div>
@@ -713,9 +704,8 @@
       </div>
     </div>
 
-    <!-- Dashboard -->
+    <!-- DASHBOARD -->
     <div id="section-dashboard" class="section active">
-      <!-- Credits -->
       <div class="credit-bar">
         <div class="left">
           <div class="info">
@@ -734,145 +724,117 @@
       </div>
 
       <div class="card-grid">
-        <div class="card"><h3>Meetings</h3><div class="number">0</div><div class="label">Scheduled this week</div></div>
-        <div class="card"><h3>Emails</h3><div class="number">0</div><div class="label">In your inbox</div></div>
+        <div class="card"><h3>Meetings</h3><div class="number">0</div><div class="label">Scheduled</div></div>
+        <div class="card"><h3>Emails</h3><div class="number">0</div><div class="label">In inbox</div></div>
         <div class="card"><h3>Drafts</h3><div class="number">0</div><div class="label">Ready to review</div></div>
-        <div class="card"><h3>Urgent</h3><div class="number">0</div><div class="label">Need reply today</div></div>
+        <div class="card"><h3>Urgent</h3><div class="number">0</div><div class="label">Need reply</div></div>
       </div>
+
       <div class="quick-actions">
-        <button class="btn btn-primary" onclick="switchSection('scheduler')">Schedule Meeting</button>
-        <button class="btn" onclick="switchSection('drafts')">Draft Email</button>
-        <button class="btn" onclick="switchSection('inbox')">Triage Inbox</button>
-        <button class="btn" onclick="switchSection('onboarding')">Onboarding</button>
+        <button class="btn btn-primary" onclick="switchSection('scheduler')">Schedule</button>
+        <button class="btn" onclick="switchSection('drafts')">Drafts</button>
+        <button class="btn" onclick="switchSection('inbox')">Triage</button>
+        <button class="btn" onclick="switchSection('onboarding')">Guide</button>
         <button class="btn" onclick="refreshData()">⟳ Refresh</button>
       </div>
     </div>
 
-    <!-- Scheduler -->
+    <!-- SCHEDULER -->
     <div id="section-scheduler" class="section">
-      <h2 style="margin-bottom: 4px;">Meeting Scheduler</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Paste an email thread, and Rpire will suggest 3 available times.</p>
+      <h2 style="margin-bottom: 4px;">Scheduler</h2>
+      <p style="color: #8b949e; margin-bottom: 16px;">Paste an email to get 3 time options.</p>
       <textarea id="emailText" rows="4" class="email-box" placeholder="Paste email conversation here...">I'd like to discuss the project. Are you free Tuesday or Wednesday?</textarea>
-      <button class="btn-primary" id="findTimesBtn">Find Available Times</button>
+      <button class="btn-primary" id="findTimesBtn">Find Times</button>
       <div id="step-options" class="hidden">
         <p style="margin-top: 20px; font-weight: 600; color: #e6edf3;">You approve. Then it books.</p>
         <div id="timeSlotContainer"></div>
-        <p id="confirmationMessage" class="status hidden">Meeting booked! Check your calendar.</p>
+        <p id="confirmationMessage" class="status hidden">Meeting booked!</p>
       </div>
-      <div id="log" style="font-size: 13px; color: #8b949e; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);">Ready to schedule.</div>
+      <div id="log" style="font-size: 13px; color: #8b949e; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);">Ready.</div>
     </div>
 
-    <!-- Drafts -->
+    <!-- DRAFTS -->
     <div id="section-drafts" class="section">
-      <h2 style="margin-bottom: 4px;">Email Drafts</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">No drafts yet. Connect your Gmail to get started.</p>
-      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
+      <h2 style="margin-bottom: 4px;">Drafts</h2>
+      <p style="color: #8b949e; margin-bottom: 16px;">No drafts yet. Connect Gmail to start.</p>
+      <div style="background: rgba(255,255,255,0.02); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
         <p>Connect Gmail to start generating drafts</p>
         <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
       </div>
     </div>
 
-    <!-- Inbox -->
+    <!-- INBOX -->
     <div id="section-inbox" class="section">
       <h2 style="margin-bottom: 4px;">Inbox Triage</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Connect Gmail to start sorting your inbox.</p>
-      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
+      <p style="color: #8b949e; margin-bottom: 16px;">Connect Gmail to start sorting.</p>
+      <div style="background: rgba(255,255,255,0.02); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
         <p>Connect Gmail to see your triaged inbox</p>
         <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
       </div>
     </div>
 
-    <!-- Onboarding -->
+    <!-- ONBOARDING -->
     <div id="section-onboarding" class="section">
-      <h2 style="margin-bottom: 4px;">How to Connect Gmail & Calendar</h2>
-      <p style="color: #8b949e; margin-bottom: 20px;">Follow these steps to get Rpire working with your accounts.</p>
+      <h2 style="margin-bottom: 4px;">Connect Gmail & Calendar</h2>
+      <p style="color: #8b949e; margin-bottom: 20px;">Follow these steps.</p>
       <div class="onboarding">
         <h3>Step 1: Connect Gmail</h3>
-        <p>Rpire needs permission to read and draft emails on your behalf.</p>
+        <p>Rpire needs permission to read and draft emails.</p>
         <ol>
-          <li>Click the <strong>"Connect Gmail"</strong> button below.</li>
-          <li>You'll be redirected to Google's permission screen.</li>
-          <li>Select the Google account you want to connect.</li>
-          <li>Review the permissions — Rpire only reads emails you explicitly allow.</li>
-          <li>Click <strong>"Allow"</strong> to grant access.</li>
-          <li>You'll be redirected back to Rpire.</li>
+          <li>Click "Connect Gmail" below.</li>
+          <li>Allow permissions.</li>
+          <li>You'll be redirected back.</li>
         </ol>
         <button class="btn-primary" onclick="alert('Gmail Connect will open here.')">Connect Gmail</button>
       </div>
       <div class="onboarding">
-        <h3>Step 2: Connect Google Calendar</h3>
-        <p>Rpire needs access to your calendar to check availability and schedule meetings.</p>
+        <h3>Step 2: Connect Calendar</h3>
+        <p>Rpire needs access to check availability.</p>
         <ol>
-          <li>Click the <strong>"Connect Calendar"</strong> button below.</li>
-          <li>You'll be redirected to Google's permission screen.</li>
-          <li>Select the same Google account you used for Gmail.</li>
-          <li>Review the permissions — Rpire only reads your availability.</li>
-          <li>Click <strong>"Allow"</strong> to grant access.</li>
-          <li>You'll be redirected back to Rpire.</li>
+          <li>Click "Connect Calendar" below.</li>
+          <li>Allow permissions.</li>
+          <li>You'll be redirected back.</li>
         </ol>
         <button class="btn-primary" onclick="alert('Calendar Connect will open here.')">Connect Calendar</button>
       </div>
       <div class="onboarding">
         <h3>Step 3: Start Scheduling</h3>
-        <p>Once both accounts are connected, you're ready to go!</p>
-        <ol>
-          <li>Go to the <strong>Scheduler</strong> tab.</li>
-          <li>Paste an email thread where someone asks to meet.</li>
-          <li>Click <strong>"Find Available Times"</strong>.</li>
-          <li>Rpire will suggest 3 times based on your calendar.</li>
-          <li>Click <strong>"Confirm"</strong> on your preferred time.</li>
-          <li>Rpire sends the calendar invite automatically.</li>
-        </ol>
+        <p>Go to Scheduler, paste an email, and confirm a time.</p>
       </div>
     </div>
 
-    <!-- Settings -->
+    <!-- SETTINGS -->
     <div id="section-settings" class="section">
       <h2 style="margin-bottom: 4px;">Settings</h2>
-      <p style="color: #8b949e; margin-bottom: 20px;">Manage your account and preferences.</p>
+      <p style="color: #8b949e; margin-bottom: 20px;">Manage your account.</p>
       <div class="settings-group">
         <h3>Profile</h3>
         <div class="row"><span class="label">Name</span><span class="value"><input type="text" value="Maithili Rade" /></span></div>
         <div class="row"><span class="label">Email</span><span class="value" id="settingsEmail">user@example.com</span></div>
-        <div class="row"><span class="label">Timezone</span><span class="value"><select><option>PST (Pacific)</option><option>EST (Eastern)</option><option selected>IST (India)</option></select></span></div>
+        <div class="row"><span class="label">Timezone</span><span class="value"><select><option>PST</option><option>EST</option><option selected>IST</option></select></span></div>
       </div>
       <div class="settings-group">
         <h3>Integrations</h3>
         <div class="row"><span class="label">Gmail</span><span class="value"><span class="badge disconnected">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Gmail')">Connect</button></span></div>
-        <div class="row"><span class="label">Google Calendar</span><span class="value"><span class="badge disconnected">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Calendar')">Connect</button></span></div>
-      </div>
-      <div class="settings-group">
-        <h3>Notifications</h3>
-        <div class="row"><span class="label">Email Notifications</span><span class="value"><label style="display: flex; align-items: center; gap: 8px; color: #e6edf3;"><input type="checkbox" checked /> Receive email updates</label></span></div>
-        <div class="row"><span class="label">Meeting Reminders</span><span class="value"><label style="display: flex; align-items: center; gap: 8px; color: #e6edf3;"><input type="checkbox" checked /> 15 min before meetings</label></span></div>
+        <div class="row"><span class="label">Calendar</span><span class="value"><span class="badge disconnected">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Calendar')">Connect</button></span></div>
       </div>
       <div class="settings-group">
         <h3>Account</h3>
-        <div class="row"><span class="label">Plan</span><span class="value"><span class="badge" style="background: rgba(46,160,67,0.1); color: #3fb950; border: 1px solid rgba(46,160,67,0.1);">Free</span></span></div>
-        <div class="row"><span class="label">Delete Account</span><span class="value"><button onclick="if(confirm('Are you sure? This cannot be undone.')){alert('Account deleted (demo)'); logout();}" style="background: rgba(248,81,73,0.05); color: #f85149; border: 1px solid rgba(248,81,73,0.05); padding: 6px 16px; border-radius: 30px; font-weight: 500; cursor: pointer;">Delete</button></span></div>
+        <div class="row"><span class="label">Plan</span><span class="value"><span class="badge" style="background: rgba(46,160,67,0.1); color: #3fb950;">Free</span></span></div>
+        <div class="row"><span class="label">Delete</span><span class="value"><button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background: rgba(248,81,73,0.05); color: #f85149; border: 1px solid rgba(248,81,73,0.05); padding: 6px 16px; border-radius: 30px; cursor: pointer;">Delete</button></span></div>
       </div>
     </div>
   </div>
 
   <script>
-    // --- User ---
     const user = JSON.parse(localStorage.getItem('rpire_user'));
-    if (!user) {
-      window.location.href = 'index.html';
-    }
+    if (!user) { window.location.href = 'index.html'; }
     document.getElementById('userEmail').textContent = user.email;
     document.getElementById('settingsEmail').textContent = user.email;
 
-    function logout() {
-      localStorage.removeItem('rpire_user');
-      window.location.href = 'index.html';
-    }
+    function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
+    function refreshData() { alert('Refreshed!'); }
 
-    function refreshData() {
-      alert('Dashboard refreshed!');
-    }
-
-    // --- Navigation ---
     document.querySelectorAll('.sidebar a[data-section]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -880,26 +842,22 @@
         document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
         document.getElementById(`section-${section}`).classList.add('active');
         document.querySelectorAll('.sidebar a[data-section]').forEach(el => el.classList.remove('active'));
-        document.querySelector(`.sidebar a[data-section="${section}"]`).classList.add('active');
-        document.getElementById('pageTitle').textContent = section.charAt(0).toUpperCase() + section.slice(1);
+        this.classList.add('active');
       });
     });
-
     function switchSection(section) {
       document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
       document.getElementById(`section-${section}`).classList.add('active');
       document.querySelectorAll('.sidebar a[data-section]').forEach(el => el.classList.remove('active'));
       document.querySelector(`.sidebar a[data-section="${section}"]`).classList.add('active');
-      document.getElementById('pageTitle').textContent = section.charAt(0).toUpperCase() + section.slice(1);
     }
 
-    // --- Scheduler ---
     document.getElementById('findTimesBtn').addEventListener('click', function() {
       const log = document.getElementById('log');
       const stepOptions = document.getElementById('step-options');
       const container = document.getElementById('timeSlotContainer');
       const confirmationMsg = document.getElementById('confirmationMessage');
-      log.innerText = 'Rpire AI is analyzing your email...';
+      log.innerText = 'Analyzing...';
       stepOptions.classList.add('hidden');
       confirmationMsg.classList.add('hidden');
       const mockTimes = [
@@ -907,7 +865,7 @@
         { day: 'Wednesday, Oct 25', time: '2:00 PM (PST)', duration: '45 min' },
         { day: 'Thursday, Oct 26', time: '11:00 AM (PST)', duration: '45 min' }
       ];
-      log.innerText = 'AI generated 3 options based on your email.';
+      log.innerText = '3 options ready.';
       container.innerHTML = '';
       mockTimes.forEach((slot) => {
         const div = document.createElement('div');
@@ -924,8 +882,8 @@
       log.innerText = `Booking ${timeSelected}...`;
       setTimeout(() => {
         msg.classList.remove('hidden');
-        msg.innerText = `Meeting confirmed for ${timeSelected}. Calendar invite ready!`;
-        log.innerText = 'Done. You approved. Rpire booked it.';
+        msg.innerText = `Confirmed for ${timeSelected}.`;
+        log.innerText = 'Done. You approved.';
       }, 1000);
     }
   </script>
