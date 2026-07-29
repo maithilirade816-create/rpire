@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard — Rpire</title>
+  <title>Rpire — Dashboard</title>
   <style>
     * {
       margin: 0;
@@ -12,15 +12,36 @@
     }
     body {
       font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #0d1117;
+      background: #0b0f1a;
       color: #e6edf3;
       display: flex;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* --- Background Quotes (Blurred) --- */
-    .bg-quotes {
+    /* --- Ice / Glass Effect --- */
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- Neon Glow --- */
+    .neon-border {
+      border: 1px solid rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.05), inset 0 0 20px rgba(46, 160, 67, 0.02);
+      transition: all 0.3s ease;
+    }
+    .neon-border:hover {
+      border-color: rgba(46, 160, 67, 0.5);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.1), inset 0 0 30px rgba(46, 160, 67, 0.05);
+    }
+
+    /* --- Background Ice Effect --- */
+    .bg-ice {
       position: fixed;
       top: 0;
       left: 0;
@@ -30,37 +51,56 @@
       z-index: 0;
       overflow: hidden;
     }
-    .bg-quotes .quote {
+    .bg-ice .ice {
       position: absolute;
-      font-size: 28px;
-      font-weight: 500;
-      color: #2ea043;
-      letter-spacing: -0.5px;
-      opacity: 0.06;
-      filter: blur(4px);
-      white-space: nowrap;
-      user-select: none;
-      font-family: 'Inter', sans-serif;
-      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46, 160, 67, 0.03), transparent 70%);
+      filter: blur(60px);
+      animation: float 20s infinite alternate ease-in-out;
     }
-    .bg-quotes .q1 { top: 5%; left: 3%; transform: rotate(-6deg); font-size: 32px; }
-    .bg-quotes .q2 { bottom: 10%; right: 2%; transform: rotate(4deg); font-size: 26px; }
-    .bg-quotes .q3 { top: 40%; left: 2%; transform: rotate(-3deg); font-size: 22px; opacity: 0.04; }
-    .bg-quotes .q4 { top: 25%; right: 1%; transform: rotate(7deg); font-size: 24px; opacity: 0.05; }
-    .bg-quotes .q5 { bottom: 30%; left: 6%; transform: rotate(-5deg); font-size: 20px; opacity: 0.04; }
-    .bg-quotes .q6 { top: 70%; right: 4%; transform: rotate(3deg); font-size: 30px; opacity: 0.04; }
-    @media (max-width: 768px) {
-      .bg-quotes .quote { font-size: 18px !important; opacity: 0.04 !important; }
-      .bg-quotes .q1 { top: 5%; left: 2%; }
-      .bg-quotes .q2 { bottom: 8%; right: 2%; }
-      .bg-quotes .q3, .bg-quotes .q4, .bg-quotes .q5, .bg-quotes .q6 { display: none; }
+    .bg-ice .ice1 {
+      top: 10%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      animation-duration: 25s;
+    }
+    .bg-ice .ice2 {
+      bottom: 10%;
+      right: 5%;
+      width: 400px;
+      height: 400px;
+      animation-duration: 30s;
+      animation-delay: 5s;
+    }
+    .bg-ice .ice3 {
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      animation-duration: 35s;
+      animation-delay: 10s;
+      opacity: 0.5;
+    }
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(30px, -30px) scale(1.1);
+      }
+      100% {
+        transform: translate(-20px, 20px) scale(0.9);
+      }
     }
 
     /* --- Sidebar --- */
     .sidebar {
       width: 240px;
-      background: #161b22;
-      border-right: 1px solid #21262d;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
       padding: 28px 16px;
       display: flex;
       flex-direction: column;
@@ -76,11 +116,12 @@
       letter-spacing: -0.5px;
       color: #ffffff;
       padding-bottom: 24px;
-      border-bottom: 1px solid #21262d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 24px;
     }
     .sidebar .logo span {
       color: #2ea043;
+      text-shadow: 0 0 20px rgba(46, 160, 67, 0.3);
     }
     .sidebar a {
       display: flex;
@@ -92,23 +133,24 @@
       color: #8b949e;
       font-weight: 500;
       font-size: 15px;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
       margin-bottom: 2px;
       cursor: pointer;
     }
     .sidebar a:hover {
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.04);
       color: #e6edf3;
     }
     .sidebar a.active {
-      background: #1a2421;
+      background: rgba(46, 160, 67, 0.08);
       color: #2ea043;
       font-weight: 600;
-      border: 1px solid #2ea043;
+      border: 1px solid rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
     }
     .sidebar .bottom {
       margin-top: auto;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       padding-top: 16px;
     }
     .sidebar .bottom a {
@@ -119,7 +161,7 @@
       color: #f85149;
     }
     .sidebar .bottom .logout:hover {
-      background: #2d1b1e;
+      background: rgba(248, 81, 73, 0.08);
       color: #f85149;
     }
 
@@ -147,15 +189,17 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      color: #ffffff;
     }
     .main-header .user {
       display: flex;
       align-items: center;
       gap: 12px;
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
       padding: 6px 16px 6px 20px;
       border-radius: 40px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
     .main-header .user span {
       font-weight: 500;
@@ -165,7 +209,7 @@
     .main-header .user .avatar {
       width: 32px;
       height: 32px;
-      background: #2ea043;
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #ffffff;
       border-radius: 50%;
       display: flex;
@@ -173,11 +217,12 @@
       justify-content: center;
       font-weight: 600;
       font-size: 14px;
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
     }
 
     .section {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.4s ease;
     }
     .section.active {
       display: block;
@@ -185,7 +230,7 @@
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(12px);
       }
       to {
         opacity: 1;
@@ -201,16 +246,18 @@
       margin-bottom: 32px;
     }
     .card {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 24px;
       border-radius: 16px;
-      border: 1px solid #21262d;
-      transition: all 0.15s;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .card:hover {
-      border-color: #2ea043;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border-color: rgba(46, 160, 67, 0.3);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.05), 0 8px 32px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px);
     }
     .card h3 {
       font-size: 13px;
@@ -238,14 +285,15 @@
       margin-top: 8px;
     }
     .quick-actions .btn {
-      background: #161b22;
-      border: 1px solid #21262d;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 12px 24px;
       border-radius: 40px;
       font-weight: 500;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
       text-decoration: none;
       color: #e6edf3;
       display: inline-flex;
@@ -253,57 +301,60 @@
       gap: 8px;
     }
     .quick-actions .btn:hover {
-      border-color: #2ea043;
-      background: #21262d;
+      border-color: rgba(46, 160, 67, 0.3);
+      background: rgba(46, 160, 67, 0.05);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
     }
     .quick-actions .btn-primary {
-      background: #2ea043;
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #ffffff;
       border: none;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
     }
     .quick-actions .btn-primary:hover {
-      background: #3fb950;
-      border: none;
-      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 50px rgba(46, 160, 67, 0.2);
+      transform: translateY(-2px);
     }
 
     /* --- Scheduler --- */
     .email-box {
       width: 100%;
       padding: 14px 18px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 12px;
       font-size: 15px;
       margin: 12px 0;
-      background: #0d1117;
+      background: rgba(0, 0, 0, 0.3);
       color: #e6edf3;
       font-family: inherit;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
     .email-box:focus {
-      border-color: #2ea043;
-      box-shadow: 0 0 0 4px rgba(46, 160, 67, 0.1);
+      border-color: rgba(46, 160, 67, 0.4);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
       outline: none;
     }
     .email-box::placeholder {
       color: #484f58;
     }
     .btn-secondary {
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.04);
       color: #e6edf3;
-      border: 1px solid #30363d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 8px 18px;
       border-radius: 30px;
       font-weight: 500;
       cursor: pointer;
       margin: 4px;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
     }
     .btn-secondary:hover {
-      background: #30363d;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(46, 160, 67, 0.2);
     }
     .btn-primary {
-      background: #2ea043;
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #ffffff;
       border: none;
       padding: 12px 28px;
@@ -311,14 +362,16 @@
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
     }
     .btn-primary:hover {
-      background: #3fb950;
-      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 50px rgba(46, 160, 67, 0.15);
+      transform: translateY(-2px);
     }
     .card-slot {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 16px 20px;
       border-radius: 16px;
       margin: 12px 0;
@@ -327,7 +380,8 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .hidden {
       display: none;
@@ -337,29 +391,33 @@
       font-weight: 500;
       margin-top: 10px;
       padding: 12px 16px;
-      background: #1a2421;
+      background: rgba(46, 160, 67, 0.05);
       border-radius: 12px;
-      border: 1px solid #2ea043;
+      border: 1px solid rgba(46, 160, 67, 0.2);
+      backdrop-filter: blur(10px);
     }
     #log {
       font-size: 13px;
       color: #8b949e;
       margin-top: 16px;
       padding-top: 16px;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     /* --- Onboarding --- */
     .onboarding {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 24px;
       border-radius: 16px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 16px;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .onboarding:hover {
-      border-color: #2ea043;
+      border-color: rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
     .onboarding h3 {
       font-size: 18px;
@@ -384,11 +442,13 @@
 
     /* --- Settings --- */
     .settings-group {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 24px;
       border-radius: 16px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     .settings-group h3 {
       font-size: 18px;
@@ -400,7 +460,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 0;
-      border-bottom: 1px solid #21262d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
     .settings-group .row:last-child {
       border-bottom: none;
@@ -414,47 +474,56 @@
       font-size: 14px;
     }
     .settings-group .row .badge {
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.04);
       padding: 4px 12px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 500;
     }
     .settings-group .row .badge.connected {
-      background: #1a2421;
+      background: rgba(46, 160, 67, 0.1);
       color: #3fb950;
+      border: 1px solid rgba(46, 160, 67, 0.1);
     }
     .settings-group .row .badge.disconnected {
-      background: #2d1b1e;
+      background: rgba(248, 81, 73, 0.05);
       color: #f85149;
+      border: 1px solid rgba(248, 81, 73, 0.05);
     }
     .settings-group .row input,
     .settings-group .row select {
       padding: 6px 12px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 8px;
       font-size: 14px;
       font-family: inherit;
-      background: #0d1117;
+      background: rgba(0, 0, 0, 0.3);
       color: #e6edf3;
+      backdrop-filter: blur(10px);
     }
     .settings-group .row input:focus,
     .settings-group .row select:focus {
-      border-color: #2ea043;
+      border-color: rgba(46, 160, 67, 0.3);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.1);
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.05);
     }
 
     /* --- Inbox --- */
     .inbox-item {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 16px 20px;
       border-radius: 12px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .inbox-item:hover {
+      border-color: rgba(46, 160, 67, 0.1);
     }
     .inbox-item .tag {
       padding: 4px 12px;
@@ -463,30 +532,39 @@
       font-weight: 600;
     }
     .inbox-item .tag.urgent {
-      background: #2d1b1e;
+      background: rgba(248, 81, 73, 0.1);
       color: #f85149;
+      border: 1px solid rgba(248, 81, 73, 0.1);
     }
     .inbox-item .tag.basic {
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.04);
       color: #8b949e;
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
     .inbox-item .tag.scam {
-      background: #2d2a1b;
+      background: rgba(210, 153, 34, 0.1);
       color: #d29922;
+      border: 1px solid rgba(210, 153, 34, 0.1);
     }
 
     /* --- Credits --- */
     .credit-bar {
-      background: #161b22;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(20px);
       padding: 20px 24px;
       border-radius: 16px;
-      border: 1px solid #21262d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
       margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    .credit-bar:hover {
+      border-color: rgba(46, 160, 67, 0.1);
     }
     .credit-bar .left {
       display: flex;
@@ -514,42 +592,46 @@
       font-size: 28px;
       font-weight: 700;
       color: #2ea043;
+      text-shadow: 0 0 30px rgba(46, 160, 67, 0.2);
     }
     .credit-bar .right .btn-small {
-      background: #21262d;
-      border: 1px solid #30363d;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       padding: 8px 20px;
       border-radius: 40px;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.3s ease;
       color: #e6edf3;
     }
     .credit-bar .right .btn-small:hover {
-      background: #30363d;
+      background: rgba(255, 255, 255, 0.08);
     }
     .credit-bar .right .btn-small.green {
-      background: #2ea043;
+      background: linear-gradient(135deg, #2ea043, #1a7a3a);
       border: none;
       color: #ffffff;
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.1);
     }
     .credit-bar .right .btn-small.green:hover {
-      background: #3fb950;
+      box-shadow: 0 0 40px rgba(46, 160, 67, 0.2);
+      transform: translateY(-2px);
     }
 
     .progress-bar {
       width: 100%;
       height: 6px;
-      background: #21262d;
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 4px;
       margin-top: 8px;
     }
     .progress-bar .fill {
       height: 100%;
-      background: #2ea043;
+      background: linear-gradient(90deg, #2ea043, #3fb950);
       border-radius: 4px;
-      transition: width 0.3s ease;
+      transition: width 0.6s ease;
+      box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
     }
 
     /* --- Responsive --- */
@@ -598,27 +680,24 @@
 </head>
 <body>
 
-  <!-- Background Quotes -->
-  <div class="bg-quotes">
-    <div class="quote q1">⏳ Time is money</div>
-    <div class="quote q2">⏳ Save 2 hours a day</div>
-    <div class="quote q3">⏳ Lost time is never found again</div>
-    <div class="quote q4">⏳ The key is in not spending time, but in investing it</div>
-    <div class="quote q5">⏳ Time is the only thing you can't buy back</div>
-    <div class="quote q6">⏳ Make every minute count</div>
+  <!-- Background Ice Effect -->
+  <div class="bg-ice">
+    <div class="ice ice1"></div>
+    <div class="ice ice2"></div>
+    <div class="ice ice3"></div>
   </div>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="logo">Rp<span>.</span></div>
-    <a class="active" data-section="dashboard">📊 <span>Dashboard</span></a>
-    <a data-section="scheduler">📅 <span>Scheduler</span></a>
-    <a data-section="drafts">✉️ <span>Drafts</span></a>
-    <a data-section="inbox">📥 <span>Inbox</span></a>
-    <a data-section="onboarding">📖 <span>Onboarding</span></a>
-    <a data-section="settings">⚙️ <span>Settings</span></a>
+    <a class="active" data-section="dashboard"><span>Dashboard</span></a>
+    <a data-section="scheduler"><span>Scheduler</span></a>
+    <a data-section="drafts"><span>Drafts</span></a>
+    <a data-section="inbox"><span>Inbox</span></a>
+    <a data-section="onboarding"><span>Onboarding</span></a>
+    <a data-section="settings"><span>Settings</span></a>
     <div class="bottom">
-      <a class="logout" onclick="logout()">🚪 <span>Logout</span></a>
+      <a class="logout" onclick="logout()"><span>Logout</span></a>
     </div>
   </div>
 
@@ -630,16 +709,15 @@
       <div class="user">
         <span id="userEmail">user@example.com</span>
         <div class="avatar">M</div>
-        <button onclick="refreshData()" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: 0.15s; color: #8b949e;" onmouseover="this.style.background='#21262d'" onmouseout="this.style.background='transparent'">⟳</button>
+        <button onclick="refreshData()" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: 0.3s; color: #8b949e;" onmouseover="this.style.color='#e6edf3'" onmouseout="this.style.color='#8b949e'">⟳</button>
       </div>
     </div>
 
     <!-- Dashboard -->
     <div id="section-dashboard" class="section active">
-      <!-- Credits Bar -->
+      <!-- Credits -->
       <div class="credit-bar">
         <div class="left">
-          <span class="icon">⚡</span>
           <div class="info">
             <h3>Credits Remaining</h3>
             <p>50 credits · Resets on Aug 1</p>
@@ -656,69 +734,60 @@
       </div>
 
       <div class="card-grid">
-        <div class="card"><h3>Meetings</h3><div class="number">3</div><div class="label">Scheduled this week</div></div>
-        <div class="card"><h3>Emails</h3><div class="number">12</div><div class="label">In your inbox</div></div>
-        <div class="card"><h3>Drafts</h3><div class="number">2</div><div class="label">Ready to review</div></div>
-        <div class="card"><h3>Urgent</h3><div class="number">4</div><div class="label">Need reply today</div></div>
+        <div class="card"><h3>Meetings</h3><div class="number">0</div><div class="label">Scheduled this week</div></div>
+        <div class="card"><h3>Emails</h3><div class="number">0</div><div class="label">In your inbox</div></div>
+        <div class="card"><h3>Drafts</h3><div class="number">0</div><div class="label">Ready to review</div></div>
+        <div class="card"><h3>Urgent</h3><div class="number">0</div><div class="label">Need reply today</div></div>
       </div>
       <div class="quick-actions">
-        <button class="btn btn-primary" onclick="switchSection('scheduler')">📅 Schedule Meeting</button>
-        <button class="btn" onclick="switchSection('drafts')">✉️ Draft Email</button>
-        <button class="btn" onclick="switchSection('inbox')">📥 Triage Inbox</button>
-        <button class="btn" onclick="switchSection('onboarding')">📖 Onboarding</button>
+        <button class="btn btn-primary" onclick="switchSection('scheduler')">Schedule Meeting</button>
+        <button class="btn" onclick="switchSection('drafts')">Draft Email</button>
+        <button class="btn" onclick="switchSection('inbox')">Triage Inbox</button>
+        <button class="btn" onclick="switchSection('onboarding')">Onboarding</button>
         <button class="btn" onclick="refreshData()">⟳ Refresh</button>
       </div>
     </div>
 
     <!-- Scheduler -->
     <div id="section-scheduler" class="section">
-      <h2 style="margin-bottom: 4px;">📅 Meeting Scheduler</h2>
+      <h2 style="margin-bottom: 4px;">Meeting Scheduler</h2>
       <p style="color: #8b949e; margin-bottom: 16px;">Paste an email thread, and Rpire will suggest 3 available times.</p>
       <textarea id="emailText" rows="4" class="email-box" placeholder="Paste email conversation here...">I'd like to discuss the project. Are you free Tuesday or Wednesday?</textarea>
-      <button class="btn-primary" id="findTimesBtn">🔍 Find Available Times</button>
+      <button class="btn-primary" id="findTimesBtn">Find Available Times</button>
       <div id="step-options" class="hidden">
         <p style="margin-top: 20px; font-weight: 600; color: #e6edf3;">You approve. Then it books.</p>
         <div id="timeSlotContainer"></div>
         <p id="confirmationMessage" class="status hidden">Meeting booked! Check your calendar.</p>
       </div>
-      <div id="log" style="font-size: 13px; color: #8b949e; margin-top: 16px; padding-top: 16px; border-top: 1px solid #21262d;">Ready to schedule.</div>
+      <div id="log" style="font-size: 13px; color: #8b949e; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);">Ready to schedule.</div>
     </div>
 
     <!-- Drafts -->
     <div id="section-drafts" class="section">
-      <h2 style="margin-bottom: 4px;">✉️ Email Drafts</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">AI-generated replies ready for your review.</p>
-      <div style="background: #161b22; padding: 20px; border-radius: 16px; border: 1px solid #21262d; margin-bottom: 16px;">
-        <p style="font-weight: 500; margin-bottom: 8px; color: #e6edf3;">📧 Sarah Johnson — "Meeting follow-up"</p>
-        <p style="color: #8b949e; font-size: 14px; margin-bottom: 12px;">"Hi Sarah, thanks for your time today. I've attached the proposal as discussed. Let me know if you have any questions."</p>
-        <button class="btn-secondary">✏️ Edit</button>
-        <button class="btn-primary" style="padding: 6px 18px; font-size: 13px;">✅ Send</button>
-      </div>
-      <div style="background: #161b22; padding: 20px; border-radius: 16px; border: 1px solid #21262d;">
-        <p style="font-weight: 500; margin-bottom: 8px; color: #e6edf3;">📧 Michael Chen — "Project timeline"</p>
-        <p style="color: #8b949e; font-size: 14px; margin-bottom: 12px;">"Hi Michael, we're on track for the Q4 deadline. The next milestone is due on Friday. I'll share the updated timeline shortly."</p>
-        <button class="btn-secondary">✏️ Edit</button>
-        <button class="btn-primary" style="padding: 6px 18px; font-size: 13px;">✅ Send</button>
+      <h2 style="margin-bottom: 4px;">Email Drafts</h2>
+      <p style="color: #8b949e; margin-bottom: 16px;">No drafts yet. Connect your Gmail to get started.</p>
+      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
+        <p>Connect Gmail to start generating drafts</p>
+        <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
       </div>
     </div>
 
     <!-- Inbox -->
     <div id="section-inbox" class="section">
-      <h2 style="margin-bottom: 4px;">📥 Inbox Triage</h2>
-      <p style="color: #8b949e; margin-bottom: 16px;">Your emails sorted by urgency.</p>
-      <div class="inbox-item"><span><strong>Urgent:</strong> Q4 Budget Review</span><span class="tag urgent">Urgent</span></div>
-      <div class="inbox-item"><span><strong>Basic:</strong> Team Weekly Update</span><span class="tag basic">Basic</span></div>
-      <div class="inbox-item"><span><strong>Scam:</strong> "You've won a prize!"</span><span class="tag scam">Scam</span></div>
-      <div class="inbox-item"><span><strong>Urgent:</strong> Client Contract Deadline</span><span class="tag urgent">Urgent</span></div>
-      <div class="inbox-item"><span><strong>Basic:</strong> Newsletter — October Edition</span><span class="tag basic">Basic</span></div>
+      <h2 style="margin-bottom: 4px;">Inbox Triage</h2>
+      <p style="color: #8b949e; margin-bottom: 16px;">Connect Gmail to start sorting your inbox.</p>
+      <div style="background: rgba(255,255,255,0.02); backdrop-filter: blur(20px); padding: 40px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); text-align: center; color: #8b949e;">
+        <p>Connect Gmail to see your triaged inbox</p>
+        <button class="btn-primary" style="margin-top: 12px;" onclick="switchSection('onboarding')">Connect Gmail</button>
+      </div>
     </div>
 
     <!-- Onboarding -->
     <div id="section-onboarding" class="section">
-      <h2 style="margin-bottom: 4px;">📖 How to Connect Gmail & Calendar</h2>
+      <h2 style="margin-bottom: 4px;">How to Connect Gmail & Calendar</h2>
       <p style="color: #8b949e; margin-bottom: 20px;">Follow these steps to get Rpire working with your accounts.</p>
       <div class="onboarding">
-        <h3>🔗 Step 1: Connect Gmail</h3>
+        <h3>Step 1: Connect Gmail</h3>
         <p>Rpire needs permission to read and draft emails on your behalf.</p>
         <ol>
           <li>Click the <strong>"Connect Gmail"</strong> button below.</li>
@@ -728,10 +797,10 @@
           <li>Click <strong>"Allow"</strong> to grant access.</li>
           <li>You'll be redirected back to Rpire.</li>
         </ol>
-        <button class="btn-primary" onclick="alert('🔐 Gmail Connect will open here.')">Connect Gmail</button>
+        <button class="btn-primary" onclick="alert('Gmail Connect will open here.')">Connect Gmail</button>
       </div>
       <div class="onboarding">
-        <h3>📅 Step 2: Connect Google Calendar</h3>
+        <h3>Step 2: Connect Google Calendar</h3>
         <p>Rpire needs access to your calendar to check availability and schedule meetings.</p>
         <ol>
           <li>Click the <strong>"Connect Calendar"</strong> button below.</li>
@@ -741,10 +810,10 @@
           <li>Click <strong>"Allow"</strong> to grant access.</li>
           <li>You'll be redirected back to Rpire.</li>
         </ol>
-        <button class="btn-primary" onclick="alert('📅 Calendar Connect will open here.')">Connect Calendar</button>
+        <button class="btn-primary" onclick="alert('Calendar Connect will open here.')">Connect Calendar</button>
       </div>
       <div class="onboarding">
-        <h3>🚀 Step 3: Start Scheduling</h3>
+        <h3>Step 3: Start Scheduling</h3>
         <p>Once both accounts are connected, you're ready to go!</p>
         <ol>
           <li>Go to the <strong>Scheduler</strong> tab.</li>
@@ -759,7 +828,7 @@
 
     <!-- Settings -->
     <div id="section-settings" class="section">
-      <h2 style="margin-bottom: 4px;">⚙️ Settings</h2>
+      <h2 style="margin-bottom: 4px;">Settings</h2>
       <p style="color: #8b949e; margin-bottom: 20px;">Manage your account and preferences.</p>
       <div class="settings-group">
         <h3>Profile</h3>
@@ -769,8 +838,8 @@
       </div>
       <div class="settings-group">
         <h3>Integrations</h3>
-        <div class="row"><span class="label">Gmail</span><span class="value"><span class="badge disconnected">❌ Disconnected</span> <button class="btn-secondary" onclick="alert('🔐 Connect Gmail')">Connect</button></span></div>
-        <div class="row"><span class="label">Google Calendar</span><span class="value"><span class="badge disconnected">❌ Disconnected</span> <button class="btn-secondary" onclick="alert('📅 Connect Calendar')">Connect</button></span></div>
+        <div class="row"><span class="label">Gmail</span><span class="value"><span class="badge disconnected">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Gmail')">Connect</button></span></div>
+        <div class="row"><span class="label">Google Calendar</span><span class="value"><span class="badge disconnected">Disconnected</span> <button class="btn-secondary" onclick="alert('Connect Calendar')">Connect</button></span></div>
       </div>
       <div class="settings-group">
         <h3>Notifications</h3>
@@ -779,8 +848,8 @@
       </div>
       <div class="settings-group">
         <h3>Account</h3>
-        <div class="row"><span class="label">Plan</span><span class="value"><span class="badge" style="background: #1a2421; color: #3fb950;">Free</span></span></div>
-        <div class="row"><span class="label">Delete Account</span><span class="value"><button onclick="if(confirm('Are you sure? This cannot be undone.')){alert('Account deleted (demo)'); logout();}" style="background: #2d1b1e; color: #f85149; border: none; padding: 6px 16px; border-radius: 30px; font-weight: 500; cursor: pointer;">Delete</button></span></div>
+        <div class="row"><span class="label">Plan</span><span class="value"><span class="badge" style="background: rgba(46,160,67,0.1); color: #3fb950; border: 1px solid rgba(46,160,67,0.1);">Free</span></span></div>
+        <div class="row"><span class="label">Delete Account</span><span class="value"><button onclick="if(confirm('Are you sure? This cannot be undone.')){alert('Account deleted (demo)'); logout();}" style="background: rgba(248,81,73,0.05); color: #f85149; border: 1px solid rgba(248,81,73,0.05); padding: 6px 16px; border-radius: 30px; font-weight: 500; cursor: pointer;">Delete</button></span></div>
       </div>
     </div>
   </div>
@@ -800,7 +869,7 @@
     }
 
     function refreshData() {
-      alert('🔄 Dashboard refreshed!');
+      alert('Dashboard refreshed!');
     }
 
     // --- Navigation ---
@@ -830,7 +899,7 @@
       const stepOptions = document.getElementById('step-options');
       const container = document.getElementById('timeSlotContainer');
       const confirmationMsg = document.getElementById('confirmationMessage');
-      log.innerText = '🧠 Rpire AI is analyzing your email...';
+      log.innerText = 'Rpire AI is analyzing your email...';
       stepOptions.classList.add('hidden');
       confirmationMsg.classList.add('hidden');
       const mockTimes = [
@@ -838,12 +907,12 @@
         { day: 'Wednesday, Oct 25', time: '2:00 PM (PST)', duration: '45 min' },
         { day: 'Thursday, Oct 26', time: '11:00 AM (PST)', duration: '45 min' }
       ];
-      log.innerText = '✅ AI generated 3 options based on your email.';
+      log.innerText = 'AI generated 3 options based on your email.';
       container.innerHTML = '';
       mockTimes.forEach((slot) => {
         const div = document.createElement('div');
         div.className = 'card-slot';
-        div.innerHTML = `<span><strong>${slot.day}</strong><br>⏰ ${slot.time} (${slot.duration})</span><button class="btn-secondary" onclick="confirmBooking('${slot.day} ${slot.time}')">✅ Confirm</button>`;
+        div.innerHTML = `<span><strong>${slot.day}</strong><br>⏰ ${slot.time} (${slot.duration})</span><button class="btn-secondary" onclick="confirmBooking('${slot.day} ${slot.time}')">Confirm</button>`;
         container.appendChild(div);
       });
       stepOptions.classList.remove('hidden');
@@ -852,11 +921,11 @@
     function confirmBooking(timeSelected) {
       const msg = document.getElementById('confirmationMessage');
       const log = document.getElementById('log');
-      log.innerText = `📅 Booking ${timeSelected}...`;
+      log.innerText = `Booking ${timeSelected}...`;
       setTimeout(() => {
         msg.classList.remove('hidden');
-        msg.innerText = `✅ Meeting confirmed for ${timeSelected}. Calendar invite ready!`;
-        log.innerText = '✅ Done. You approved. Rpire booked it.';
+        msg.innerText = `Meeting confirmed for ${timeSelected}. Calendar invite ready!`;
+        log.innerText = 'Done. You approved. Rpire booked it.';
       }, 1000);
     }
   </script>
