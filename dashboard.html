@@ -830,4 +830,35 @@
       const stepOptions = document.getElementById('step-options');
       const container = document.getElementById('timeSlotContainer');
       const confirmationMsg = document.getElementById('confirmationMessage');
-      log.innerText = '🧠 Rpire AI is analyzing your email...
+      log.innerText = '🧠 Rpire AI is analyzing your email...';
+      stepOptions.classList.add('hidden');
+      confirmationMsg.classList.add('hidden');
+      const mockTimes = [
+        { day: 'Tuesday, Oct 24', time: '10:00 AM (PST)', duration: '45 min' },
+        { day: 'Wednesday, Oct 25', time: '2:00 PM (PST)', duration: '45 min' },
+        { day: 'Thursday, Oct 26', time: '11:00 AM (PST)', duration: '45 min' }
+      ];
+      log.innerText = '✅ AI generated 3 options based on your email.';
+      container.innerHTML = '';
+      mockTimes.forEach((slot) => {
+        const div = document.createElement('div');
+        div.className = 'card-slot';
+        div.innerHTML = `<span><strong>${slot.day}</strong><br>⏰ ${slot.time} (${slot.duration})</span><button class="btn-secondary" onclick="confirmBooking('${slot.day} ${slot.time}')">✅ Confirm</button>`;
+        container.appendChild(div);
+      });
+      stepOptions.classList.remove('hidden');
+    });
+
+    function confirmBooking(timeSelected) {
+      const msg = document.getElementById('confirmationMessage');
+      const log = document.getElementById('log');
+      log.innerText = `📅 Booking ${timeSelected}...`;
+      setTimeout(() => {
+        msg.classList.remove('hidden');
+        msg.innerText = `✅ Meeting confirmed for ${timeSelected}. Calendar invite ready!`;
+        log.innerText = '✅ Done. You approved. Rpire booked it.';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
