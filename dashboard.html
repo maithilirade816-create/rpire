@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rpire — Dashboard</title>
   <style>
+    /* --- RESET & BASE --- */
     * {
       margin: 0;
       padding: 0;
@@ -12,14 +13,14 @@
     }
     body {
       font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #0b0f1a;
-      color: #e6edf3;
+      background: #080c14;
+      color: #e8edf5;
       display: flex;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* --- ICE BACKGROUND --- */
+    /* --- ICE BACKGROUND (Subtle) --- */
     .bg-ice {
       position: fixed;
       top: 0;
@@ -33,25 +34,25 @@
     .bg-ice .ice {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
-      animation: float 20s infinite alternate ease-in-out;
-      opacity: 0.08;
+      filter: blur(100px);
+      animation: float 25s infinite alternate ease-in-out;
+      opacity: 0.04;
     }
     .bg-ice .ice1 {
-      width: 500px;
-      height: 500px;
-      top: -10%;
-      left: -10%;
-      background: radial-gradient(circle, #2ea043, transparent 70%);
-      animation-duration: 25s;
-    }
-    .bg-ice .ice2 {
       width: 600px;
       height: 600px;
-      bottom: -20%;
-      right: -10%;
-      background: radial-gradient(circle, #1a7a3a, transparent 70%);
+      top: -20%;
+      left: -10%;
+      background: radial-gradient(circle, #2ea043, transparent 70%);
       animation-duration: 30s;
+    }
+    .bg-ice .ice2 {
+      width: 700px;
+      height: 700px;
+      bottom: -30%;
+      right: -15%;
+      background: radial-gradient(circle, #1a7a3a, transparent 70%);
+      animation-duration: 35s;
       animation-delay: 5s;
     }
     .bg-ice .ice3 {
@@ -61,58 +62,54 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: radial-gradient(circle, #3fb950, transparent 70%);
-      animation-duration: 35s;
+      animation-duration: 40s;
       animation-delay: 10s;
-      opacity: 0.04;
+      opacity: 0.02;
     }
     @keyframes float {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(40px, -40px) scale(1.1);
-      }
-      100% {
-        transform: translate(-30px, 30px) scale(0.9);
-      }
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(50px, -50px) scale(1.1); }
+      100% { transform: translate(-30px, 30px) scale(0.9); }
     }
 
-    /* --- SIDEBAR --- */
+    /* --- SIDEBAR (Minimal, Clean) --- */
     .sidebar {
       width: 180px;
       background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 24px 16px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 28px 16px;
       display: flex;
       flex-direction: column;
       position: fixed;
       top: 0;
       left: 0;
       bottom: 0;
-      z-index: 1;
+      z-index: 2;
     }
     .sidebar .logo {
       font-size: 20px;
       font-weight: 700;
       color: #ffffff;
       padding-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 24px;
+      letter-spacing: -0.3px;
     }
     .sidebar .logo span {
       color: #2ea043;
     }
-    .sidebar .user-card {
+    .sidebar .user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       padding: 12px 14px;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 12px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      margin-bottom: 24px;
     }
-    .sidebar .user-card .avatar {
+    .sidebar .user .avatar {
       width: 32px;
       height: 32px;
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
@@ -123,20 +120,25 @@
       font-weight: 600;
       font-size: 13px;
       color: #fff;
+      flex-shrink: 0;
     }
-    .sidebar .user-card .info .name {
-      font-size: 13px;
-      font-weight: 600;
-      color: #e6edf3;
+    .sidebar .user .name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e8edf5;
     }
-    .sidebar .user-card .info .plan {
+    .sidebar .user .plan {
       font-size: 11px;
       color: #2ea043;
+      opacity: 0.8;
+    }
+    .sidebar nav {
+      flex: 1;
     }
     .sidebar nav a {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       padding: 10px 14px;
       border-radius: 10px;
       text-decoration: none;
@@ -149,7 +151,7 @@
     }
     .sidebar nav a:hover {
       background: rgba(255, 255, 255, 0.04);
-      color: #e6edf3;
+      color: #e8edf5;
     }
     .sidebar nav a.active {
       background: rgba(46, 160, 67, 0.08);
@@ -157,352 +159,383 @@
       font-weight: 600;
     }
     .sidebar .bottom {
-      margin-top: auto;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding-top: 16px;
+      margin-top: auto;
     }
     .sidebar .bottom a {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       padding: 10px 14px;
       border-radius: 10px;
       text-decoration: none;
       color: #8b949e;
-      font-size: 13px;
       font-weight: 500;
+      font-size: 13px;
       transition: all 0.2s;
       cursor: pointer;
     }
     .sidebar .bottom a:hover {
       background: rgba(255, 255, 255, 0.04);
-      color: #e6edf3;
+      color: #e8edf5;
     }
     .sidebar .bottom .logout {
       color: #f85149;
     }
     .sidebar .bottom .logout:hover {
-      background: rgba(248, 81, 73, 0.08);
+      background: rgba(248, 81, 73, 0.06);
     }
 
-    /* --- MAIN --- */
+    /* --- MAIN CONTENT --- */
     .main {
       margin-left: 180px;
       flex: 1;
-      padding: 32px 40px 40px 40px;
+      padding: 28px 36px 36px 36px;
       max-width: calc(100% - 180px);
       position: relative;
       z-index: 1;
+      max-width: 760px;
     }
 
     /* --- HEADER --- */
     .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
     .main-header h1 {
-      font-size: 24px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .main-header .credit-badge {
+      font-size: 13px;
+      color: #8b949e;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .main-header .credit-badge strong {
+      color: #2ea043;
+      font-weight: 600;
+    }
+
+    /* --- STATS ROW (Minimal) --- */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: center;
+    }
+    .stat-card .number {
+      font-size: 20px;
       font-weight: 700;
       color: #ffffff;
     }
-    .main-header p {
-      font-size: 14px;
+    .stat-card .label {
+      font-size: 11px;
       color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
       margin-top: 2px;
     }
 
-    /* --- COMMAND CENTER (Clean) --- */
-    .command-center {
+    /* --- CHAT CONTAINER (Primary Interface) --- */
+    .chat-container {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 16px;
-      border: 1px solid rgba(46, 160, 67, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       padding: 20px 24px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
       transition: all 0.3s;
     }
-    .command-center:focus-within {
-      border-color: rgba(46, 160, 67, 0.2);
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.04);
+    .chat-container:focus-within {
+      border-color: rgba(46, 160, 67, 0.12);
     }
-    .command-center .input-row {
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 16px;
+      min-height: 140px;
+    }
+    .chat-messages .message {
       display: flex;
-      gap: 12px;
-      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      animation: fadeIn 0.25s ease;
     }
-    .command-center input {
+    .chat-messages .message .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .chat-messages .message .avatar.sylvie {
+      background: rgba(46, 160, 67, 0.12);
+      color: #2ea043;
+    }
+    .chat-messages .message .avatar.user {
+      background: rgba(255, 255, 255, 0.04);
+      color: #8b949e;
+    }
+    .chat-messages .message .bubble {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e8edf5;
+      max-width: 92%;
+      white-space: pre-wrap;
+    }
+    .chat-messages .message .bubble.user-bubble {
+      background: rgba(46, 160, 67, 0.05);
+      border: 1px solid rgba(46, 160, 67, 0.06);
+    }
+    .chat-messages .message .bubble .option {
+      display: block;
+      padding: 6px 12px;
+      margin: 4px 0;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: #8b949e;
+    }
+    .chat-messages .message .bubble .option:hover {
+      background: rgba(46, 160, 67, 0.06);
+      border-color: rgba(46, 160, 67, 0.12);
+      color: #e8edf5;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- CHAT INPUT --- */
+    .chat-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 14px;
+    }
+    .chat-input-row input {
       flex: 1;
       background: rgba(0, 0, 0, 0.3);
       border: none;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-size: 15px;
-      color: #e6edf3;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #e8edf5;
       font-family: inherit;
       outline: none;
     }
-    .command-center input::placeholder {
+    .chat-input-row input::placeholder {
       color: #484f58;
     }
-    .command-center .btn-send {
+    .chat-input-row .btn-send {
       background: linear-gradient(135deg, #2ea043, #1a7a3a);
       color: #fff;
       border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
+      padding: 10px 22px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       transition: all 0.2s;
       white-space: nowrap;
     }
-    .command-center .btn-send:hover {
-      box-shadow: 0 0 40px rgba(46, 160, 67, 0.15);
+    .chat-input-row .btn-send:hover {
+      box-shadow: 0 0 30px rgba(46, 160, 67, 0.12);
       transform: translateY(-1px);
     }
-    .command-center .quick-actions {
+
+    /* --- QUICK CHIPS --- */
+    .quick-chips {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 10px;
     }
-    .command-center .quick-actions .chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 5px 14px;
+    .quick-chips .chip {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 4px 14px;
       border-radius: 40px;
       font-size: 12px;
       color: #8b949e;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .command-center .quick-actions .chip:hover {
-      background: rgba(46, 160, 67, 0.08);
-      border-color: rgba(46, 160, 67, 0.2);
-      color: #e6edf3;
-    }
-
-    /* --- SYLVIE RESPONSE --- */
-    .sylvie-response {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 20px 24px;
-      margin-bottom: 20px;
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-    .sylvie-response .header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .sylvie-response .header .icon {
-      font-size: 18px;
-    }
-    .sylvie-response .header .name {
-      font-weight: 600;
-      color: #2ea043;
-    }
-    .sylvie-response .content {
-      color: #e6edf3;
-      font-size: 14px;
-      line-height: 1.7;
-      white-space: pre-wrap;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* --- STATS ROW (Clean) --- */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .stat-card {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.3s;
-    }
-    .stat-card:hover {
+    .quick-chips .chip:hover {
+      background: rgba(46, 160, 67, 0.05);
       border-color: rgba(46, 160, 67, 0.1);
-    }
-    .stat-card .stat-label {
-      font-size: 11px;
-      color: #8b949e;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-    .stat-card .stat-number {
-      font-size: 20px;
-      font-weight: 700;
-      color: #e6edf3;
-      margin: 2px 0;
-    }
-    .stat-card .stat-change {
-      font-size: 11px;
-      color: #2ea043;
-    }
-    .stat-card .stat-change.down {
-      color: #f85149;
+      color: #e8edf5;
     }
 
-    /* --- RECENT ACTIVITY (Clean) --- */
+    /* --- RECENT ACTIVITY (Compact) --- */
     .recent-activity {
       background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 16px 20px;
-      margin-bottom: 16px;
+      padding: 14px 18px;
     }
     .recent-activity .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
     .recent-activity .header h3 {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 11px;
       color: #8b949e;
       text-transform: uppercase;
       letter-spacing: 0.4px;
+      font-weight: 600;
     }
-    .activity-item {
+    .recent-activity .item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      gap: 10px;
+      padding: 4px 0;
       font-size: 13px;
       color: #8b949e;
     }
-    .activity-item:last-child {
-      border-bottom: none;
-    }
-    .activity-item .dot {
-      width: 6px;
-      height: 6px;
+    .recent-activity .item .dot {
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .activity-item .dot.green {
-      background: #2ea043;
-    }
-    .activity-item .dot.blue {
-      background: #3b82f6;
-    }
-    .activity-item .dot.yellow {
-      background: #eab308;
-    }
-    .activity-item .text strong {
-      color: #e6edf3;
+    .recent-activity .item .dot.green { background: #2ea043; }
+    .recent-activity .item .dot.blue { background: #3b82f6; }
+    .recent-activity .item .dot.yellow { background: #eab308; }
+    .recent-activity .item strong {
+      color: #e8edf5;
       font-weight: 500;
     }
-    .activity-item .time {
+    .recent-activity .item .time {
       margin-left: auto;
       font-size: 11px;
       color: #484f58;
     }
 
-    /* --- CREDIT BAR (Clean) --- */
-    .credit-bar {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px);
-      border-radius: 12px;
-      border: 1px solid rgba(46, 160, 67, 0.1);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .credit-bar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .credit-bar .left .info h3 {
-      font-size: 13px;
-      font-weight: 600;
-      color: #e6edf3;
-    }
-    .credit-bar .left .info p {
-      font-size: 12px;
-      color: #8b949e;
-    }
-    .credit-bar .right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .credit-bar .right .credits {
-      font-size: 22px;
-      font-weight: 700;
-      color: #2ea043;
-    }
-    .credit-bar .right .btn-small {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 5px 14px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: #e6edf3;
-    }
-    .credit-bar .right .btn-small:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .credit-bar .right .btn-small.green {
-      background: #2ea043;
-      border: none;
-      color: #fff;
-    }
-    .credit-bar .right .btn-small.green:hover {
-      background: #3fb950;
-    }
-    .progress-bar {
-      width: 100px;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 4px;
-      margin-top: 3px;
-    }
-    .progress-bar .fill {
-      height: 100%;
-      background: linear-gradient(90deg, #2ea043, #3fb950);
-      border-radius: 4px;
-    }
-
-    /* --- SETTINGS --- */
+    /* --- SETTINGS SECTION --- */
     .section {
       display: none;
       animation: fadeIn 0.3s ease;
+    }
+    .section-settings {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-top: 16px;
+    }
+    .section-settings h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .section-settings .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .section-settings .row:last-child {
+      border-bottom: none;
+    }
+    .section-settings .row .label {
+      color: #e8edf5;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .section-settings .row .value {
+      color: #8b949e;
+      font-size: 14px;
+    }
+    .section-settings .row input,
+    .section-settings .row select {
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #e8edf5;
+      font-family: inherit;
+      width: 180px;
+    }
+    .section-settings .row .badge {
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .section-settings .row .badge.free {
+      background: rgba(46, 160, 67, 0.08);
+      color: #2ea043;
+      border: 1px solid rgba(46, 160, 67, 0.06);
+    }
+    .section-settings .row .badge.danger {
+      background: rgba(248, 81, 73, 0.06);
+      color: #f85149;
+      border: 1px solid rgba(248, 81, 73, 0.06);
+    }
+    .section-settings .row .btn-delete {
+      background: rgba(248, 81, 73, 0.06);
+      color: #f85149;
+      border: 1px solid rgba(248, 81, 73, 0.06);
+      padding: 4px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .section-settings .row .btn-delete:hover {
+      background: rgba(248, 81, 73, 0.1);
     }
 
     /* --- CREDIT ALERT --- */
     #creditAlert {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 9999;
       display: none;
       align-items: center;
@@ -511,44 +544,34 @@
     }
     #creditAlert .modal {
       background: #161b22;
-      border: 1px solid rgba(46, 160, 67, 0.2);
+      border: 1px solid rgba(46, 160, 67, 0.15);
       border-radius: 20px;
       padding: 40px;
-      max-width: 420px;
+      max-width: 400px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 0 80px rgba(0, 0, 0, 0.5);
-      animation: modalPop 0.3s ease;
-    }
-    @keyframes modalPop {
-      from {
-        opacity: 0;
-        transform: scale(0.95) translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
     }
     #creditAlert .modal .icon {
-      font-size: 48px;
-      margin-bottom: 12px;
+      font-size: 40px;
+      margin-bottom: 8px;
+      opacity: 0.6;
     }
     #creditAlert .modal h2 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
-      color: #e6edf3;
-      margin-bottom: 8px;
+      color: #e8edf5;
+      margin-bottom: 6px;
     }
     #creditAlert .modal p {
       color: #8b949e;
-      font-size: 16px;
-      margin-bottom: 24px;
+      font-size: 15px;
+      margin-bottom: 20px;
       line-height: 1.6;
     }
     #creditAlert .modal .btn-group {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -556,95 +579,74 @@
       background: #2ea043;
       color: white;
       border: none;
-      padding: 12px 32px;
+      padding: 10px 28px;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
       transition: 0.2s;
     }
     #creditAlert .modal .btn-upgrade:hover {
       background: #3fb950;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.15);
     }
     #creditAlert .modal .btn-dismiss {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       color: #8b949e;
-      padding: 12px 32px;
+      padding: 10px 28px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 14px;
       cursor: pointer;
       transition: 0.2s;
     }
     #creditAlert .modal .btn-dismiss:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     /* --- RESPONSIVE --- */
-    @media (max-width: 1024px) {
-      .stats-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
+    @media (max-width: 820px) {
       .sidebar {
         width: 64px;
-        padding: 16px 8px;
+        padding: 20px 10px;
       }
       .sidebar .logo {
         font-size: 18px;
         text-align: center;
+        padding-bottom: 14px;
       }
-      .sidebar .logo span {
-        display: none;
-      }
-      .sidebar .user-card {
-        display: none;
-      }
-      .sidebar nav a span {
-        display: none;
-      }
-      .sidebar nav a {
-        justify-content: center;
-        padding: 12px;
-      }
-      .sidebar .bottom a span {
-        display: none;
-      }
-      .sidebar .bottom a {
-        justify-content: center;
-        padding: 12px;
-      }
+      .sidebar .logo span { display: none; }
+      .sidebar .user { display: none; }
+      .sidebar nav a span { display: none; }
+      .sidebar nav a { justify-content: center; padding: 12px; }
+      .sidebar .bottom a span { display: none; }
+      .sidebar .bottom a { justify-content: center; padding: 12px; }
       .main {
         margin-left: 64px;
-        padding: 16px;
+        padding: 20px;
         max-width: 100%;
       }
       .stats-row {
-        grid-template-columns: 1fr 1fr;
-      }
-      .command-center .input-row {
-        flex-direction: column;
-      }
-      .command-center .btn-send {
-        width: 100%;
-        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     @media (max-width: 480px) {
       .stats-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
-      .credit-bar {
+      .chat-input-row {
         flex-direction: column;
-        text-align: center;
       }
-      .credit-bar .left {
+      .chat-input-row .btn-send {
+        width: 100%;
+        justify-content: center;
+      }
+      .main-header {
         flex-direction: column;
-        text-align: center;
+        align-items: stretch;
+        gap: 8px;
       }
     }
   </style>
@@ -662,8 +664,8 @@
   <div id="creditAlert">
     <div class="modal">
       <div class="icon">⚡</div>
-      <h2>Out of Credits</h2>
-      <p>You've used all your free credits. Upgrade to Pro to keep using Rpire.</p>
+      <h2>Credits Exhausted</h2>
+      <p>You have used all your free credits. Upgrade to Pro to continue using Rpire.</p>
       <div class="btn-group">
         <button class="btn-upgrade" onclick="window.location.href='#pricing'">Upgrade to Pro</button>
         <button class="btn-dismiss" onclick="closeCreditAlert()">Dismiss</button>
@@ -674,15 +676,15 @@
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="logo">Rp<span>.</span></div>
-    <div class="user-card">
+    <div class="user">
       <div class="avatar">M</div>
-      <div class="info">
+      <div>
         <div class="name" id="sidebarName">Maithili</div>
         <div class="plan">Free Plan</div>
       </div>
     </div>
     <nav>
-      <a class="active" data-section="dashboard"><span>Dashboard</span></a>
+      <a class="active" data-section="dashboard"><span>Home</span></a>
       <a data-section="settings"><span>Settings</span></a>
     </nav>
     <div class="bottom">
@@ -696,125 +698,66 @@
     <!-- HEADER -->
     <div class="main-header">
       <h1 id="greetingText">Good morning, Maithili</h1>
-      <p id="creditStatus">50 credits remaining</p>
-    </div>
-
-    <!-- COMMAND CENTER -->
-    <div class="command-center">
-      <div class="input-row">
-        <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
-        <button class="btn-send" onclick="sendToSylvie()">Send</button>
-      </div>
-      <div class="quick-actions">
-        <span class="chip" onclick="setCommand('Schedule a meeting')">📅 Schedule</span>
-        <span class="chip" onclick="setCommand('Summarize')">📄 Summarize</span>
-        <span class="chip" onclick="setCommand('Draft a reply')">✉️ Draft</span>
-        <span class="chip" onclick="setCommand('Show urgent emails')">📥 Urgent</span>
-      </div>
-    </div>
-
-    <!-- SYLVIE RESPONSE -->
-    <div id="sylvieResponse" class="sylvie-response">
-      <div class="header">
-        <span class="icon">💬</span>
-        <span class="name">Sylvie</span>
-      </div>
-      <div id="sylvieOutput" class="content"></div>
+      <span class="credit-badge"><strong id="creditDisplay">50</strong> credits remaining</span>
     </div>
 
     <!-- STATS -->
     <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-label">Meetings</div>
-        <div class="stat-number">3</div>
-        <div class="stat-change">↑ 2 this week</div>
+      <div class="stat-card"><div class="number">3</div><div class="label">Meetings</div></div>
+      <div class="stat-card"><div class="number">14</div><div class="label">Emails</div></div>
+      <div class="stat-card"><div class="number">2</div><div class="label">Drafts</div></div>
+      <div class="stat-card"><div class="number" style="color:#f85149;">3</div><div class="label">Urgent</div></div>
+    </div>
+
+    <!-- CHAT CONTAINER -->
+    <div class="chat-container">
+      <div class="chat-messages" id="chatMessages">
+        <div class="message">
+          <div class="avatar sylvie">S</div>
+          <div class="bubble">Good morning. I am Sylvie, your assistant.
+
+You can ask me to:
+- Schedule a meeting
+- Summarize an email thread
+- Draft a reply
+- Show urgent emails
+
+Just tell me what you need.</div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Emails</div>
-        <div class="stat-number">14</div>
-        <div class="stat-change">↓ 4 from yesterday</div>
+
+      <div class="chat-input-row">
+        <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
+        <button class="btn-send" onclick="sendToSylvie()">Send</button>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Drafts</div>
-        <div class="stat-number">2</div>
-        <div class="stat-change">Ready to review</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Urgent</div>
-        <div class="stat-number">3</div>
-        <div class="stat-change down">Need reply today</div>
+      <div class="quick-chips">
+        <span class="chip" onclick="setCommand('Schedule a meeting')">Schedule</span>
+        <span class="chip" onclick="setCommand('Summarize')">Summarize</span>
+        <span class="chip" onclick="setCommand('Draft a reply')">Draft</span>
+        <span class="chip" onclick="setCommand('Show urgent emails')">Urgent</span>
       </div>
     </div>
 
     <!-- RECENT ACTIVITY -->
     <div class="recent-activity">
-      <div class="header">
-        <h3>Recent Activity</h3>
-      </div>
-      <div class="activity-item">
-        <span class="dot green"></span>
-        <span class="text">Meeting scheduled with <strong>Sarah Johnson</strong></span>
-        <span class="time">2 min ago</span>
-      </div>
-      <div class="activity-item">
-        <span class="dot blue"></span>
-        <span class="text">Draft generated for <strong>Michael Chen</strong></span>
-        <span class="time">1h ago</span>
-      </div>
-      <div class="activity-item">
-        <span class="dot yellow"></span>
-        <span class="text">Email triaged as <strong>Urgent</strong></span>
-        <span class="time">3h ago</span>
-      </div>
+      <div class="header"><h3>Recent Activity</h3></div>
+      <div class="item"><span class="dot green"></span><span>Meeting with <strong>Sarah Johnson</strong></span><span class="time">2m ago</span></div>
+      <div class="item"><span class="dot blue"></span><span>Draft for <strong>Michael Chen</strong></span><span class="time">1h ago</span></div>
+      <div class="item"><span class="dot yellow"></span><span>Urgent email from <strong>Alex Rivera</strong></span><span class="time">3h ago</span></div>
     </div>
 
-    <!-- CREDIT BAR -->
-    <div class="credit-bar">
-      <div class="left">
-        <div class="info">
-          <h3>Credits Remaining</h3>
-          <p id="creditBarText">50 credits · Resets Aug 1</p>
-          <div class="progress-bar">
-            <div class="fill" id="creditProgress" style="width: 100%;"></div>
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <span class="credits" id="creditDisplay">50</span>
-        <button class="btn-small green" onclick="window.location.href='#pricing'">Upgrade</button>
-        <button class="btn-small" onclick="alert('Buy credits coming soon.')">Buy</button>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
+    <!-- SETTINGS (hidden by default) -->
     <div id="section-settings" class="section">
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-top:20px;">
-        <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Profile</h3>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
-          <span style="font-weight:500;color:#e6edf3;">Name</span>
-          <input type="text" value="Maithili Rade" style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;background:rgba(0,0,0,0.3);color:#e6edf3;" />
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
-          <span style="font-weight:500;color:#e6edf3;">Email</span>
-          <span style="color:#8b949e;font-size:14px;" id="settingsEmail">user@example.com</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
-          <span style="font-weight:500;color:#e6edf3;">Timezone</span>
-          <select style="padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;font-size:14px;background:rgba(0,0,0,0.3);color:#e6edf3;">
-            <option>PST</option><option>EST</option><option selected>IST</option>
-          </select>
-        </div>
+      <div class="section-settings">
+        <h3>Profile</h3>
+        <div class="row"><span class="label">Name</span><span class="value"><input type="text" value="Maithili Rade" /></span></div>
+        <div class="row"><span class="label">Email</span><span class="value" id="settingsEmail">user@example.com</span></div>
+        <div class="row"><span class="label">Timezone</span><span class="value"><select><option>PST</option><option>EST</option><option selected>IST</option></select></span></div>
       </div>
-      <div style="background:rgba(255,255,255,0.02);backdrop-filter:blur(20px);padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-top:16px;">
-        <h3 style="font-size:18px;margin-bottom:12px;color:#e6edf3;">Account</h3>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
-          <span style="font-weight:500;color:#e6edf3;">Plan</span>
-          <span style="background:rgba(46,160,67,0.1);color:#3fb950;border:1px solid rgba(46,160,67,0.1);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:500;">Free</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
-          <span style="font-weight:500;color:#e6edf3;">Delete</span>
-          <button onclick="if(confirm('Are you sure?')){alert('Deleted'); logout();}" style="background:rgba(248,81,73,0.05);color:#f85149;border:1px solid rgba(248,81,73,0.05);padding:6px 16px;border-radius:30px;cursor:pointer;">Delete</button>
-        </div>
+      <div class="section-settings" style="margin-top:12px;">
+        <h3>Account</h3>
+        <div class="row"><span class="label">Plan</span><span class="value"><span class="badge free">Free</span></span></div>
+        <div class="row"><span class="label">Delete Account</span><span class="value"><button class="btn-delete" onclick="if(confirm('Are you sure?')){alert('Account deleted'); logout();}">Delete</button></span></div>
       </div>
     </div>
 
@@ -833,10 +776,6 @@
 
     function updateUI() {
       document.getElementById('creditDisplay').textContent = userCredits;
-      document.getElementById('creditBarText').textContent = userCredits + ' credits · Resets Aug 1';
-      document.getElementById('creditStatus').textContent = userCredits + ' credits remaining';
-      const pct = Math.min((userCredits / MAX_CREDITS) * 100, 100);
-      document.getElementById('creditProgress').style.width = pct + '%';
     }
 
     function checkCredits(cost) {
@@ -867,7 +806,7 @@
     });
 
     // ============================================
-    // SYLVIE ENGINE (Auto 3 Options)
+    // SYLVIE CHAT
     // ============================================
 
     function setCommand(text) {
@@ -875,37 +814,56 @@
       sendToSylvie();
     }
 
+    function addMessage(avatar, name, text, isUser = false) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = 'message';
+      div.innerHTML = `
+        <div class="avatar ${isUser ? 'user' : 'sylvie'}">${isUser ? 'M' : 'S'}</div>
+        <div class="bubble ${isUser ? 'user-bubble' : ''}">${text}</div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
     async function sendToSylvie() {
       const input = document.getElementById('sylvieInput');
       const text = input.value.trim();
       if (!text) return;
 
-      const responseDiv = document.getElementById('sylvieResponse');
-      const outputDiv = document.getElementById('sylvieOutput');
+      addMessage('user', 'You', text, true);
+      input.value = '';
 
-      responseDiv.style.display = 'block';
-      outputDiv.textContent = 'Sylvie is thinking...';
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message';
+      typingDiv.id = 'typingIndicator';
+      typingDiv.innerHTML = `
+        <div class="avatar sylvie">S</div>
+        <div class="bubble" style="color:#484f58;">Sylvie is thinking...</div>
+      `;
+      document.getElementById('chatMessages').appendChild(typingDiv);
+      document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
 
       const response = await processSylvieCommand(text);
 
-      outputDiv.textContent = response;
-      input.value = '';
+      document.getElementById('typingIndicator')?.remove();
+      addMessage('sylvie', 'Sylvie', response);
     }
 
-    // --- Sylvie's Intelligence Engine ---
+    // --- Sylvie Engine ---
     async function processSylvieCommand(command) {
       const lower = command.toLowerCase();
 
-      if (lower.includes('schedule') || lower.includes('meeting') || lower.includes('calendar')) {
+      if (lower.includes('schedule') || lower.includes('meeting')) {
         return handleSchedule(command);
       }
-      if (lower.includes('summarize') || lower.includes('summary')) {
+      if (lower.includes('summarize')) {
         return handleSummarize(command);
       }
-      if (lower.includes('draft') || lower.includes('reply') || lower.includes('email')) {
+      if (lower.includes('draft') || lower.includes('reply')) {
         return handleDraft(command);
       }
-      if (lower.includes('urgent') || lower.includes('inbox') || lower.includes('triage')) {
+      if (lower.includes('urgent') || lower.includes('inbox')) {
         return handleTriage(command);
       }
       if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
@@ -920,108 +878,118 @@
       const hasTopic = /about|regarding|for|budget|project|review|sync/i.test(command);
 
       if (!hasPerson || !hasTime || !hasTopic) {
-        return `🤔 I'd love to schedule that for you. Here are 3 options:
+        return `I need more details to schedule this meeting.
 
-  Option 1: 📅 Schedule with Sarah at 2 PM tomorrow (Q4 Budget Review)
-  Option 2: 📅 Schedule with Michael at 10 AM Thursday (Project Sync)
-  Option 3: 📅 Schedule with Alex at 3 PM Friday (Client Presentation)
+Provide the following:
+${!hasPerson ? '- Who would you like to meet with?' : ''}
+${!hasTime ? '- What time works for you?' : ''}
+${!hasTopic ? '- What is the meeting about?' : ''}
 
-  Reply with Option 1, 2, or 3 — or tell me your own details.
-
-  (e.g., "Schedule with [name] at [time] [day] about [topic]")`;
+Example: "Schedule with John at 2 PM tomorrow about the Q4 budget"`;
       }
 
-      return `📅 Booking meeting...
+      return `Meeting draft created.
 
-  ✅ Meeting added to your calendar.
-  📧 Invitation sent to the participant.
-  ⏰ Reminder set for 15 minutes before.
+Draft saved to your Gmail Drafts folder:
 
-  Would you like me to add any notes to this meeting?`;
+Subject: Meeting Invitation — [Topic]
+
+Hi [Name],
+
+I would like to schedule a meeting to discuss [topic].
+
+Date: [Time]
+Duration: 45 minutes
+Location: Google Meet
+
+Please let me know if this works for you.
+
+Best,
+[Your Name]
+
+Check your drafts folder to review and send.
+Reply "Send" to send it now.`;
     }
 
     function handleSummarize(command) {
       const hasContent = command.length > 20;
 
       if (!hasContent) {
-        return `📄 I can summarize any of these recent threads:
+        return `I can summarize any of these recent threads:
 
-  Option 1: 📄 Q4 Budget Review (Sarah Johnson) — 5 messages
-  Option 2: 📄 Project Timeline Update (Michael Chen) — 8 messages
-  Option 3: 📄 Client Presentation (Alex Rivera) — 3 messages
+Option 1: Q4 Budget Review (Sarah Johnson) — 5 messages
+Option 2: Project Timeline Update (Michael Chen) — 8 messages
+Option 3: Client Presentation (Alex Rivera) — 3 messages
 
-  Reply with Option 1, 2, or 3 — or paste the content you want me to summarize.`;
+Reply with "Option 1", "Option 2", or "Option 3".`;
       }
 
-      return `📄 Here's your summary:
+      return `Summary:
 
-  Key points:
-  • Budget approved for Q4
-  • Marketing spend increased by 15%
-  • New hire budget added
+Key points:
+- Budget approved for Q4
+- Marketing spend increased by 15%
+- New hire budget added
 
-  Action items:
-  • Send updated timeline to team
-  • Schedule client review meeting
+Action items:
+- Send updated timeline to team
+- Schedule client review meeting
 
-  Decisions made:
-  • Q4 budget approved
-  • Team expansion approved
-
-  Next steps:
-  • Finalize budget details
-  • Share meeting notes with team`;
+Decisions made:
+- Q4 budget approved
+- Team expansion approved`;
     }
 
     function handleDraft(command) {
       const hasRecipient = /to|for|sarah|michael|alex|john|jane/i.test(command);
 
       if (!hasRecipient) {
-        return `✉️ I can draft a reply for you. Here are 3 options:
+        return `I can draft a reply for you.
 
-  Option 1: ✉️ Draft reply to Sarah about the Q4 budget
-  Option 2: ✉️ Draft reply to Michael about the project timeline
-  Option 3: ✉️ Draft reply to Alex about the client presentation
+Option 1: Draft reply to Sarah about the Q4 budget
+Option 2: Draft reply to Michael about the project timeline
+Option 3: Draft reply to Alex about the client presentation
 
-  Reply with Option 1, 2, or 3 — or tell me who you want to reply to and what about.`;
+Reply with "Option 1", "Option 2", or "Option 3".`;
       }
 
-      return `✉️ Here's a draft:
+      return `Draft created:
 
-  Subject: Re: [Topic]
+Subject: Re: [Topic]
 
-  Hi [Name],
+Hi [Name],
 
-  Thanks for your message. I've reviewed everything and here's what I think:
+Thanks for your message. I have reviewed everything.
 
-  • Point 1
-  • Point 2
-  • Point 3
+Key points:
+- Point 1
+- Point 2
+- Point 3
 
-  Let me know if you have any questions.
+Let me know if you have any questions.
 
-  Best regards,
-  [Your Name]
+Best regards,
+[Your Name]
 
-  ✅ Should I send this? (Reply "yes" or "no")`;
+Reply "Send" to send it now.`;
     }
 
     function handleTriage(command) {
-      return `📥 Here are your urgent emails:
+      return `Urgent emails:
 
-  1. 📧 Q4 Budget Review — Sarah Johnson
-     "We need to finalize the budget by Friday."
+1. Q4 Budget Review — Sarah Johnson
+   "We need to finalize the budget by Friday."
 
-  2. 📧 Client Contract Deadline — Alex Rivera
-     "The client needs the signed contract by EOD tomorrow."
+2. Client Contract Deadline — Alex Rivera
+   "The client needs the signed contract by end of day tomorrow."
 
-  3. 📧 Team Sync — Michael Chen
-     "Can we have a quick sync today?"
+3. Team Sync — Michael Chen
+   "Can we have a quick sync today?"
 
-  👀 What would you like to do?
-  • "Draft a reply to Sarah"
-  • "Show me the full email"
-  • "Mark as read"`;
+What would you like to do?
+- "Draft a reply to Sarah"
+- "Show me the full email"
+- "Mark as read"`;
     }
 
     function handleGreeting(command) {
@@ -1031,27 +999,26 @@
       else if (hour < 17) time = 'afternoon';
       else time = 'evening';
 
-      return `👋 Good ${time}, Maithili!
+      return `Good ${time}, Maithili.
 
-  I'm here to help you with:
-  • 📅 Scheduling meetings
-  • 📄 Summarizing emails and threads
-  • ✉️ Drafting replies
-  • 📥 Triaging your inbox
+I am here to help you with:
+- Scheduling meetings
+- Summarizing emails and threads
+- Drafting replies
+- Triaging your inbox
 
-  What would you like to do today?`;
+What would you like to do today?`;
     }
 
     function handleGeneral(command) {
-      return `🤔 I understand you want to: "${command}"
+      return `I can help with:
 
-  Here's what I can do:
-  • 📅 "Schedule a meeting with Sarah at 2 PM tomorrow"
-  • 📄 "Summarize the Q4 budget thread"
-  • ✉️ "Draft a reply to Michael about the project"
-  • 📥 "Show me urgent emails"
+- "Schedule a meeting with John at 2 PM tomorrow"
+- "Summarize the Q4 budget thread"
+- "Draft a reply to Michael about the project"
+- "Show me urgent emails"
 
-  Try one of these or tell me what you need.`;
+Try one of these or tell me what you need.`;
     }
 
     // ============================================
