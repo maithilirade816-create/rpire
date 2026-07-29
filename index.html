@@ -308,20 +308,13 @@
     .testimonial .author { margin-top: 16px; color: #8b949e; font-size: 16px; font-style: normal; }
     .testimonial .author strong { color: #ffffff; }
 
-    /* --- FAQ --- */
-    .faq { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .faq h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px; color: #ffffff; }
-    .faq-item { max-width: 700px; margin: 0 auto 16px; padding: 20px 24px; background: #161b22; border: 1px solid #21262d; border-radius: 12px; }
-    .faq-item h3 { font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
-    .faq-item p { color: #8b949e; font-size: 15px; line-height: 1.6; }
-
     /* --- Pricing --- */
     .pricing { padding: 64px 0; text-align: center; border-top: 1px solid #21262d; position: relative; z-index: 1; }
     .pricing h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; color: #ffffff; }
     .pricing .sub { color: #8b949e; font-size: 18px; margin-bottom: 40px; }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 32px;
       max-width: 1100px;
       margin: 0 auto;
@@ -358,8 +351,22 @@
     .pricing-card .plan-price span { font-size: 16px; font-weight: 400; color: #8b949e; }
     .pricing-card .plan-description { color: #8b949e; font-size: 14px; margin-bottom: 16px; }
     .pricing-card .plan-features { list-style: none; padding: 0; margin: 0 0 24px 0; text-align: left; flex-grow: 1; }
-    .pricing-card .plan-features li { color: #e6edf3; font-size: 14px; padding: 6px 0; border-bottom: 1px solid #21262d; }
+    .pricing-card .plan-features li {
+      color: #e6edf3;
+      font-size: 14px;
+      padding: 6px 0;
+      border-bottom: 1px solid #21262d;
+    }
     .pricing-card .plan-features li:last-child { border-bottom: none; }
+    .pricing-card .plan-features li:first-child {
+      color: #2ea043;
+      font-weight: 500;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+    .pricing-card.custom .plan-features li:first-child { color: #8b5cf6; }
+    .pricing-card .plan-features li:first-child::before { content: "▶ "; font-size: 12px; }
     .pricing-card .btn-primary {
       display: inline-block;
       padding: 12px 24px;
@@ -379,6 +386,13 @@
     .pricing-card.free .btn-primary:hover { background: #30363d; }
     .pricing-card.custom .btn-primary { background: #8b5cf6; }
     .pricing-card.custom .btn-primary:hover { background: #7c3aed; box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2); }
+
+    /* --- FAQ --- */
+    .faq { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
+    .faq h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px; color: #ffffff; }
+    .faq-item { max-width: 700px; margin: 0 auto 16px; padding: 20px 24px; background: #161b22; border: 1px solid #21262d; border-radius: 12px; }
+    .faq-item h3 { font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
+    .faq-item p { color: #8b949e; font-size: 15px; line-height: 1.6; }
 
     /* --- Footer --- */
     footer { border-top: 1px solid #21262d; padding: 32px 0; text-align: center; color: #8b949e; font-size: 14px; position: relative; z-index: 1; }
@@ -547,6 +561,7 @@
       <h2>Simple, transparent pricing</h2>
       <p class="sub">Start free. Upgrade when you need more. Custom plans for enterprises.</p>
       <div class="pricing-grid">
+        <!-- Free -->
         <div class="pricing-card free">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0 <span>/ month</span></div>
@@ -561,12 +576,14 @@
           <a href="signup.html" class="btn-primary">Get Started</a>
         </div>
 
+        <!-- Pro -->
         <div class="pricing-card popular">
           <div class="popular-badge">Most Popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price">$20 <span>/ month</span></div>
           <div class="plan-description">For power users saving hours</div>
           <ul class="plan-features">
+            <li>✓ Everything in Free</li>
             <li>✓ 3 connected accounts</li>
             <li>✓ 500 emails/day</li>
             <li>✓ 50 meetings/month</li>
@@ -577,29 +594,34 @@
           <a href="signup.html" class="btn-primary">Upgrade to Pro</a>
         </div>
 
+        <!-- Team -->
         <div class="pricing-card team">
           <div class="plan-name">Team</div>
           <div class="plan-price">$50 <span>/ month</span></div>
           <div class="plan-description">For teams and organizations</div>
           <ul class="plan-features">
+            <li>✓ Everything in Pro</li>
             <li>✓ Unlimited connected accounts</li>
             <li>✓ 2,000 emails/day</li>
             <li>✓ 200 meetings/month</li>
             <li>✓ Shared inbox triage</li>
             <li>✓ Team analytics</li>
+            <li>✓ Admin dashboard</li>
             <li>✓ Dedicated support</li>
           </ul>
           <a href="signup.html" class="btn-primary">Contact Sales</a>
         </div>
 
+        <!-- Custom -->
         <div class="pricing-card custom">
           <div class="plan-name">Custom</div>
           <div class="plan-price">Custom</div>
           <div class="plan-description">For enterprises with specific needs</div>
           <ul class="plan-features">
+            <li>✓ Everything in Team</li>
             <li>✓ Custom user limits</li>
             <li>✓ Custom email/meeting limits</li>
-            <li>✓ Custom AI training</li>
+            <li>✓ Custom AI training (Sylvie)</li>
             <li>✓ Dedicated infrastructure</li>
             <li>✓ SLA guarantee</li>
             <li>✓ 24/7 priority support</li>
