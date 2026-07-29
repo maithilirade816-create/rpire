@@ -23,7 +23,7 @@
       padding: 0 24px;
     }
 
-    /* --- BACKGROUND: Handwriting Sparkle + 3D Glass --- */
+    /* --- HANDWRITING SPARKLE BACKGROUND --- */
     .bg-handwriting {
       position: fixed;
       top: 0;
@@ -112,7 +112,7 @@
       }
     }
 
-    /* --- 3D Glass Effect --- */
+    /* --- 3D GLASS EFFECT --- */
     .glass-3d {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -127,7 +127,7 @@
       box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
-    /* --- Neon Border --- */
+    /* --- NEON BORDER --- */
     .neon-border {
       border: 1px solid rgba(46, 160, 67, 0.12);
       box-shadow: 0 0 30px rgba(46, 160, 67, 0.03), inset 0 0 30px rgba(46, 160, 67, 0.01);
@@ -138,7 +138,6 @@
       box-shadow: 0 0 60px rgba(46, 160, 67, 0.08), inset 0 0 40px rgba(46, 160, 67, 0.03);
     }
 
-    /* --- Side Decor --- */
     .side-decor {
       position: fixed;
       top: 50%;
@@ -164,7 +163,7 @@
       }
     }
 
-    /* --- Header --- */
+    /* --- HEADER --- */
     header {
       display: flex;
       justify-content: space-between;
@@ -234,7 +233,7 @@
       box-shadow: 0 0 50px rgba(46, 160, 67, 0.1);
     }
 
-    /* --- Hero --- */
+    /* --- HERO --- */
     .hero {
       text-align: center;
       padding: 80px 0 56px;
@@ -351,7 +350,7 @@
       color: #e6edf3;
     }
 
-    /* --- Features --- */
+    /* --- FEATURES --- */
     .features {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -412,7 +411,7 @@
       line-height: 1.5;
     }
 
-    /* --- How It Works --- */
+    /* --- HOW IT WORKS --- */
     .how-it-works {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -480,7 +479,7 @@
       line-height: 1.5;
     }
 
-    /* --- Glass Features --- */
+    /* --- GLASS FEATURES --- */
     .glass-features {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -542,7 +541,7 @@
       line-height: 1.5;
     }
 
-    /* --- Code Snippet --- */
+    /* --- CODE SNIPPET --- */
     .code-section {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -608,7 +607,7 @@
       color: #3fb950;
     }
 
-    /* --- Testimonial (Honest) --- */
+    /* --- TESTIMONIAL --- */
     .testimonial {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -635,7 +634,7 @@
       color: #ffffff;
     }
 
-    /* --- Pricing --- */
+    /* --- PRICING (FULL FEATURES + CUSTOM PLAN) --- */
     .pricing {
       padding: 64px 0;
       text-align: center;
@@ -664,9 +663,9 @@
     }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 32px;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .pricing-card {
@@ -679,6 +678,8 @@
       transition: all 0.3s ease;
       position: relative;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
     }
     .pricing-card:hover {
       transform: translateY(-4px);
@@ -731,13 +732,14 @@
     .pricing-card .plan-features {
       list-style: none;
       padding: 0;
-      margin: 0 0 20px 0;
+      margin: 0 0 16px 0;
       text-align: left;
+      flex-grow: 1;
     }
     .pricing-card .plan-features li {
       color: #e6edf3;
       font-size: 13px;
-      padding: 4px 0;
+      padding: 5px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
     .pricing-card .plan-features li:last-child {
@@ -757,6 +759,21 @@
       content: "▶ ";
       font-size: 11px;
     }
+    /* Handwriting quote under each pricing card */
+    .pricing-card .handwriting-quote {
+      font-family: 'Segoe Script', 'Brush Script MT', cursive;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.15);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      letter-spacing: 0.5px;
+      font-style: italic;
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover .handwriting-quote {
+      color: rgba(255, 255, 255, 0.25);
+    }
     .pricing-card .btn-primary {
       display: inline-block;
       padding: 12px 24px;
@@ -771,6 +788,7 @@
       text-decoration: none;
       width: 100%;
       box-shadow: 0 0 30px rgba(46, 160, 67, 0.02);
+      margin-top: 4px;
     }
     .pricing-card .btn-primary:hover {
       background: #3fb950;
@@ -831,7 +849,7 @@
       line-height: 1.5;
     }
 
-    /* --- Footer (Honest) --- */
+    /* --- FOOTER --- */
     footer {
       border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 32px 0;
@@ -858,7 +876,6 @@
       color: #ffffff;
     }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 44px;
@@ -869,18 +886,10 @@
       .hero .sub {
         font-size: 18px;
       }
-      .features h2 {
-        font-size: 30px;
-      }
-      .glass-features h2 {
-        font-size: 30px;
-      }
-      .pricing h2 {
-        font-size: 30px;
-      }
-      .code-section h2 {
-        font-size: 30px;
-      }
+      .features h2,
+      .glass-features h2,
+      .pricing h2,
+      .code-section h2,
       .how-it-works h2 {
         font-size: 30px;
       }
@@ -892,13 +901,9 @@
       }
       .pricing-grid {
         grid-template-columns: 1fr;
-        max-width: 350px;
+        max-width: 400px;
       }
-      .feature-grid {
-        grid-template-columns: 1fr;
-        max-width: 350px;
-        margin: 0 auto;
-      }
+      .feature-grid,
       .glass-grid {
         grid-template-columns: 1fr;
         max-width: 350px;
@@ -912,7 +917,7 @@
 </head>
 <body>
 
-  <!-- Background Handwriting Sparkle -->
+  <!-- BACKGROUND HANDWRITING SPARKLE -->
   <div class="bg-handwriting">
     <div class="sparkle s1">~ time is the only thing you can't buy back ~</div>
     <div class="sparkle s2">~ save 2 hours a day ~</div>
@@ -922,13 +927,13 @@
     <div class="sparkle s6">~ you approve, we handle the rest ~</div>
   </div>
 
-  <!-- Side Decor -->
+  <!-- SIDE DECOR -->
   <div class="side-decor left">● ● ● ● ●</div>
   <div class="side-decor right">● ● ● ● ●</div>
 
   <div class="container">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
       <div class="logo">Rp<span>.</span></div>
       <div class="nav">
@@ -940,7 +945,7 @@
       </div>
     </header>
 
-    <!-- Hero -->
+    <!-- HERO -->
     <section class="hero">
       <div class="badge">Beta · Save 2 hours a day</div>
       <h1>Email Chaos.<br><span>Solved.</span></h1>
@@ -955,7 +960,7 @@
       </div>
     </section>
 
-    <!-- Features -->
+    <!-- FEATURES -->
     <section class="features" id="features">
       <p class="tagline">What Rpire Does</p>
       <h2>Schedule. Draft. Triage.</h2>
@@ -978,7 +983,7 @@
       </div>
     </section>
 
-    <!-- How It Works -->
+    <!-- HOW IT WORKS -->
     <section class="how-it-works" id="how-it-works">
       <p class="tagline">How It Works</p>
       <h2>Connect. AI Works. You Approve.</h2>
@@ -1001,7 +1006,7 @@
       </div>
     </section>
 
-    <!-- Glass Features -->
+    <!-- GLASS FEATURES -->
     <section class="glass-features" id="more">
       <p class="tagline">Beyond The Basics</p>
       <h2>Summarize. Learn. Protect.</h2>
@@ -1024,7 +1029,7 @@
       </div>
     </section>
 
-    <!-- Code Snippet -->
+    <!-- CODE SNIPPET -->
     <section class="code-section" id="code">
       <p class="tagline">Works With Any Stack</p>
       <h2>Connect in Minutes.</h2>
@@ -1045,7 +1050,7 @@
       </div>
     </section>
 
-    <!-- Testimonial (Honest) -->
+    <!-- TESTIMONIAL (Honest) -->
     <section class="testimonial">
       <blockquote>
         “I built Rpire to solve my own email chaos. Now I'm sharing it with the world.”
@@ -1053,53 +1058,86 @@
       <div class="author">— <strong>Maithili Rade</strong>, Founder</div>
     </section>
 
-    <!-- Pricing -->
+    <!-- PRICING (FULL FEATURES + CUSTOM + HANDWRITING QUOTES) -->
     <section class="pricing" id="pricing">
       <p class="tagline">Pricing</p>
       <h2>Start Free. Upgrade When Ready.</h2>
       <p class="sub">50 free credits. No commitment.</p>
       <div class="pricing-grid">
-        <div class="pricing-card free glass-3d">
+
+        <!-- FREE -->
+        <div class="pricing-card free glass-3d neon-border">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0 <span>/ month</span></div>
-          <div class="plan-description">For individuals</div>
+          <div class="plan-description">For individuals getting started</div>
           <ul class="plan-features">
             <li>50 credits/month</li>
-            <li>1 account</li>
-            <li>Basic triage</li>
+            <li>1 connected account</li>
+            <li>Basic inbox triage</li>
+            <li>Email support</li>
             <li>$0.10/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Get Started</a>
+          <div class="handwriting-quote">~ start small, dream big ~</div>
         </div>
 
-        <div class="pricing-card popular glass-3d">
+        <!-- PRO (Most Popular) -->
+        <div class="pricing-card popular glass-3d neon-border">
           <div class="popular-badge">Most Popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price">$20 <span>/ month</span></div>
-          <div class="plan-description">For power users</div>
+          <div class="plan-description">For power users saving hours</div>
           <ul class="plan-features">
             <li>Everything in Free</li>
             <li>1,000 credits/month</li>
-            <li>3 accounts</li>
-            <li>Sylvie AI</li>
-            <li>Priority support</li>
+            <li>3 connected accounts</li>
+            <li>AI drafting (Sylvie)</li>
+            <li>Meeting summarizer</li>
+            <li>Priority email support</li>
+            <li>$0.05/extra credit</li>
           </ul>
-          <a href="signup.html" class="btn-primary">Upgrade</a>
+          <a href="signup.html" class="btn-primary">Upgrade to Pro</a>
+          <div class="handwriting-quote">~ time is the only currency that matters ~</div>
         </div>
 
-        <div class="pricing-card team glass-3d">
+        <!-- TEAM -->
+        <div class="pricing-card team glass-3d neon-border">
           <div class="plan-name">Team</div>
           <div class="plan-price">$50 <span>/ month</span></div>
-          <div class="plan-description">For teams</div>
+          <div class="plan-description">For teams and organizations</div>
           <ul class="plan-features">
             <li>Everything in Pro</li>
             <li>5,000 credits/month</li>
-            <li>Unlimited accounts</li>
-            <li>Analytics</li>
+            <li>Unlimited connected accounts</li>
+            <li>Shared inbox triage</li>
+            <li>Team analytics</li>
+            <li>Admin dashboard</li>
             <li>Dedicated support</li>
+            <li>$0.03/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Contact Sales</a>
+          <div class="handwriting-quote">~ together we achieve more ~</div>
         </div>
+
+        <!-- CUSTOM -->
+        <div class="pricing-card custom glass-3d neon-border">
+          <div class="plan-name">Custom</div>
+          <div class="plan-price">Custom</div>
+          <div class="plan-description">For enterprises with specific needs</div>
+          <ul class="plan-features">
+            <li>Everything in Team</li>
+            <li>Custom credit limits</li>
+            <li>Custom AI training (Sylvie)</li>
+            <li>Dedicated infrastructure</li>
+            <li>SLA guarantee</li>
+            <li>24/7 priority support</li>
+            <li>On-premise deployment</li>
+            <li>Custom per-credit pricing</li>
+          </ul>
+          <a href="mailto:sales@rpire.com" class="btn-primary">Contact Sales</a>
+          <div class="handwriting-quote">~ build what matters, your way ~</div>
+        </div>
+
       </div>
     </section>
 
@@ -1122,7 +1160,7 @@
 
   </div>
 
-  <!-- Footer (Honest) -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-links">
