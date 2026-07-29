@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rpire — AI Email Assistant</title>
+  <title>Rpire — Email Chaos Solved</title>
   <style>
     /* --- Reset & Base --- */
     * {
@@ -41,7 +41,7 @@
       font-weight: 500;
       color: #2ea043;
       letter-spacing: -0.5px;
-      opacity: 0.08;
+      opacity: 0.06;
       filter: blur(4px);
       white-space: nowrap;
       user-select: none;
@@ -50,12 +50,12 @@
     }
     .bg-quotes .q1 { top: 5%; left: 3%; transform: rotate(-6deg); font-size: 32px; }
     .bg-quotes .q2 { bottom: 10%; right: 2%; transform: rotate(4deg); font-size: 26px; }
-    .bg-quotes .q3 { top: 40%; left: 2%; transform: rotate(-3deg); font-size: 22px; opacity: 0.06; }
-    .bg-quotes .q4 { top: 25%; right: 1%; transform: rotate(7deg); font-size: 24px; opacity: 0.07; }
-    .bg-quotes .q5 { bottom: 30%; left: 6%; transform: rotate(-5deg); font-size: 20px; opacity: 0.05; }
-    .bg-quotes .q6 { top: 70%; right: 4%; transform: rotate(3deg); font-size: 30px; opacity: 0.06; }
+    .bg-quotes .q3 { top: 40%; left: 2%; transform: rotate(-3deg); font-size: 22px; opacity: 0.04; }
+    .bg-quotes .q4 { top: 25%; right: 1%; transform: rotate(7deg); font-size: 24px; opacity: 0.05; }
+    .bg-quotes .q5 { bottom: 30%; left: 6%; transform: rotate(-5deg); font-size: 20px; opacity: 0.04; }
+    .bg-quotes .q6 { top: 70%; right: 4%; transform: rotate(3deg); font-size: 30px; opacity: 0.04; }
     @media (max-width: 768px) {
-      .bg-quotes .quote { font-size: 18px !important; opacity: 0.06 !important; }
+      .bg-quotes .quote { font-size: 18px !important; opacity: 0.04 !important; }
       .bg-quotes .q1 { top: 5%; left: 2%; }
       .bg-quotes .q2 { bottom: 8%; right: 2%; }
       .bg-quotes .q3, .bg-quotes .q4, .bg-quotes .q5, .bg-quotes .q6 { display: none; }
@@ -89,11 +89,31 @@
       position: relative;
       z-index: 1;
     }
-    .logo { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; color: #ffffff; }
-    .logo span { color: #2ea043; }
-    .nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-    .nav a { text-decoration: none; color: #8b949e; font-size: 14px; font-weight: 500; transition: color 0.15s; }
-    .nav a:hover { color: #ffffff; }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+    .logo span {
+      color: #2ea043;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #8b949e;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav a:hover {
+      color: #ffffff;
+    }
     .nav .btn-outline {
       padding: 8px 20px;
       border: 1px solid #30363d;
@@ -106,7 +126,10 @@
       text-decoration: none;
       color: #e6edf3;
     }
-    .nav .btn-outline:hover { background: #21262d; border-color: #484f58; }
+    .nav .btn-outline:hover {
+      background: #21262d;
+      border-color: #484f58;
+    }
     .nav .btn-primary-small {
       padding: 8px 20px;
       border: none;
@@ -119,9 +142,11 @@
       transition: all 0.15s;
       text-decoration: none;
     }
-    .nav .btn-primary-small:hover { background: #3fb950; }
+    .nav .btn-primary-small:hover {
+      background: #3fb950;
+    }
 
-    /* --- Hero --- */
+    /* --- Hero (BIG KEYWORDS) --- */
     .hero {
       text-align: center;
       padding: 80px 0 56px;
@@ -140,23 +165,33 @@
       border: 1px solid #21262d;
     }
     .hero h1 {
-      font-size: 52px;
-      font-weight: 700;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
       max-width: 800px;
-      margin: 0 auto 16px;
+      margin: 0 auto 8px;
       color: #ffffff;
     }
-    .hero h1 span { color: #2ea043; }
-    .hero p {
-      font-size: 18px;
-      color: #8b949e;
-      max-width: 550px;
-      margin: 0 auto 32px;
-      line-height: 1.7;
+    .hero h1 span {
+      color: #2ea043;
+      display: block;
+      font-size: 76px;
     }
-    .hero .cta-group { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero .sub {
+      font-size: 22px;
+      color: #8b949e;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+    }
+    .hero .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
     .hero .btn-primary {
       padding: 14px 40px;
       border: none;
@@ -169,7 +204,11 @@
       transition: all 0.15s;
       text-decoration: none;
     }
-    .hero .btn-primary:hover { background: #3fb950; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2); }
+    .hero .btn-primary:hover {
+      background: #3fb950;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+    }
     .hero .btn-secondary {
       padding: 14px 40px;
       border: 1px solid #30363d;
@@ -182,13 +221,16 @@
       transition: all 0.15s;
       text-decoration: none;
     }
-    .hero .btn-secondary:hover { background: #161b22; border-color: #484f58; }
+    .hero .btn-secondary:hover {
+      background: #161b22;
+      border-color: #484f58;
+    }
 
-    /* --- Live Block --- */
+    /* --- Live Block (Minimal) --- */
     .live-block {
       margin: 48px auto 0;
       max-width: 700px;
-      padding: 20px 28px;
+      padding: 16px 24px;
       background: #161b22;
       border: 1px solid #21262d;
       border-radius: 12px;
@@ -205,118 +247,170 @@
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-    .live-block .text { color: #8b949e; font-size: 14px; }
-    .live-block .text strong { color: #e6edf3; }
-    .live-block .handwriting {
-      font-family: 'Segoe Script', 'Brush Script MT', cursive;
-      font-size: 18px;
-      color: #2ea043;
-      opacity: 0.8;
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+    .live-block .text {
+      color: #8b949e;
+      font-size: 14px;
+    }
+    .live-block .text strong {
+      color: #e6edf3;
     }
 
-    /* --- Features --- */
-    .features { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .features h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; color: #ffffff; }
-    .features .sub { text-align: center; color: #8b949e; font-size: 18px; max-width: 500px; margin: 0 auto 40px; }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; }
+    /* --- Features (3 Keywords) --- */
+    .features {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .features .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
     .feature-card {
       background: #161b22;
-      padding: 32px;
+      padding: 32px 24px;
       border-radius: 16px;
       border: 1px solid #21262d;
       transition: all 0.15s;
-      text-align: left;
+      text-align: center;
     }
-    .feature-card:hover { border-color: #2ea043; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); transform: translateY(-4px); }
-    .feature-card .icon { font-size: 24px; margin-bottom: 12px; color: #2ea043; }
-    .feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #ffffff; }
-    .feature-card p { color: #8b949e; font-size: 15px; line-height: 1.6; }
-
-    /* --- Code Snippet --- */
-    .code-section { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .code-section h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; color: #ffffff; }
-    .code-section .sub { text-align: center; color: #8b949e; font-size: 18px; max-width: 500px; margin: 0 auto 40px; }
-    .code-block {
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 12px;
-      padding: 24px;
-      overflow-x: auto;
-      max-width: 700px;
-      margin: 0 auto;
+    .feature-card:hover {
+      border-color: #2ea043;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
-    .code-block code { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 14px; color: #e6edf3; line-height: 1.8; }
-    .code-block .comment { color: #8b949e; }
-    .code-block .tag { color: #ff7b72; }
-    .code-block .attr { color: #d2a8ff; }
-    .code-block .string { color: #a5d6ff; }
-    .code-block .keyword { color: #ff7b72; }
-    .code-block .button-code { color: #3fb950; }
-
-    /* --- How It Works --- */
-    .how-it-works { padding: 64px 0; background: #0d1117; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .how-it-works h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px; color: #ffffff; }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
-    .step { text-align: center; }
-    .step .num {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 12px;
-      background: #161b22;
+    .feature-card .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
       color: #2ea043;
-      border-radius: 50%;
-      font-weight: 700;
-      font-size: 18px;
-      border: 1px solid #21262d;
     }
-    .step h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; color: #ffffff; }
-    .step p { color: #8b949e; font-size: 14px; line-height: 1.6; }
+    .feature-card h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .feature-card p {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
     /* --- Glass Features --- */
-    .glass-features { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .glass-features h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px; color: #ffffff; }
-    .glass-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
+    .glass-features {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .glass-features .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .glass-features h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .glass-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
     .glass-card {
       background: rgba(22, 27, 34, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
-      padding: 32px;
+      padding: 32px 24px;
       text-align: center;
       transition: all 0.15s;
     }
-    .glass-card:hover { border-color: #2ea043; transform: translateY(-4px); }
-    .glass-card .icon { font-size: 28px; margin-bottom: 12px; color: #2ea043; }
-    .glass-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #ffffff; }
-    .glass-card p { color: #8b949e; font-size: 15px; line-height: 1.6; }
-    .glass-card .handwriting {
-      font-family: 'Segoe Script', 'Brush Script MT', cursive;
-      font-size: 16px;
+    .glass-card:hover {
+      border-color: #2ea043;
+      transform: translateY(-4px);
+    }
+    .glass-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
       color: #2ea043;
-      opacity: 0.7;
-      margin-top: 8px;
+    }
+    .glass-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .glass-card p {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    /* --- Testimonial --- */
-    .testimonial { padding: 64px 0; background: #0d1117; border-top: 1px solid #21262d; text-align: center; position: relative; z-index: 1; }
-    .testimonial blockquote { max-width: 700px; margin: 0 auto; font-size: 20px; color: #e6edf3; font-weight: 400; line-height: 1.8; font-style: italic; }
-    .testimonial .author { margin-top: 16px; color: #8b949e; font-size: 16px; font-style: normal; }
-    .testimonial .author strong { color: #ffffff; }
-
     /* --- Pricing --- */
-    .pricing { padding: 64px 0; text-align: center; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .pricing h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; color: #ffffff; }
-    .pricing .sub { color: #8b949e; font-size: 18px; margin-bottom: 40px; }
+    .pricing {
+      padding: 64px 0;
+      text-align: center;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .pricing .tagline {
+      font-size: 14px;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .pricing h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .pricing .sub {
+      color: #8b949e;
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 32px;
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
     }
     .pricing-card {
@@ -327,17 +421,24 @@
       text-align: center;
       transition: all 0.15s;
       position: relative;
-      display: flex;
-      flex-direction: column;
     }
-    .pricing-card:hover { transform: translateY(-4px); border-color: #30363d; }
-    .pricing-card.popular { border-color: #2ea043; background: #1a2421; }
-    .pricing-card.custom { border-color: #8b5cf6; background: #1a1625; }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      border-color: #30363d;
+    }
+    .pricing-card.popular {
+      border-color: #2ea043;
+      background: #1a2421;
+    }
+    .pricing-card.custom {
+      border-color: #8b5cf6;
+      background: #1a1625;
+    }
     .popular-badge {
       display: inline-block;
       background: #2ea043;
       color: #ffffff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       padding: 4px 16px;
       border-radius: 40px;
@@ -345,28 +446,57 @@
       letter-spacing: 0.5px;
       margin-bottom: 16px;
     }
-    .pricing-card .plan-name { font-size: 18px; font-weight: 600; color: #e6edf3; margin-bottom: 4px; }
-    .pricing-card .plan-price { font-size: 40px; font-weight: 700; color: #ffffff; margin: 8px 0; }
-    .pricing-card.custom .plan-price { font-size: 28px; font-weight: 700; color: #8b5cf6; }
-    .pricing-card .plan-price span { font-size: 16px; font-weight: 400; color: #8b949e; }
-    .pricing-card .plan-description { color: #8b949e; font-size: 14px; margin-bottom: 16px; }
-    .pricing-card .plan-features { list-style: none; padding: 0; margin: 0 0 24px 0; text-align: left; flex-grow: 1; }
+    .pricing-card .plan-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 4px;
+    }
+    .pricing-card .plan-price {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 8px 0;
+    }
+    .pricing-card .plan-price span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #8b949e;
+    }
+    .pricing-card .plan-description {
+      color: #8b949e;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .pricing-card .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      text-align: left;
+    }
     .pricing-card .plan-features li {
       color: #e6edf3;
-      font-size: 14px;
-      padding: 6px 0;
+      font-size: 13px;
+      padding: 4px 0;
       border-bottom: 1px solid #21262d;
     }
-    .pricing-card .plan-features li:last-child { border-bottom: none; }
+    .pricing-card .plan-features li:last-child {
+      border-bottom: none;
+    }
     .pricing-card .plan-features li:first-child {
       color: #2ea043;
       font-weight: 500;
       border-bottom: 1px solid #21262d;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       margin-bottom: 4px;
     }
-    .pricing-card.custom .plan-features li:first-child { color: #8b5cf6; }
-    .pricing-card .plan-features li:first-child::before { content: "▶ "; font-size: 12px; }
+    .pricing-card.custom .plan-features li:first-child {
+      color: #8b5cf6;
+    }
+    .pricing-card .plan-features li:first-child::before {
+      content: "▶ ";
+      font-size: 11px;
+    }
     .pricing-card .btn-primary {
       display: inline-block;
       padding: 12px 24px;
@@ -375,40 +505,132 @@
       background: #2ea043;
       color: white;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
       transition: all 0.15s;
       text-decoration: none;
       width: 100%;
     }
-    .pricing-card .btn-primary:hover { background: #3fb950; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2); }
-    .pricing-card.free .btn-primary { background: #21262d; }
-    .pricing-card.free .btn-primary:hover { background: #30363d; }
-    .pricing-card.custom .btn-primary { background: #8b5cf6; }
-    .pricing-card.custom .btn-primary:hover { background: #7c3aed; box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2); }
+    .pricing-card .btn-primary:hover {
+      background: #3fb950;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46, 160, 67, 0.2);
+    }
+    .pricing-card.free .btn-primary {
+      background: #21262d;
+    }
+    .pricing-card.free .btn-primary:hover {
+      background: #30363d;
+    }
+    .pricing-card.custom .btn-primary {
+      background: #8b5cf6;
+    }
+    .pricing-card.custom .btn-primary:hover {
+      background: #7c3aed;
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+    }
 
     /* --- FAQ --- */
-    .faq { padding: 64px 0; border-top: 1px solid #21262d; position: relative; z-index: 1; }
-    .faq h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px; color: #ffffff; }
-    .faq-item { max-width: 700px; margin: 0 auto 16px; padding: 20px 24px; background: #161b22; border: 1px solid #21262d; border-radius: 12px; }
-    .faq-item h3 { font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
-    .faq-item p { color: #8b949e; font-size: 15px; line-height: 1.6; }
+    .faq {
+      padding: 64px 0;
+      border-top: 1px solid #21262d;
+      position: relative;
+      z-index: 1;
+    }
+    .faq h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .faq-item {
+      max-width: 700px;
+      margin: 0 auto 12px;
+      padding: 16px 20px;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+    }
+    .faq-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .faq-item p {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
     /* --- Footer --- */
-    footer { border-top: 1px solid #21262d; padding: 32px 0; text-align: center; color: #8b949e; font-size: 14px; position: relative; z-index: 1; }
-    footer .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
-    footer .footer-links a { color: #8b949e; text-decoration: none; font-size: 14px; }
-    footer .footer-links a:hover { color: #ffffff; }
+    footer {
+      border-top: 1px solid #21262d;
+      padding: 32px 0;
+      text-align: center;
+      color: #8b949e;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    footer .footer-links a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    footer .footer-links a:hover {
+      color: #ffffff;
+    }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 36px; }
-      .hero p { font-size: 16px; }
-      .nav { gap: 12px; }
-      .nav a { font-size: 13px; }
-      .pricing-card { padding: 24px 16px; }
-      .live-block { flex-direction: column; text-align: center; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .hero h1 {
+        font-size: 44px;
+      }
+      .hero h1 span {
+        font-size: 48px;
+      }
+      .hero .sub {
+        font-size: 18px;
+      }
+      .features h2 {
+        font-size: 30px;
+      }
+      .glass-features h2 {
+        font-size: 30px;
+      }
+      .pricing h2 {
+        font-size: 30px;
+      }
+      .nav {
+        gap: 12px;
+      }
+      .nav a {
+        font-size: 13px;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+      }
+      .glass-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+      }
     }
   </style>
 </head>
@@ -435,7 +657,6 @@
       <div class="logo">Rp<span>.</span></div>
       <div class="nav">
         <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
         <a href="login.html" class="btn-outline">Log in</a>
         <a href="signup.html" class="btn-primary-small">Sign up</a>
@@ -445,211 +666,128 @@
     <!-- Hero -->
     <section class="hero">
       <div class="badge">Beta · Save 2 hours a day</div>
-      <h1>AI Email Assistant That <span>Automates Your Inbox</span></h1>
-      <p>Rpire reads your emails, schedules meetings, drafts replies, and summarizes conversations — you approve everything before it sends.</p>
+      <h1>Email Chaos.<br><span>Solved.</span></h1>
+      <p class="sub">You approve. We handle the rest.</p>
       <div class="cta-group">
         <a href="signup.html" class="btn-primary">Try It Free</a>
         <a href="#features" class="btn-secondary">Learn More</a>
       </div>
       <div class="live-block">
         <span class="dot"></span>
-        <span class="text"><strong>Live:</strong> Monitoring your inbox for meeting requests</span>
-        <span class="handwriting">~ always watching, never overstepping</span>
+        <span class="text"><strong>Live:</strong> Monitoring your inbox</span>
       </div>
     </section>
 
     <!-- Features -->
     <section class="features" id="features">
-      <h2>Everything you need to reclaim your day</h2>
-      <p class="sub">Rpire handles the admin work so you can focus on what matters.</p>
+      <p class="tagline">What Rpire Does</p>
+      <h2>Schedule. Draft. Triage.</h2>
       <div class="feature-grid">
         <div class="feature-card">
           <div class="icon">▣</div>
-          <h3>Auto-Schedule Meetings</h3>
-          <p>Rpire detects meeting requests in your emails and suggests 3 time slots based on your calendar.</p>
+          <h3>Schedule</h3>
+          <p>Auto-detect meeting requests. 3 time options. You approve.</p>
         </div>
         <div class="feature-card">
           <div class="icon">◈</div>
-          <h3>Draft Replies in Your Voice</h3>
-          <p>AI writes replies that sound like you. You review, edit, and send — or let Rpire handle it.</p>
+          <h3>Draft</h3>
+          <p>AI writes replies in your voice. Review, edit, send.</p>
         </div>
         <div class="feature-card">
           <div class="icon">◉</div>
-          <h3>Smart Inbox Triage</h3>
-          <p>Urgent, Basic, Scam — sorted automatically so you see what matters.</p>
+          <h3>Triage</h3>
+          <p>Urgent. Basic. Scam. Sorted automatically.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Code Snippet -->
-    <section class="code-section" id="code">
-      <h2>Works with any stack</h2>
-      <p class="sub">Paste this code — connect Gmail and Calendar in minutes.</p>
-      <div class="code-block">
-        <code>
-          <span class="comment">&lt;!-- Connect Gmail --&gt;</span><br>
-          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/connect"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Gmail</span><span class="tag">&lt;/button&gt;</span><br>
-          <span class="tag">&lt;/form&gt;</span><br><br>
-          <span class="comment">&lt;!-- Calendar integration --&gt;</span><br>
-          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/calendar"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Calendar</span><span class="tag">&lt;/button&gt;</span><br>
-          <span class="tag">&lt;/form&gt;</span>
-        </code>
       </div>
     </section>
 
     <!-- Glass Features -->
-    <section class="glass-features" id="glass-features">
-      <h2>More than just email</h2>
+    <section class="glass-features" id="more">
+      <p class="tagline">Beyond The Basics</p>
+      <h2>Summarize. Learn. Protect.</h2>
       <div class="glass-grid">
         <div class="glass-card">
           <div class="icon">◊</div>
-          <h3>Meeting Summarizer</h3>
-          <p>After each meeting, Rpire sends you a bullet-point summary with action items and next steps.</p>
-          <div class="handwriting">~ never forget what was said</div>
+          <h3>Summarize</h3>
+          <p>Meeting summaries. Action items. Never forget.</p>
         </div>
         <div class="glass-card">
           <div class="icon">✦</div>
-          <h3>Context-Aware Drafting</h3>
-          <p>Rpire reads the entire thread before drafting — no generic replies, just context.</p>
-          <div class="handwriting">~ replies that make sense</div>
+          <h3>Learn</h3>
+          <p>AI adapts to your voice. Writes like you.</p>
         </div>
         <div class="glass-card">
           <div class="icon">◆</div>
-          <h3>Privacy First</h3>
-          <p>You approve everything. Emails are never stored. Your data stays yours.</p>
-          <div class="handwriting">~ control, always</div>
+          <h3>Protect</h3>
+          <p>Your data, your control. Privacy first.</p>
         </div>
       </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-      <h2>How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>Connect</h3>
-          <p>Link your Gmail and Calendar once.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>AI Works Silently</h3>
-          <p>Rpire reads, analyzes, and drafts behind the scenes.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>You Approve</h3>
-          <p>Review suggestions, click confirm, and get back to work.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonial -->
-    <section class="testimonial">
-      <blockquote>
-        “Rpire saved me 2 hours a day. No more back-and-forth scheduling, no more lost action items.”
-      </blockquote>
-      <div class="author">— <strong>Maithili Rade</strong>, Student Founder</div>
     </section>
 
     <!-- Pricing -->
     <section class="pricing" id="pricing">
-      <h2>Simple, transparent pricing</h2>
-      <p class="sub">Start with 50 free credits. Upgrade when you need more. Custom plans for enterprises.</p>
+      <p class="tagline">Pricing</p>
+      <h2>Start Free. Upgrade When Ready.</h2>
+      <p class="sub">50 free credits. No commitment.</p>
       <div class="pricing-grid">
-        <!-- Free -->
         <div class="pricing-card free">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0 <span>/ month</span></div>
-          <div class="plan-description">For individuals getting started</div>
+          <div class="plan-description">For individuals</div>
           <ul class="plan-features">
-            <li>✓ 50 credits/month</li>
-            <li>✓ 1 connected account</li>
-            <li>✓ Basic inbox triage</li>
-            <li>✓ Email support</li>
-            <li>✓ $0.10/extra credit</li>
+            <li>50 credits/month</li>
+            <li>1 account</li>
+            <li>Basic triage</li>
+            <li>$0.10/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Get Started</a>
         </div>
 
-        <!-- Pro -->
         <div class="pricing-card popular">
           <div class="popular-badge">Most Popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price">$20 <span>/ month</span></div>
-          <div class="plan-description">For power users saving hours</div>
+          <div class="plan-description">For power users</div>
           <ul class="plan-features">
-            <li>✓ Everything in Free</li>
-            <li>✓ 1,000 credits/month</li>
-            <li>✓ 3 connected accounts</li>
-            <li>✓ AI drafting (Sylvie)</li>
-            <li>✓ Meeting summarizer</li>
-            <li>✓ Priority email support</li>
-            <li>✓ $0.05/extra credit</li>
+            <li>Everything in Free</li>
+            <li>1,000 credits/month</li>
+            <li>3 accounts</li>
+            <li>Sylvie AI</li>
+            <li>Priority support</li>
           </ul>
-          <a href="signup.html" class="btn-primary">Upgrade to Pro</a>
+          <a href="signup.html" class="btn-primary">Upgrade</a>
         </div>
 
-        <!-- Team -->
         <div class="pricing-card team">
           <div class="plan-name">Team</div>
           <div class="plan-price">$50 <span>/ month</span></div>
-          <div class="plan-description">For teams and organizations</div>
+          <div class="plan-description">For teams</div>
           <ul class="plan-features">
-            <li>✓ Everything in Pro</li>
-            <li>✓ 5,000 credits/month</li>
-            <li>✓ Unlimited connected accounts</li>
-            <li>✓ Shared inbox triage</li>
-            <li>✓ Team analytics</li>
-            <li>✓ Admin dashboard</li>
-            <li>✓ Dedicated support</li>
-            <li>✓ $0.03/extra credit</li>
+            <li>Everything in Pro</li>
+            <li>5,000 credits/month</li>
+            <li>Unlimited accounts</li>
+            <li>Analytics</li>
+            <li>Dedicated support</li>
           </ul>
           <a href="signup.html" class="btn-primary">Contact Sales</a>
-        </div>
-
-        <!-- Custom -->
-        <div class="pricing-card custom">
-          <div class="plan-name">Custom</div>
-          <div class="plan-price">Custom</div>
-          <div class="plan-description">For enterprises with specific needs</div>
-          <ul class="plan-features">
-            <li>✓ Everything in Team</li>
-            <li>✓ Custom credit limits</li>
-            <li>✓ Custom AI training (Sylvie)</li>
-            <li>✓ Dedicated infrastructure</li>
-            <li>✓ SLA guarantee</li>
-            <li>✓ 24/7 priority support</li>
-            <li>✓ On-premise deployment</li>
-            <li>✓ Custom per-credit pricing</li>
-          </ul>
-          <a href="mailto:sales@rpire.com" class="btn-primary">Contact Sales</a>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
-      <h2>Frequently Asked Questions</h2>
+      <h2>Questions?</h2>
       <div class="faq-item">
-        <h3>Is Rpire free to use?</h3>
-        <p>Yes — you get 50 free credits per month. After that, you can upgrade to Pro or buy extra credits.</p>
+        <h3>Is Rpire free?</h3>
+        <p>Yes — 50 free credits/month.</p>
       </div>
       <div class="faq-item">
-        <h3>What do credits cover?</h3>
-        <p>Each action uses credits: 1 credit to triage an email, 5 credits to draft a reply, 10 credits to schedule a meeting.</p>
+        <h3>What are credits?</h3>
+        <p>1 credit = 1 email triage. 5 = draft. 10 = schedule.</p>
       </div>
       <div class="faq-item">
         <h3>Is my data safe?</h3>
-        <p>Yes — all data is encrypted and we never store your emails. You approve every action before it happens.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What if I don't approve a meeting?</h3>
-        <p>Nothing happens. Rpire only books meetings when you explicitly click “Confirm.”</p>
+        <p>Yes. Encrypted. Never stored. You approve everything.</p>
       </div>
     </section>
 
@@ -660,10 +798,9 @@
     <div class="container">
       <div class="footer-links">
         <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
       </div>
       <p>© 2026 Rpire. Built for people who value their time.</p>
     </div>
