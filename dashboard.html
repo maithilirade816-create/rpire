@@ -1002,4 +1002,16 @@
     }
   </script>
 </body>
+  <!-- Credit Alert Modal -->
+<div id="creditAlert" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px;">
+  <div style="background: #161b22; border: 1px solid rgba(46,160,67,0.2); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 0 80px rgba(0,0,0,0.5);">
+    <div style="font-size: 48px; margin-bottom: 12px;">⚡</div>
+    <h2 style="font-size: 24px; font-weight: 700; color: #e6edf3; margin-bottom: 8px;">Out of Credits</h2>
+    <p style="color: #8b949e; font-size: 16px; margin-bottom: 24px;">You've used all your free credits. Upgrade to Pro to keep using Rpire.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <button onclick="window.location.href='#pricing'" style="background: #2ea043; color: white; border: none; padding: 12px 32px; border-radius: 40px; font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.2s;">Upgrade to Pro</button>
+      <button onclick="closeCreditAlert()" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #8b949e; padding: 12px 32px; border-radius: 40px; font-weight: 500; font-size: 15px; cursor: pointer;">Dismiss</button>
+    </div>
+  </div>
+</div>
 </html>
