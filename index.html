@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rpire — Email Chaos Solved</title>
+  <title>Rpire — AI that reads your emails</title>
   <style>
+    /* --- Reset & Base --- */
     * {
       margin: 0;
       padding: 0;
@@ -23,7 +24,7 @@
       padding: 0 24px;
     }
 
-    /* --- HANDWRITING SPARKLE BACKGROUND --- */
+    /* --- Background Handwriting Sparkle --- */
     .bg-handwriting {
       position: fixed;
       top: 0;
@@ -112,7 +113,7 @@
       }
     }
 
-    /* --- 3D GLASS EFFECT --- */
+    /* --- 3D Glass Effect --- */
     .glass-3d {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
@@ -127,7 +128,7 @@
       box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
-    /* --- NEON BORDER --- */
+    /* --- Neon Border --- */
     .neon-border {
       border: 1px solid rgba(46, 160, 67, 0.12);
       box-shadow: 0 0 30px rgba(46, 160, 67, 0.03), inset 0 0 30px rgba(46, 160, 67, 0.01);
@@ -138,6 +139,7 @@
       box-shadow: 0 0 60px rgba(46, 160, 67, 0.08), inset 0 0 40px rgba(46, 160, 67, 0.03);
     }
 
+    /* --- Side Decor --- */
     .side-decor {
       position: fixed;
       top: 50%;
@@ -163,7 +165,7 @@
       }
     }
 
-    /* --- HEADER --- */
+    /* --- Header --- */
     header {
       display: flex;
       justify-content: space-between;
@@ -233,10 +235,10 @@
       box-shadow: 0 0 50px rgba(46, 160, 67, 0.1);
     }
 
-    /* --- HERO --- */
+    /* --- Hero (CLEAR) --- */
     .hero {
       text-align: center;
-      padding: 80px 0 56px;
+      padding: 80px 0 48px;
       position: relative;
       z-index: 1;
     }
@@ -252,27 +254,23 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
     .hero h1 {
-      font-size: 72px;
+      font-size: 48px;
       font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.05;
+      letter-spacing: -1px;
+      line-height: 1.15;
       max-width: 800px;
-      margin: 0 auto 8px;
+      margin: 0 auto 16px;
       color: #ffffff;
     }
     .hero h1 span {
       color: #2ea043;
-      display: block;
-      font-size: 76px;
-      text-shadow: 0 0 60px rgba(46, 160, 67, 0.1);
     }
-    .hero .sub {
-      font-size: 22px;
+    .hero p {
+      font-size: 18px;
       color: #8b949e;
-      max-width: 500px;
+      max-width: 580px;
       margin: 0 auto 32px;
-      font-weight: 400;
-      letter-spacing: -0.3px;
+      line-height: 1.7;
     }
     .hero .cta-group {
       display: flex;
@@ -350,7 +348,7 @@
       color: #e6edf3;
     }
 
-    /* --- FEATURES --- */
+    /* --- Features --- */
     .features {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -367,9 +365,9 @@
     }
     .features h2 {
       text-align: center;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       margin-bottom: 40px;
       color: #ffffff;
     }
@@ -394,16 +392,16 @@
       box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
     .feature-card .icon {
-      font-size: 32px;
+      font-size: 28px;
       margin-bottom: 12px;
       color: #2ea043;
     }
     .feature-card h3 {
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 6px;
       color: #ffffff;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
     }
     .feature-card p {
       color: #8b949e;
@@ -411,7 +409,7 @@
       line-height: 1.5;
     }
 
-    /* --- HOW IT WORKS --- */
+    /* --- How It Works --- */
     .how-it-works {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -428,9 +426,9 @@
     }
     .how-it-works h2 {
       text-align: center;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       margin-bottom: 40px;
       color: #ffffff;
     }
@@ -479,7 +477,7 @@
       line-height: 1.5;
     }
 
-    /* --- GLASS FEATURES --- */
+    /* --- Glass Features --- */
     .glass-features {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -496,9 +494,9 @@
     }
     .glass-features h2 {
       text-align: center;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       margin-bottom: 40px;
       color: #ffffff;
     }
@@ -524,12 +522,12 @@
       box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
     .glass-card .icon {
-      font-size: 28px;
+      font-size: 24px;
       margin-bottom: 12px;
       color: #2ea043;
     }
     .glass-card h3 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin-bottom: 6px;
       color: #ffffff;
@@ -541,73 +539,7 @@
       line-height: 1.5;
     }
 
-    /* --- CODE SNIPPET --- */
-    .code-section {
-      padding: 64px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      position: relative;
-      z-index: 1;
-    }
-    .code-section .tagline {
-      text-align: center;
-      font-size: 14px;
-      color: #8b949e;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-    .code-section h2 {
-      text-align: center;
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
-      color: #ffffff;
-    }
-    .code-section .sub {
-      text-align: center;
-      color: #8b949e;
-      font-size: 18px;
-      max-width: 500px;
-      margin: 0 auto 40px;
-    }
-    .code-block {
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 16px;
-      padding: 28px;
-      overflow-x: auto;
-      max-width: 750px;
-      margin: 0 auto;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-    }
-    .code-block code {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 14px;
-      color: #e6edf3;
-      line-height: 1.8;
-    }
-    .code-block .comment {
-      color: #8b949e;
-    }
-    .code-block .tag {
-      color: #ff7b72;
-    }
-    .code-block .attr {
-      color: #d2a8ff;
-    }
-    .code-block .string {
-      color: #a5d6ff;
-    }
-    .code-block .keyword {
-      color: #ff7b72;
-    }
-    .code-block .button-code {
-      color: #3fb950;
-    }
-
-    /* --- TESTIMONIAL --- */
+    /* --- Testimonial --- */
     .testimonial {
       padding: 64px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -618,7 +550,7 @@
     .testimonial blockquote {
       max-width: 700px;
       margin: 0 auto;
-      font-size: 22px;
+      font-size: 20px;
       color: #e6edf3;
       font-weight: 400;
       line-height: 1.8;
@@ -634,7 +566,7 @@
       color: #ffffff;
     }
 
-    /* --- PRICING (FULL FEATURES + CUSTOM PLAN) --- */
+    /* --- Pricing --- */
     .pricing {
       padding: 64px 0;
       text-align: center;
@@ -650,9 +582,9 @@
       margin-bottom: 8px;
     }
     .pricing h2 {
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       margin-bottom: 12px;
       color: #ffffff;
     }
@@ -663,9 +595,9 @@
     }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 32px;
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
     }
     .pricing-card {
@@ -759,21 +691,6 @@
       content: "▶ ";
       font-size: 11px;
     }
-    /* Handwriting quote under each pricing card */
-    .pricing-card .handwriting-quote {
-      font-family: 'Segoe Script', 'Brush Script MT', cursive;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.15);
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      letter-spacing: 0.5px;
-      font-style: italic;
-      transition: all 0.3s ease;
-    }
-    .pricing-card:hover .handwriting-quote {
-      color: rgba(255, 255, 255, 0.25);
-    }
     .pricing-card .btn-primary {
       display: inline-block;
       padding: 12px 24px;
@@ -818,7 +735,7 @@
     }
     .faq h2 {
       text-align: center;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.5px;
       margin-bottom: 40px;
@@ -849,7 +766,7 @@
       line-height: 1.5;
     }
 
-    /* --- FOOTER --- */
+    /* --- Footer --- */
     footer {
       border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 32px 0;
@@ -876,22 +793,13 @@
       color: #ffffff;
     }
 
+    /* --- Responsive --- */
     @media (max-width: 768px) {
       .hero h1 {
-        font-size: 44px;
+        font-size: 32px;
       }
-      .hero h1 span {
-        font-size: 48px;
-      }
-      .hero .sub {
-        font-size: 18px;
-      }
-      .features h2,
-      .glass-features h2,
-      .pricing h2,
-      .code-section h2,
-      .how-it-works h2 {
-        font-size: 30px;
+      .hero p {
+        font-size: 16px;
       }
       .nav {
         gap: 12px;
@@ -903,21 +811,27 @@
         grid-template-columns: 1fr;
         max-width: 400px;
       }
-      .feature-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+      }
       .glass-grid {
         grid-template-columns: 1fr;
         max-width: 350px;
         margin: 0 auto;
       }
-      .code-block code {
-        font-size: 12px;
+      .steps {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND HANDWRITING SPARKLE -->
+  <!-- Background Handwriting Sparkle -->
   <div class="bg-handwriting">
     <div class="sparkle s1">~ time is the only thing you can't buy back ~</div>
     <div class="sparkle s2">~ save 2 hours a day ~</div>
@@ -927,13 +841,13 @@
     <div class="sparkle s6">~ you approve, we handle the rest ~</div>
   </div>
 
-  <!-- SIDE DECOR -->
+  <!-- Side Decor -->
   <div class="side-decor left">● ● ● ● ●</div>
   <div class="side-decor right">● ● ● ● ●</div>
 
   <div class="container">
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header>
       <div class="logo">Rp<span>.</span></div>
       <div class="nav">
@@ -945,13 +859,13 @@
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero (CLEAR) -->
     <section class="hero">
       <div class="badge">Beta · Save 2 hours a day</div>
-      <h1>Email Chaos.<br><span>Solved.</span></h1>
-      <p class="sub">You approve. We handle the rest.</p>
+      <h1>AI that reads your emails, <span>schedules meetings, drafts replies, and sorts your inbox</span> — automatically.</h1>
+      <p>You approve before it sends. No back-and-forth. No wasted time.</p>
       <div class="cta-group">
-        <a href="signup.html" class="btn-primary">Try It Free</a>
+        <a href="signup.html" class="btn-primary">Connect Gmail</a>
         <a href="#features" class="btn-secondary">Learn More</a>
       </div>
       <div class="live-block">
@@ -960,53 +874,53 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- Features -->
     <section class="features" id="features">
       <p class="tagline">What Rpire Does</p>
-      <h2>Schedule. Draft. Triage.</h2>
+      <h2>Reads. Schedules. Drafts. Sorts. You approve.</h2>
       <div class="feature-grid">
         <div class="feature-card neon-border glass-3d">
           <div class="icon">▣</div>
-          <h3>Schedule</h3>
-          <p>Auto-detect meeting requests. 3 time options. You approve.</p>
+          <h3>Reads</h3>
+          <p>Scans your inbox automatically. No manual pasting.</p>
         </div>
         <div class="feature-card neon-border glass-3d">
           <div class="icon">◈</div>
-          <h3>Draft</h3>
-          <p>AI writes replies in your voice. Review, edit, send.</p>
+          <h3>Schedules</h3>
+          <p>Detects meeting requests and suggests 3 time slots.</p>
         </div>
         <div class="feature-card neon-border glass-3d">
           <div class="icon">◉</div>
-          <h3>Triage</h3>
-          <p>Urgent. Basic. Scam. Sorted automatically.</p>
+          <h3>Drafts</h3>
+          <p>AI writes replies in your voice. You review and send.</p>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
       <p class="tagline">How It Works</p>
       <h2>Connect. AI Works. You Approve.</h2>
       <div class="steps">
         <div class="step glass-3d">
           <div class="num">1</div>
-          <h3>Connect</h3>
-          <p>Link your Gmail and Calendar once.</p>
+          <h3>Connect Gmail</h3>
+          <p>One click. Secure. You're in control.</p>
         </div>
         <div class="step glass-3d">
           <div class="num">2</div>
-          <h3>AI Works</h3>
-          <p>Rpire reads, analyzes, and drafts behind the scenes.</p>
+          <h3>AI Reads Your Emails</h3>
+          <p>Schedules meetings, drafts replies, sorts your inbox.</p>
         </div>
         <div class="step glass-3d">
           <div class="num">3</div>
           <h3>You Approve</h3>
-          <p>Review suggestions, click confirm, get back to work.</p>
+          <p>Review everything before it goes out.</p>
         </div>
       </div>
     </section>
 
-    <!-- GLASS FEATURES -->
+    <!-- Glass Features -->
     <section class="glass-features" id="more">
       <p class="tagline">Beyond The Basics</p>
       <h2>Summarize. Learn. Protect.</h2>
@@ -1029,28 +943,7 @@
       </div>
     </section>
 
-    <!-- CODE SNIPPET -->
-    <section class="code-section" id="code">
-      <p class="tagline">Works With Any Stack</p>
-      <h2>Connect in Minutes.</h2>
-      <p class="sub">Paste this code to connect Gmail and Calendar.</p>
-      <div class="code-block glass-3d neon-border">
-        <code>
-          <span class="comment">&lt;!-- Connect Gmail --&gt;</span><br>
-          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/connect"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Gmail</span><span class="tag">&lt;/button&gt;</span><br>
-          <span class="tag">&lt;/form&gt;</span><br><br>
-          <span class="comment">&lt;!-- Calendar integration --&gt;</span><br>
-          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/calendar"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
-          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Calendar</span><span class="tag">&lt;/button&gt;</span><br>
-          <span class="tag">&lt;/form&gt;</span>
-        </code>
-      </div>
-    </section>
-
-    <!-- TESTIMONIAL (Honest) -->
+    <!-- Testimonial -->
     <section class="testimonial">
       <blockquote>
         “I built Rpire to solve my own email chaos. Now I'm sharing it with the world.”
@@ -1058,15 +951,13 @@
       <div class="author">— <strong>Maithili Rade</strong>, Founder</div>
     </section>
 
-    <!-- PRICING (FULL FEATURES + CUSTOM + HANDWRITING QUOTES) -->
+    <!-- Pricing -->
     <section class="pricing" id="pricing">
       <p class="tagline">Pricing</p>
       <h2>Start Free. Upgrade When Ready.</h2>
       <p class="sub">50 free credits. No commitment.</p>
       <div class="pricing-grid">
-
-        <!-- FREE -->
-        <div class="pricing-card free glass-3d neon-border">
+        <div class="pricing-card free glass-3d">
           <div class="plan-name">Free</div>
           <div class="plan-price">$0 <span>/ month</span></div>
           <div class="plan-description">For individuals getting started</div>
@@ -1078,11 +969,9 @@
             <li>$0.10/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Get Started</a>
-          <div class="handwriting-quote">~ start small, dream big ~</div>
         </div>
 
-        <!-- PRO (Most Popular) -->
-        <div class="pricing-card popular glass-3d neon-border">
+        <div class="pricing-card popular glass-3d">
           <div class="popular-badge">Most Popular</div>
           <div class="plan-name">Pro</div>
           <div class="plan-price">$20 <span>/ month</span></div>
@@ -1097,11 +986,9 @@
             <li>$0.05/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Upgrade to Pro</a>
-          <div class="handwriting-quote">~ time is the only currency that matters ~</div>
         </div>
 
-        <!-- TEAM -->
-        <div class="pricing-card team glass-3d neon-border">
+        <div class="pricing-card team glass-3d">
           <div class="plan-name">Team</div>
           <div class="plan-price">$50 <span>/ month</span></div>
           <div class="plan-description">For teams and organizations</div>
@@ -1116,11 +1003,9 @@
             <li>$0.03/extra credit</li>
           </ul>
           <a href="signup.html" class="btn-primary">Contact Sales</a>
-          <div class="handwriting-quote">~ together we achieve more ~</div>
         </div>
 
-        <!-- CUSTOM -->
-        <div class="pricing-card custom glass-3d neon-border">
+        <div class="pricing-card custom glass-3d">
           <div class="plan-name">Custom</div>
           <div class="plan-price">Custom</div>
           <div class="plan-description">For enterprises with specific needs</div>
@@ -1135,9 +1020,7 @@
             <li>Custom per-credit pricing</li>
           </ul>
           <a href="mailto:sales@rpire.com" class="btn-primary">Contact Sales</a>
-          <div class="handwriting-quote">~ build what matters, your way ~</div>
         </div>
-
       </div>
     </section>
 
@@ -1160,7 +1043,7 @@
 
   </div>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-links">
