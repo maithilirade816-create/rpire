@@ -47,70 +47,17 @@
       white-space: nowrap;
       user-select: none;
     }
-    .bg-handwriting .sparkle.s1 {
-      top: 8%;
-      left: 2%;
-      font-size: 36px;
-      animation-duration: 28s;
-      opacity: 0.6;
-    }
-    .bg-handwriting .sparkle.s2 {
-      bottom: 12%;
-      right: 2%;
-      font-size: 30px;
-      animation-duration: 32s;
-      animation-delay: 6s;
-      opacity: 0.5;
-    }
-    .bg-handwriting .sparkle.s3 {
-      top: 45%;
-      left: 1%;
-      font-size: 24px;
-      animation-duration: 26s;
-      animation-delay: 12s;
-      opacity: 0.4;
-    }
-    .bg-handwriting .sparkle.s4 {
-      top: 30%;
-      right: 1%;
-      font-size: 32px;
-      animation-duration: 30s;
-      animation-delay: 3s;
-      opacity: 0.5;
-    }
-    .bg-handwriting .sparkle.s5 {
-      bottom: 30%;
-      left: 6%;
-      font-size: 22px;
-      animation-duration: 34s;
-      animation-delay: 9s;
-      opacity: 0.3;
-    }
-    .bg-handwriting .sparkle.s6 {
-      top: 70%;
-      right: 4%;
-      font-size: 26px;
-      animation-duration: 29s;
-      animation-delay: 15s;
-      opacity: 0.4;
-    }
+    .bg-handwriting .sparkle.s1 { top: 8%; left: 2%; font-size: 36px; animation-duration: 28s; opacity: 0.6; }
+    .bg-handwriting .sparkle.s2 { bottom: 12%; right: 2%; font-size: 30px; animation-duration: 32s; animation-delay: 6s; opacity: 0.5; }
+    .bg-handwriting .sparkle.s3 { top: 45%; left: 1%; font-size: 24px; animation-duration: 26s; animation-delay: 12s; opacity: 0.4; }
+    .bg-handwriting .sparkle.s4 { top: 30%; right: 1%; font-size: 32px; animation-duration: 30s; animation-delay: 3s; opacity: 0.5; }
+    .bg-handwriting .sparkle.s5 { bottom: 30%; left: 6%; font-size: 22px; animation-duration: 34s; animation-delay: 9s; opacity: 0.3; }
+    .bg-handwriting .sparkle.s6 { top: 70%; right: 4%; font-size: 26px; animation-duration: 29s; animation-delay: 15s; opacity: 0.4; }
     @keyframes sparkleFloat {
-      0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-        opacity: 0.3;
-      }
-      33% {
-        transform: translate(20px, -30px) scale(1.05) rotate(2deg);
-        opacity: 0.6;
-      }
-      66% {
-        transform: translate(-20px, 20px) scale(0.95) rotate(-2deg);
-        opacity: 0.4;
-      }
-      100% {
-        transform: translate(10px, -10px) scale(1.02) rotate(1deg);
-        opacity: 0.5;
-      }
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.3; }
+      33% { transform: translate(20px, -30px) scale(1.05) rotate(2deg); opacity: 0.6; }
+      66% { transform: translate(-20px, 20px) scale(0.95) rotate(-2deg); opacity: 0.4; }
+      100% { transform: translate(10px, -10px) scale(1.02) rotate(1deg); opacity: 0.5; }
     }
 
     /* --- 3D Glass Effect --- */
@@ -153,17 +100,9 @@
       pointer-events: none;
       z-index: 0;
     }
-    .side-decor.left {
-      left: 12px;
-    }
-    .side-decor.right {
-      right: 12px;
-    }
-    @media (max-width: 768px) {
-      .side-decor {
-        display: none;
-      }
-    }
+    .side-decor.left { left: 12px; }
+    .side-decor.right { right: 12px; }
+    @media (max-width: 768px) { .side-decor { display: none; } }
 
     /* --- Header --- */
     header {
@@ -175,16 +114,8 @@
       position: relative;
       z-index: 1;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #ffffff;
-    }
-    .logo span {
-      color: #2ea043;
-      text-shadow: 0 0 40px rgba(46, 160, 67, 0.2);
-    }
+    .logo { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; color: #ffffff; }
+    .logo span { color: #2ea043; text-shadow: 0 0 40px rgba(46, 160, 67, 0.2); }
     .nav {
       display: flex;
       align-items: center;
@@ -198,9 +129,7 @@
       font-weight: 500;
       transition: color 0.15s;
     }
-    .nav a:hover {
-      color: #ffffff;
-    }
+    .nav a:hover { color: #ffffff; }
     .nav .btn-outline {
       padding: 8px 20px;
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -262,9 +191,7 @@
       margin: 0 auto 16px;
       color: #ffffff;
     }
-    .hero h1 span {
-      color: #2ea043;
-    }
+    .hero h1 span { color: #2ea043; }
     .hero p {
       font-size: 18px;
       color: #8b949e;
@@ -335,18 +262,9 @@
       animation: pulse 2s infinite;
       box-shadow: 0 0 20px rgba(46, 160, 67, 0.2);
     }
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.4; }
-      100% { opacity: 1; }
-    }
-    .live-block .text {
-      color: #8b949e;
-      font-size: 14px;
-    }
-    .live-block .text strong {
-      color: #e6edf3;
-    }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    .live-block .text { color: #8b949e; font-size: 14px; }
+    .live-block .text strong { color: #e6edf3; }
 
     /* --- Features --- */
     .features {
@@ -391,23 +309,9 @@
       transform: translateY(-4px);
       box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
-    .feature-card .icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-      color: #2ea043;
-    }
-    .feature-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #ffffff;
-      letter-spacing: -0.3px;
-    }
-    .feature-card p {
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+    .feature-card .icon { font-size: 28px; margin-bottom: 12px; color: #2ea043; }
+    .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #ffffff; letter-spacing: -0.3px; }
+    .feature-card p { color: #8b949e; font-size: 14px; line-height: 1.5; }
 
     /* --- How It Works --- */
     .how-it-works {
@@ -465,17 +369,8 @@
       font-size: 18px;
       border: 1px solid rgba(46, 160, 67, 0.1);
     }
-    .step h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #ffffff;
-    }
-    .step p {
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+    .step h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; color: #ffffff; }
+    .step p { color: #8b949e; font-size: 14px; line-height: 1.5; }
 
     /* --- Glass Features --- */
     .glass-features {
@@ -521,23 +416,63 @@
       transform: translateY(-4px);
       box-shadow: 0 0 40px rgba(46, 160, 67, 0.03);
     }
-    .glass-card .icon {
-      font-size: 24px;
-      margin-bottom: 12px;
-      color: #2ea043;
+    .glass-card .icon { font-size: 24px; margin-bottom: 12px; color: #2ea043; }
+    .glass-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #ffffff; letter-spacing: -0.3px; }
+    .glass-card p { color: #8b949e; font-size: 14px; line-height: 1.5; }
+
+    /* --- Code Snippet --- */
+    .code-section {
+      padding: 64px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      position: relative;
+      z-index: 1;
     }
-    .glass-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #ffffff;
-      letter-spacing: -0.3px;
-    }
-    .glass-card p {
-      color: #8b949e;
+    .code-section .tagline {
+      text-align: center;
       font-size: 14px;
-      line-height: 1.5;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
     }
+    .code-section h2 {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .code-section .sub {
+      text-align: center;
+      color: #8b949e;
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .code-block {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      padding: 28px;
+      overflow-x: auto;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    }
+    .code-block code {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 14px;
+      color: #e6edf3;
+      line-height: 1.8;
+    }
+    .code-block .comment { color: #8b949e; }
+    .code-block .tag { color: #ff7b72; }
+    .code-block .attr { color: #d2a8ff; }
+    .code-block .string { color: #a5d6ff; }
+    .code-block .keyword { color: #ff7b72; }
+    .code-block .button-code { color: #3fb950; }
 
     /* --- Testimonial --- */
     .testimonial {
@@ -562,9 +497,7 @@
       font-size: 16px;
       font-style: normal;
     }
-    .testimonial .author strong {
-      color: #ffffff;
-    }
+    .testimonial .author strong { color: #ffffff; }
 
     /* --- Pricing --- */
     .pricing {
@@ -639,44 +572,18 @@
       margin-bottom: 16px;
       box-shadow: 0 0 30px rgba(46, 160, 67, 0.1);
     }
-    .pricing-card .plan-name {
-      font-size: 18px;
-      font-weight: 600;
-      color: #e6edf3;
-      margin-bottom: 4px;
-    }
-    .pricing-card .plan-price {
-      font-size: 36px;
-      font-weight: 700;
-      color: #ffffff;
-      margin: 8px 0;
-    }
-    .pricing-card .plan-price span {
-      font-size: 14px;
-      font-weight: 400;
-      color: #8b949e;
-    }
-    .pricing-card .plan-description {
-      color: #8b949e;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-    .pricing-card .plan-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 16px 0;
-      text-align: left;
-      flex-grow: 1;
-    }
+    .pricing-card .plan-name { font-size: 18px; font-weight: 600; color: #e6edf3; margin-bottom: 4px; }
+    .pricing-card .plan-price { font-size: 36px; font-weight: 700; color: #ffffff; margin: 8px 0; }
+    .pricing-card .plan-price span { font-size: 14px; font-weight: 400; color: #8b949e; }
+    .pricing-card .plan-description { color: #8b949e; font-size: 13px; margin-bottom: 12px; }
+    .pricing-card .plan-features { list-style: none; padding: 0; margin: 0 0 16px 0; text-align: left; flex-grow: 1; }
     .pricing-card .plan-features li {
       color: #e6edf3;
       font-size: 13px;
       padding: 5px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .pricing-card .plan-features li:last-child {
-      border-bottom: none;
-    }
+    .pricing-card .plan-features li:last-child { border-bottom: none; }
     .pricing-card .plan-features li:first-child {
       color: #2ea043;
       font-weight: 500;
@@ -684,13 +591,8 @@
       padding-bottom: 6px;
       margin-bottom: 4px;
     }
-    .pricing-card.custom .plan-features li:first-child {
-      color: #8b5cf6;
-    }
-    .pricing-card .plan-features li:first-child::before {
-      content: "▶ ";
-      font-size: 11px;
-    }
+    .pricing-card.custom .plan-features li:first-child { color: #8b5cf6; }
+    .pricing-card .plan-features li:first-child::before { content: "▶ "; font-size: 11px; }
     .pricing-card .btn-primary {
       display: inline-block;
       padding: 12px 24px;
@@ -712,19 +614,10 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(46, 160, 67, 0.15);
     }
-    .pricing-card.free .btn-primary {
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .pricing-card.free .btn-primary:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .pricing-card.custom .btn-primary {
-      background: #8b5cf6;
-    }
-    .pricing-card.custom .btn-primary:hover {
-      background: #7c3aed;
-      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
-    }
+    .pricing-card.free .btn-primary { background: rgba(255, 255, 255, 0.04); }
+    .pricing-card.free .btn-primary:hover { background: rgba(255, 255, 255, 0.08); }
+    .pricing-card.custom .btn-primary { background: #8b5cf6; }
+    .pricing-card.custom .btn-primary:hover { background: #7c3aed; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); }
 
     /* --- FAQ --- */
     .faq {
@@ -751,20 +644,9 @@
       border-radius: 12px;
       transition: all 0.3s ease;
     }
-    .faq-item:hover {
-      border-color: rgba(46, 160, 67, 0.05);
-    }
-    .faq-item h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #ffffff;
-      margin-bottom: 2px;
-    }
-    .faq-item p {
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+    .faq-item:hover { border-color: rgba(46, 160, 67, 0.05); }
+    .faq-item h3 { font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 2px; }
+    .faq-item p { color: #8b949e; font-size: 14px; line-height: 1.5; }
 
     /* --- Footer --- */
     footer {
@@ -783,49 +665,20 @@
       flex-wrap: wrap;
       margin-bottom: 16px;
     }
-    footer .footer-links a {
-      color: #8b949e;
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.15s;
-    }
-    footer .footer-links a:hover {
-      color: #ffffff;
-    }
+    footer .footer-links a { color: #8b949e; text-decoration: none; font-size: 14px; transition: color 0.15s; }
+    footer .footer-links a:hover { color: #ffffff; }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-      .hero p {
-        font-size: 16px;
-      }
-      .nav {
-        gap: 12px;
-      }
-      .nav a {
-        font-size: 13px;
-      }
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-      }
-      .feature-grid {
-        grid-template-columns: 1fr;
-        max-width: 350px;
-        margin: 0 auto;
-      }
-      .glass-grid {
-        grid-template-columns: 1fr;
-        max-width: 350px;
-        margin: 0 auto;
-      }
-      .steps {
-        grid-template-columns: 1fr;
-        max-width: 350px;
-        margin: 0 auto;
-      }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .nav { gap: 12px; }
+      .nav a { font-size: 13px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .feature-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+      .glass-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+      .steps { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+      .code-block code { font-size: 12px; }
     }
   </style>
 </head>
@@ -859,7 +712,7 @@
       </div>
     </header>
 
-    <!-- Hero (CLEAR) -->
+    <!-- Hero -->
     <section class="hero">
       <div class="badge">Beta · Save 2 hours a day</div>
       <h1>AI that reads your emails, <span>schedules meetings, drafts replies, and sorts your inbox</span> — automatically.</h1>
@@ -940,6 +793,27 @@
           <h3>Protect</h3>
           <p>Your data, your control. Privacy first.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- Code Snippet -->
+    <section class="code-section" id="code">
+      <p class="tagline">Works With Any Stack</p>
+      <h2>Connect in Minutes.</h2>
+      <p class="sub">Paste this code to connect Gmail and Calendar.</p>
+      <div class="code-block glass-3d neon-border">
+        <code>
+          <span class="comment">&lt;!-- Connect Gmail --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/connect"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Gmail</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span><br><br>
+          <span class="comment">&lt;!-- Calendar integration --&gt;</span><br>
+          <span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="string">"https://api.rpire.com/calendar"</span> <span class="attr">method</span>=<span class="string">"POST"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"access_key"</span> <span class="attr">value</span>=<span class="string">"YOUR_KEY"</span><span class="tag">&gt;</span><br>
+          &nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="string">"submit"</span><span class="tag">&gt;</span><span class="button-code">Connect Calendar</span><span class="tag">&lt;/button&gt;</span><br>
+          <span class="tag">&lt;/form&gt;</span>
+        </code>
       </div>
     </section>
 
