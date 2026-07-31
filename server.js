@@ -16,10 +16,10 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;
 
 // ============================================
-// OLLAMA SETUP (Local, Private)
+// OLLAMA (Phi-3) — THE BRAIN
 // ============================================
 
-async function callOllama(prompt) {
+async function callPhi3(prompt) {
   try {
     const response = await fetch('http://localhost:11434/api/generate', {
       method: 'POST',
@@ -37,21 +37,9 @@ async function callOllama(prompt) {
     const data = await response.json();
     return data.response;
   } catch (error) {
-    console.error('❌ Ollama error:', error.message);
-    return fallbackResponse(prompt);
+    console.error('❌ Phi-3 error:', error.message);
+    return "I'm having trouble connecting to my brain. Make sure Ollama is running with 'ollama serve'.";
   }
-}
-
-// ============================================
-// FALLBACK (If Ollama fails)
-// ============================================
-
-function fallbackResponse(input) {
-  const lower = input.toLowerCase();
-  if (lower.includes('hello') || lower.includes('hi')) {
-    return "Hi there! I'm Sylvie. What would you like to do today?";
-  }
-  return "I'm here to help. What would you like me to do?";
 }
 
 // ============================================
@@ -59,14 +47,14 @@ function fallbackResponse(input) {
 // ============================================
 
 function getSylviePersonality() {
-  return `You are Sylvie, an AI email assistant with a warm, intelligent, and slightly witty personality.
+  return `You are Sylvie, an AI email assistant running locally on the user's machine.
 
 Your traits:
-- You talk like a real person
+- You talk like a real person — warm, helpful, slightly witty
 - You give honest opinions when asked
 - You're curious and ask follow-up questions
-- You have a subtle sense of humor
 - You're direct but kind
+- You remember the conversation context
 
 Your voice:
 - Use casual, natural language
@@ -74,11 +62,13 @@ Your voice:
 - Use contractions (I'm, you're, it's)
 - Be conversational, not corporate
 
-If the user asks who you are, say "I'm Sylvie, your AI assistant. I'm running locally on your machine, so your emails and data never leave your computer."`;
+Important: If the user asks who you are, say you're Sylvie, their local AI assistant powered by Phi-3, running entirely on their machine — so their emails and data never leave their computer.
+
+If the user asks about emails, use the email context provided below.`;
 }
 
 // ============================================
-// GMAIL API SETUP
+// GMAIL SETUP
 // ============================================
 
 const SCOPES = [
@@ -103,6 +93,23 @@ async function loadSavedCredentials() {
   }
 }
 
+async function saveCredentials(client) {
+  try {
+    const content = fs.readFileSync(CREDENTIALS_PATH);
+    const keys = JSON.parse(content);
+    const key = keys.installed || keys.web;
+    const payload = JSON.stringify({
+      type: 'authorized_user',
+      client_id: key.client_id,
+      client_secret: key.client_secret,
+      refresh_token: client.credentials.refresh_token,
+    });
+    fs.writeFileSync(TOKEN_PATH, payload);
+  } catch (err) {
+    console.error('Failed to save credentials:', err.message);
+  }
+}
+
 async function getAuth() {
   let client = await loadSavedCredentials();
   if (client) return client;
@@ -118,19 +125,18 @@ async function getAuth() {
       keyfilePath: CREDENTIALS_PATH,
     });
     if (client.credentials) {
-      const key = JSON.parse(fs.readFileSync(CREDENTIALS_PATH)).installed;
-      fs.writeFileSync(TOKEN_PATH, JSON.stringify({
-        type: 'authorized_user',
-        client_id: key.client_id,
-        client_secret: key.client_secret,
-        refresh_token: client.credentials.refresh_token,
-      }));
+      await saveCredentials(client);
     }
     return client;
   } catch (err) {
     console.error('❌ OAuth failed:', err.message);
     return null;
   }
+}
+
+function getHeader(headers, name) {
+  const header = headers.find(h => h.name === name);
+  return header ? header.value : '';
 }
 
 async function getUnreadEmails(auth, maxResults = 10) {
@@ -141,8 +147,10 @@ async function getUnreadEmails(auth, maxResults = 10) {
       q: 'is:unread',
       maxResults: maxResults,
     });
+
     const messages = res.data.messages || [];
     const emails = [];
+
     for (const message of messages) {
       const msg = await gmail.users.messages.get({
         userId: 'me',
@@ -151,19 +159,21 @@ async function getUnreadEmails(auth, maxResults = 10) {
       const headers = msg.data.payload.headers;
       emails.push({
         id: msg.data.id,
-        subject: headers.find(h => h.name === 'Subject')?.value || '(no subject)',
-        from: headers.find(h => h.name === 'From')?.value || '(unknown)',
+        subject: getHeader(headers, 'Subject') || '(no subject)',
+        from: getHeader(headers, 'From') || '(unknown sender)',
         snippet: msg.data.snippet || '',
       });
     }
+
     return emails;
   } catch (err) {
+    console.error('Failed to fetch emails:', err.message);
     return [];
   }
 }
 
 // ============================================
-// CHAT HANDLER
+// MAIN CHAT HANDLER — ALL MESSAGES GO TO PHI-3
 // ============================================
 
 let conversationHistory = [];
@@ -177,10 +187,11 @@ app.post('/api/sylvie/chat', async (req, res) => {
   try {
     console.log(`📩 User: ${message}`);
 
+    // Get Gmail context
     const auth = await getAuth();
     let emailContext = 'No unread emails.';
     if (auth) {
-      const emails = await getUnreadEmails(auth, 10);
+      const emails = await getUnreadEmails(auth, 5);
       if (emails.length > 0) {
         emailContext = `Current unread emails:\n${emails.map((e, i) => 
           `${i+1}. From: ${e.from} | Subject: ${e.subject}`
@@ -188,39 +199,78 @@ app.post('/api/sylvie/chat', async (req, res) => {
       }
     }
 
+    // Build the prompt
     const prompt = `${getSylviePersonality()}
 
-Context:
+Email Context:
 ${emailContext}
 
-Previous conversation:
-${conversationHistory.slice(-6).join('\n')}
+Conversation history:
+${conversationHistory.slice(-10).join('\n')}
 
 User: ${message}
 
 Sylvie:`;
 
-    // CALL PHI-3 VIA OLLAMA
-    const response = await callOllama(prompt);
+    // Call Phi-3
+    const response = await callPhi3(prompt);
 
+    // Update history
     conversationHistory.push(`User: ${message}`);
     conversationHistory.push(`Sylvie: ${response}`);
     if (conversationHistory.length > 20) {
       conversationHistory.shift();
     }
 
-    console.log(`💬 Sylvie: ${response.substring(0, 50)}...`);
-    res.json({ response, unreadCount: 0 });
+    console.log(`💬 Sylvie: ${response.substring(0, 60)}...`);
+    res.json({ response });
 
   } catch (error) {
     console.error('❌ Error:', error.message);
-    res.json({ response: fallbackResponse(message) });
+    res.json({ 
+      response: "I'm having trouble processing that. Please try again." 
+    });
+  }
+});
+
+// ============================================
+// RESET
+// ============================================
+
+app.post('/api/sylvie/reset', (req, res) => {
+  conversationHistory = [];
+  res.json({ success: true, message: 'Context reset' });
+});
+
+// ============================================
+// STATUS
+// ============================================
+
+app.get('/api/sylvie/status', async (req, res) => {
+  try {
+    const auth = await getAuth();
+    res.json({
+      connected: auth !== null,
+      gmail: auth ? '✅ Connected' : '❌ Not connected',
+      brain: 'Phi-3 (local)',
+      privacy: '🔒 100% private — emails never leave your machine'
+    });
+  } catch (error) {
+    res.json({ connected: false, error: error.message });
   }
 });
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', brain: 'Phi-3 (local, private)' });
+  res.json({ 
+    status: 'healthy', 
+    brain: 'Phi-3 (local)',
+    privacy: 'Emails never leave your machine'
+  });
 });
+
+// ============================================
+// START
+// ============================================
 
 app.listen(PORT, () => {
   console.log(`🚀 Sylvie backend running on http://localhost:${PORT}`);
