@@ -38,7 +38,7 @@ async function callPhi3(prompt) {
     return data.response;
   } catch (error) {
     console.error('❌ Phi-3 error:', error.message);
-    return "I'm having trouble connecting to my brain. Make sure Ollama is running with 'ollama serve'.";
+    return "I'm having trouble connecting to my brain. Make sure Ollama is running.";
   }
 }
 
@@ -173,7 +173,7 @@ async function getUnreadEmails(auth, maxResults = 10) {
 }
 
 // ============================================
-// MAIN CHAT HANDLER — ALL MESSAGES GO TO PHI-3
+// MAIN CHAT HANDLER
 // ============================================
 
 let conversationHistory = [];
@@ -187,7 +187,6 @@ app.post('/api/sylvie/chat', async (req, res) => {
   try {
     console.log(`📩 User: ${message}`);
 
-    // Get Gmail context
     const auth = await getAuth();
     let emailContext = 'No unread emails.';
     if (auth) {
@@ -199,7 +198,6 @@ app.post('/api/sylvie/chat', async (req, res) => {
       }
     }
 
-    // Build the prompt
     const prompt = `${getSylviePersonality()}
 
 Email Context:
@@ -212,10 +210,8 @@ User: ${message}
 
 Sylvie:`;
 
-    // Call Phi-3
     const response = await callPhi3(prompt);
 
-    // Update history
     conversationHistory.push(`User: ${message}`);
     conversationHistory.push(`Sylvie: ${response}`);
     if (conversationHistory.length > 20) {
@@ -233,18 +229,10 @@ Sylvie:`;
   }
 });
 
-// ============================================
-// RESET
-// ============================================
-
 app.post('/api/sylvie/reset', (req, res) => {
   conversationHistory = [];
   res.json({ success: true, message: 'Context reset' });
 });
-
-// ============================================
-// STATUS
-// ============================================
 
 app.get('/api/sylvie/status', async (req, res) => {
   try {
@@ -267,10 +255,6 @@ app.get('/health', (req, res) => {
     privacy: 'Emails never leave your machine'
   });
 });
-
-// ============================================
-// START
-// ============================================
 
 app.listen(PORT, () => {
   console.log(`🚀 Sylvie backend running on http://localhost:${PORT}`);
