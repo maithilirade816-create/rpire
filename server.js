@@ -1,4 +1,4 @@
-// server.js — Sylvie with Phi-3 (Local, Private)
+// server.js — Sylvie with Llama 3.2 3B (Local, Private, Fast)
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -16,28 +16,30 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;
 
 // ============================================
-// OLLAMA (Phi-3) — THE BRAIN
+// OLLAMA (Llama 3.2 3B) — THE BRAIN
 // ============================================
 
-async function callPhi3(prompt) {
+async function callLlama(prompt) {
   try {
     const response = await fetch('http://localhost:11434/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'phi3',
+        model: 'llama3.2:3b',
         prompt: prompt,
         stream: false,
         options: {
           temperature: 0.7,
           top_p: 0.9,
+          num_predict: 200,        // Limits response length (faster)
+          num_ctx: 2048,           // Context window (speeds up processing)
         }
       })
     });
     const data = await response.json();
     return data.response;
   } catch (error) {
-    console.error('❌ Phi-3 error:', error.message);
+    console.error('❌ Llama error:', error.message);
     return "I'm having trouble connecting to my brain. Make sure Ollama is running.";
   }
 }
@@ -62,7 +64,7 @@ Your voice:
 - Use contractions (I'm, you're, it's)
 - Be conversational, not corporate
 
-Important: If the user asks who you are, say you're Sylvie, their local AI assistant powered by Phi-3, running entirely on their machine — so their emails and data never leave their computer.
+Important: If the user asks who you are, say you're Sylvie, their local AI assistant powered by Llama 3.2 3B, running entirely on their machine — so their emails and data never leave their computer.
 
 If the user asks about emails, use the email context provided below.`;
 }
@@ -210,7 +212,7 @@ User: ${message}
 
 Sylvie:`;
 
-    const response = await callPhi3(prompt);
+    const response = await callLlama(prompt);
 
     conversationHistory.push(`User: ${message}`);
     conversationHistory.push(`Sylvie: ${response}`);
@@ -240,7 +242,7 @@ app.get('/api/sylvie/status', async (req, res) => {
     res.json({
       connected: auth !== null,
       gmail: auth ? '✅ Connected' : '❌ Not connected',
-      brain: 'Phi-3 (local)',
+      brain: 'Llama 3.2 3B (local)',
       privacy: '🔒 100% private — emails never leave your machine'
     });
   } catch (error) {
@@ -251,13 +253,13 @@ app.get('/api/sylvie/status', async (req, res) => {
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
-    brain: 'Phi-3 (local)',
+    brain: 'Llama 3.2 3B (local)',
     privacy: 'Emails never leave your machine'
   });
 });
 
 app.listen(PORT, () => {
   console.log(`🚀 Sylvie backend running on http://localhost:${PORT}`);
-  console.log(`🧠 Brain: Phi-3 (local, 100% private)`);
+  console.log(`🧠 Brain: Llama 3.2 3B (local, 100% private)`);
   console.log(`🔒 Emails NEVER leave your machine`);
 });
