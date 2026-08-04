@@ -23,7 +23,6 @@
       overflow-x: hidden;
     }
 
-    /* --- Background Quotes (Blurred) --- */
     .bg-quotes {
       position: fixed;
       top: 0;
@@ -160,7 +159,6 @@
       background: rgba(46, 160, 67, 0.15);
     }
 
-    /* --- Password Requirements --- */
     .requirements {
       margin: -6px 0 12px 0;
       padding: 10px 14px;
@@ -198,7 +196,6 @@
       color: #2ea043;
     }
 
-    /* --- Password Strength --- */
     .strength-bar {
       display: flex;
       gap: 6px;
@@ -222,7 +219,6 @@
     }
     .strength-text strong { font-weight: 500; }
 
-    /* --- Buttons --- */
     .btn-primary {
       width: 100%;
       padding: 14px;
@@ -286,14 +282,6 @@
       background: rgba(255, 255, 255, 0.04);
       border-color: rgba(255, 255, 255, 0.12);
     }
-    .social-btn.google:hover {
-      border-color: rgba(66, 133, 244, 0.3);
-      background: rgba(66, 133, 244, 0.04);
-    }
-    .social-btn.github:hover {
-      border-color: rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-    }
 
     .footer-text {
       text-align: center;
@@ -349,7 +337,6 @@
 </head>
 <body>
 
-  <!-- Background Quotes -->
   <div class="bg-quotes">
     <div class="quote q1">⏳ Time is money</div>
     <div class="quote q2">⏳ Save 2 hours a day</div>
@@ -364,6 +351,9 @@
     <p class="sub">Start saving 2 hours a day — in 2 minutes</p>
 
     <form id="signupForm" novalidate>
+      <label>Username</label>
+      <input type="text" id="usernameInput" placeholder="Choose a username" required minlength="3" />
+
       <label>Email</label>
       <input type="email" id="emailInput" placeholder="you@example.com" required />
 
@@ -373,7 +363,6 @@
         <span class="password-suggest" onclick="suggestPassword()">Suggest</span>
       </div>
 
-      <!-- Strength Bar -->
       <div class="strength-bar" id="strengthBar">
         <span class="segment" data-index="0"></span>
         <span class="segment" data-index="1"></span>
@@ -382,7 +371,6 @@
       </div>
       <div class="strength-text" id="strengthText">Use 8+ characters with a mix of letters, numbers &amp; symbols</div>
 
-      <!-- Requirements -->
       <div class="requirements" id="requirements">
         <div class="req" data-rule="length"><span class="check">✕</span> At least 8 characters</div>
         <div class="req" data-rule="lowercase"><span class="check">✕</span> At least one lowercase letter</div>
@@ -401,14 +389,12 @@
         <span class="line"></span>
       </div>
 
-      <!-- Google Login -->
-      <button class="social-btn google" type="button" onclick="handleGoogleLogin()">
+      <button class="social-btn" type="button" onclick="alert('Google Sign-In coming soon')">
         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#EA4335" d="M10.54 28.59A14.5 14.5 0 0 1 9.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 0 0 0 24c0 3.77.87 7.35 2.56 10.56l7.98-5.97z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.97C6.51 42.62 14.62 48 24 48z"/></svg>
         Sign up with Google
       </button>
 
-      <!-- GitHub Login -->
-      <button class="social-btn github" type="button" onclick="handleGithubLogin()">
+      <button class="social-btn" type="button" onclick="alert('GitHub Sign-In coming soon')">
         <svg width="18" height="18" viewBox="0 0 16 16" fill="#e6edf3"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         Sign up with GitHub
       </button>
@@ -432,7 +418,6 @@
     const passwordInput = document.getElementById('passwordInput');
     const signupBtn = document.getElementById('signupBtn');
 
-    // --- Password Rules ---
     const rules = {
       length: { regex: /.{8,}/, label: 'At least 8 characters' },
       lowercase: { regex: /[a-z]/, label: 'At least one lowercase letter' },
@@ -455,7 +440,6 @@
     function updateUI(password) {
       const { results, score } = checkPassword(password);
 
-      // Update requirements
       document.querySelectorAll('.req').forEach(el => {
         const rule = el.dataset.rule;
         const check = el.querySelector('.check');
@@ -468,7 +452,6 @@
         }
       });
 
-      // Update strength bar
       const segments = document.querySelectorAll('.strength-bar .segment');
       const strengthMap = { 0: 'weak', 1: 'weak', 2: 'medium', 3: 'medium', 4: 'strong', 5: 'strong' };
       const level = Math.min(score, 5);
@@ -479,7 +462,6 @@
         }
       });
 
-      // Update strength text
       const strengthText = document.getElementById('strengthText');
       if (password.length === 0) {
         strengthText.innerHTML = 'Use 8+ characters with a mix of letters, numbers &amp; symbols';
@@ -502,18 +484,19 @@
       updateUI(this.value);
     });
 
-    // --- Suggest Strong Password ---
+    // --- Suggest Password (SHOWS the password) ---
     function suggestPassword() {
       const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
       let password = '';
-      // Ensure at least one of each type
       password += 'aA1!';
       for (let i = 0; i < 8; i++) {
         password += chars[Math.floor(Math.random() * chars.length)];
       }
-      // Shuffle
       password = password.split('').sort(() => Math.random() - 0.5).join('');
-      passwordInput.value = password;
+      
+      document.getElementById('passwordInput').value = password;
+      alert(`✅ Suggested password: ${password}\n\nPlease copy it and save it somewhere safe.`);
+      
       updateUI(password);
     }
 
@@ -521,13 +504,20 @@
     document.getElementById('signupForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
+      const username = document.getElementById('usernameInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
       const password = passwordInput.value;
       const errorMsg = document.getElementById('errorMsg');
 
-      if (!email || !password) {
+      if (!username || !email || !password) {
         errorMsg.style.display = 'block';
         errorMsg.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      if (username.length < 3) {
+        errorMsg.style.display = 'block';
+        errorMsg.textContent = 'Username must be at least 3 characters.';
         return;
       }
 
@@ -540,22 +530,18 @@
 
       errorMsg.style.display = 'none';
 
-      // Store user
-      localStorage.setItem('rpire_user', JSON.stringify({ email, password }));
+      localStorage.setItem('rpire_user', JSON.stringify({ username, email, password }));
       alert('✅ Account created! Welcome to Rpire.');
       window.location.href = 'dashboard.html';
     });
 
-    // --- Google Login ---
+    // --- Google & GitHub Login ---
     function handleGoogleLogin() {
       alert('🔐 Google Sign-In will be available soon.');
-      // In production, this would redirect to Google OAuth
     }
 
-    // --- GitHub Login ---
     function handleGithubLogin() {
       alert('🐙 GitHub Sign-In will be available soon.');
-      // In production, this would redirect to GitHub OAuth
     }
 
     // Initial state
