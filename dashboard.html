@@ -15,7 +15,6 @@
       overflow-x: hidden;
     }
 
-    /* --- Background --- */
     .bg-ice {
       position: fixed;
       top: 0;
@@ -142,7 +141,7 @@
     .main-header .credit-badge { font-size: 13px; color: #8892a8; background: rgba(255,255,255,0.03); padding: 4px 16px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.04); }
     .main-header .credit-badge strong { color: #2ea043; }
 
-    /* --- Stats --- */
+    /* --- Stats Row --- */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -173,11 +172,11 @@
       margin-bottom: 16px;
       display: flex;
       flex-direction: column;
-      min-height: 340px;
+      min-height: 320px;
       transition: all 0.3s;
     }
     .chat-container:focus-within { border-color: rgba(108,63,155,0.15); }
-    .chat-messages { flex: 1; overflow-y: auto; margin-bottom: 16px; min-height: 160px; max-height: 340px; }
+    .chat-messages { flex: 1; overflow-y: auto; margin-bottom: 16px; min-height: 140px; max-height: 320px; }
     .chat-messages .message { display: flex; gap: 10px; margin-bottom: 14px; animation: fadeIn 0.25s ease; }
     .chat-messages .message .avatar {
       width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;
@@ -196,10 +195,6 @@
       border: 1px solid rgba(255,255,255,0.03);
     }
     .chat-messages .message .bubble.user-bubble { background: rgba(46,160,67,0.05); border: 1px solid rgba(46,160,67,0.06); }
-    .chat-messages .message .bubble .option {
-      display: block; padding: 6px 12px; margin: 4px 0; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 13px; color: #8892a8;
-    }
-    .chat-messages .message .bubble .option:hover { background: rgba(108,63,155,0.08); border-color: rgba(108,63,155,0.15); color: #e6edf3; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
     .chat-input-row {
@@ -215,90 +210,80 @@
     }
     .chat-input-row .btn-send:hover { box-shadow: 0 0 40px rgba(108,63,155,0.15); transform: translateY(-1px); }
 
-    .quick-chips {
-      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;
-    }
-    .quick-chips .chip {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 4px 14px; border-radius: 40px; font-size: 12px; color: #8892a8; cursor: pointer; transition: all 0.2s;
-    }
-    .quick-chips .chip:hover { background: rgba(108,63,155,0.08); border-color: rgba(108,63,155,0.1); color: #e6edf3; }
-
-    /* --- Inbox Triage --- */
-    .inbox-triage {
+    /* --- Activity Log --- */
+    .activity-log {
       background: rgba(18,22,32,0.6);
       backdrop-filter: blur(16px);
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.04);
       padding: 16px 20px;
-      margin-top: 12px;
+      margin-bottom: 12px;
     }
-    .inbox-triage .header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+    .activity-log .header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
     }
-    .inbox-triage .header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-    .inbox-triage .tabs {
-      display: flex; gap: 8px; margin-bottom: 12px;
+    .activity-log .header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+    .activity-item {
+      display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 13px; color: #8892a8; border-bottom: 1px solid rgba(255,255,255,0.02);
     }
-    .inbox-triage .tabs .tab {
-      padding: 4px 14px; border-radius: 40px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; background: rgba(255,255,255,0.03); color: #8892a8; border: 1px solid rgba(255,255,255,0.04);
-    }
-    .inbox-triage .tabs .tab.active { background: rgba(108,63,155,0.15); color: #b388d4; border-color: rgba(108,63,155,0.1); }
-    .inbox-triage .tabs .tab:hover { background: rgba(255,255,255,0.06); }
-    .inbox-item {
-      display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 13px; color: #8892a8;
-    }
-    .inbox-item:last-child { border-bottom: none; }
-    .inbox-item .from { color: #e6edf3; font-weight: 500; }
-    .inbox-item .subject { color: #8892a8; }
-    .inbox-item .tag {
-      padding: 2px 10px; border-radius: 30px; font-size: 10px; font-weight: 600; text-transform: uppercase; margin-left: auto;
-    }
-    .inbox-item .tag.urgent { background: rgba(248,113,113,0.1); color: #f87171; border: 1px solid rgba(248,113,113,0.1); }
-    .inbox-item .tag.basic { background: rgba(255,255,255,0.04); color: #8892a8; border: 1px solid rgba(255,255,255,0.04); }
-    .inbox-item .tag.draft { background: rgba(46,160,67,0.1); color: #2ea043; border: 1px solid rgba(46,160,67,0.1); }
-    .inbox-item .tag.scam { background: rgba(234,179,8,0.1); color: #eab308; border: 1px solid rgba(234,179,8,0.1); }
-    .inbox-item .btn-approve {
-      background: rgba(46,160,67,0.1); color: #2ea043; border: 1px solid rgba(46,160,67,0.1); padding: 2px 12px; border-radius: 30px; font-size: 11px; cursor: pointer; transition: all 0.2s;
-    }
-    .inbox-item .btn-approve:hover { background: rgba(46,160,67,0.2); }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-item .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .activity-item .dot.green { background: #2ea043; }
+    .activity-item .dot.purple { background: #6c3f9b; }
+    .activity-item .dot.blue { background: #3b82f6; }
+    .activity-item .dot.yellow { background: #eab308; }
+    .activity-item .time { margin-left: auto; font-size: 11px; color: #484f58; }
 
-    /* --- Meeting Approval --- */
-    .meeting-approval {
-      background: rgba(18,22,32,0.6);
-      backdrop-filter: blur(16px);
-      border-radius: 14px;
-      border: 1px solid rgba(108,63,155,0.1);
-      padding: 16px 20px;
-      margin-top: 12px;
-    }
-    .meeting-approval .header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
-    }
-    .meeting-approval .header h3 { font-size: 13px; color: #b388d4; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-    .meeting-approval .time-options {
-      display: flex; gap: 8px; flex-wrap: wrap;
-    }
-    .meeting-approval .time-options .option {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 8px 16px; border-radius: 10px; font-size: 13px; color: #e6edf3; cursor: pointer; transition: all 0.2s;
-    }
-    .meeting-approval .time-options .option:hover { background: rgba(108,63,155,0.1); border-color: rgba(108,63,155,0.2); }
+    /* --- Settings Section --- */
+    .section { display: none; animation: fadeIn 0.3s ease; }
+    .section.active { display: block; }
 
-    /* --- Settings --- */
-    .settings {
+    .settings-card {
       background: rgba(18,22,32,0.6);
       backdrop-filter: blur(16px);
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.04);
-      padding: 20px;
-      margin-top: 12px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
     }
-    .settings h3 { font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 12px; }
-    .settings .row {
+    .settings-card h3 { font-size: 16px; font-weight: 600; color: #ffffff; margin-bottom: 12px; }
+    .settings-card .row {
       display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .settings .row:last-child { border-bottom: none; }
-    .settings .row .label { color: #8892a8; font-size: 14px; }
-    .settings .row select { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 8px; color: #e6edf3; font-size: 13px; }
+    .settings-card .row:last-child { border-bottom: none; }
+    .settings-card .row .label { color: #8892a8; font-size: 14px; }
+    .settings-card .row .value { color: #e6edf3; font-size: 14px; }
+    .settings-card .row select, .settings-card .row input {
+      background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 8px; color: #e6edf3; font-size: 13px; font-family: inherit;
+    }
+    .settings-card .row select:focus, .settings-card .row input:focus { outline: none; border-color: rgba(108,63,155,0.2); }
+
+    /* --- Custom Rules --- */
+    .rule-item {
+      display: flex; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    .rule-item:last-child { border-bottom: none; }
+    .rule-item .rule-text { color: #e6edf3; font-size: 13px; }
+    .rule-item .rule-text span { color: #8892a8; }
+    .rule-item .toggle {
+      width: 36px; height: 20px; background: rgba(255,255,255,0.06); border-radius: 40px; cursor: pointer; transition: all 0.25s; position: relative; flex-shrink: 0;
+    }
+    .rule-item .toggle.active { background: rgba(46,160,67,0.3); border: 1px solid rgba(46,160,67,0.2); }
+    .rule-item .toggle .thumb {
+      width: 14px; height: 14px; background: #8892a8; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: all 0.25s;
+    }
+    .rule-item .toggle.active .thumb { background: #2ea043; transform: translateX(16px); }
+
+    /* --- Model Selection --- */
+    .model-option {
+      display: flex; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    .model-option:last-child { border-bottom: none; }
+    .model-option .radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #8892a8; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+    .model-option .radio.active { border-color: #2ea043; }
+    .model-option .radio.active::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2ea043; }
+    .model-option .model-name { color: #e6edf3; font-size: 13px; }
+    .model-option .model-desc { color: #8892a8; font-size: 12px; margin-left: auto; }
 
     /* --- Responsive --- */
     @media (max-width: 820px) {
@@ -340,10 +325,10 @@
       </div>
     </div>
     <nav>
-      <a class="active" data-section="dashboard"><span>Home</span></a>
-      <a data-section="inbox"><span>Inbox</span></a>
-      <a data-section="meetings"><span>Meetings</span></a>
+      <a class="active" data-section="dashboard"><span>Dashboard</span></a>
       <a data-section="settings"><span>Settings</span></a>
+      <a data-section="rules"><span>Rules</span></a>
+      <a data-section="models"><span>Models</span></a>
     </nav>
     <div class="bottom">
       <a class="logout" onclick="logout()"><span>Logout</span></a>
@@ -360,10 +345,10 @@
     </div>
 
     <!-- STATS -->
-    <div class="stats-row" id="statsRow">
-      <div class="stat-card"><div class="number" id="meetingCount">0</div><div class="label">Meetings</div></div>
-      <div class="stat-card"><div class="number" id="emailCount">0</div><div class="label">Emails</div></div>
+    <div class="stats-row">
       <div class="stat-card"><div class="number" id="draftCount">0</div><div class="label">Drafts</div></div>
+      <div class="stat-card"><div class="number" id="sortedCount">0</div><div class="label">Sorted</div></div>
+      <div class="stat-card"><div class="number" id="meetingCount">0</div><div class="label">Meetings</div></div>
       <div class="stat-card"><div class="number urgent" id="urgentCount">0</div><div class="label">Urgent</div></div>
     </div>
 
@@ -380,7 +365,7 @@ I can:
 - Triage your inbox
 - Show urgent emails
 
-Just tell me what you need.</div>
+What do you want me to do?</div>
         </div>
       </div>
 
@@ -388,65 +373,131 @@ Just tell me what you need.</div>
         <input id="sylvieInput" type="text" placeholder="Ask Sylvie anything..." />
         <button class="btn-send" onclick="sendToSylvie()">Send</button>
       </div>
-      <div class="quick-chips">
-        <span class="chip" onclick="setCommand('Show my inbox')">Inbox</span>
-        <span class="chip" onclick="setCommand('Show urgent emails')">Urgent</span>
-        <span class="chip" onclick="setCommand('Schedule a meeting')">Schedule</span>
-        <span class="chip" onclick="setCommand('Draft a reply')">Draft</span>
-      </div>
     </div>
 
-    <!-- INBOX TRIAGE -->
-    <div class="inbox-triage" id="inboxTriage">
+    <!-- ACTIVITY LOG -->
+    <div class="activity-log">
       <div class="header">
-        <h3>Inbox Triage</h3>
+        <h3>Activity Log</h3>
+        <span style="font-size: 11px; color: #484f58;">Today</span>
       </div>
-      <div class="tabs">
-        <span class="tab active" data-filter="all">All</span>
-        <span class="tab" data-filter="urgent">Urgent</span>
-        <span class="tab" data-filter="basic">Basic</span>
-        <span class="tab" data-filter="draft">Drafts</span>
-      </div>
-      <div id="inboxList">
-        <div class="inbox-item"><span class="from">Loading...</span></div>
-      </div>
-    </div>
-
-    <!-- MEETING APPROVAL -->
-    <div class="meeting-approval" id="meetingApproval">
-      <div class="header">
-        <h3>📅 Meeting Requests</h3>
-      </div>
-      <div id="meetingList">
-        <div class="inbox-item"><span class="from">No pending requests</span></div>
+      <div id="activityList">
+        <div class="activity-item"><span class="dot green"></span><span><strong>Sylvie</strong> drafted 3 emails</span><span class="time">2 min ago</span></div>
+        <div class="activity-item"><span class="dot blue"></span><span><strong>Sylvie</strong> sorted 12 emails</span><span class="time">15 min ago</span></div>
+        <div class="activity-item"><span class="dot purple"></span><span><strong>Sylvie</strong> scheduled 1 meeting</span><span class="time">1 hour ago</span></div>
+        <div class="activity-item"><span class="dot yellow"></span><span><strong>You</strong> changed model to Phi-3</span><span class="time">2 hours ago</span></div>
       </div>
     </div>
 
     <!-- SETTINGS -->
-    <div id="section-settings" class="settings" style="display:none;">
-      <h3>Settings</h3>
-      <div class="row">
-        <span class="label">Meeting App</span>
-        <select id="meetingApp">
-          <option value="google_meet">Google Meet</option>
-          <option value="zoom">Zoom</option>
-          <option value="teams">Microsoft Teams</option>
-        </select>
+    <div id="section-settings" class="section">
+      <div class="settings-card">
+        <h3>Auto-Draft Settings</h3>
+        <div class="row">
+          <span class="label">Draft work emails only</span>
+          <span class="value"><span class="toggle active" onclick="toggleSetting(this)"><span class="thumb"></span></span></span>
+        </div>
+        <div class="row">
+          <span class="label">Draft newsletters</span>
+          <span class="value"><span class="toggle" onclick="toggleSetting(this)"><span class="thumb"></span></span></span>
+        </div>
+        <div class="row">
+          <span class="label">Draft personal emails</span>
+          <span class="value"><span class="toggle active" onclick="toggleSetting(this)"><span class="thumb"></span></span></span>
+        </div>
+        <div class="row">
+          <span class="label">Draft promotional emails</span>
+          <span class="value"><span class="toggle" onclick="toggleSetting(this)"><span class="thumb"></span></span></span>
+        </div>
       </div>
-      <div class="row">
-        <span class="label">Auto-approve meetings</span>
-        <select id="autoApprove">
-          <option value="false">No — ask me first</option>
-          <option value="true">Yes — auto-schedule</option>
-        </select>
+
+      <div class="settings-card">
+        <h3>Credits & Usage</h3>
+        <div class="row">
+          <span class="label">Used this month</span>
+          <span class="value">42 credits</span>
+        </div>
+        <div class="row">
+          <span class="label">Remaining</span>
+          <span class="value" style="color:#2ea043;">8 credits</span>
+        </div>
+        <div class="row">
+          <span class="label">Reset date</span>
+          <span class="value">Aug 1, 2026</span>
+        </div>
       </div>
-      <div class="row">
-        <span class="label">Default meeting duration</span>
-        <select id="meetingDuration">
-          <option value="30">30 min</option>
-          <option value="45">45 min</option>
-          <option value="60">60 min</option>
-        </select>
+
+      <div class="settings-card">
+        <h3>Sylvie's Personality</h3>
+        <div class="row">
+          <span class="label">Tone</span>
+          <span class="value">
+            <select>
+              <option>Professional</option>
+              <option selected>Casual</option>
+              <option>Witty</option>
+              <option>Direct</option>
+            </select>
+          </span>
+        </div>
+        <div class="row">
+          <span class="label">Chat with Sylvie</span>
+          <span class="value"><button onclick="alert('Open chat with Sylvie')" style="background:rgba(108,63,155,0.1); color:#b388d4; border:1px solid rgba(108,63,155,0.1); padding:4px 16px; border-radius:30px; cursor:pointer;">Open</button></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM RULES -->
+    <div id="section-rules" class="section">
+      <div class="settings-card">
+        <h3>Custom Rules</h3>
+        <div class="rule-item">
+          <span class="rule-text">Always draft replies to <span>boss</span></span>
+          <span class="toggle active" onclick="toggleSetting(this)"><span class="thumb"></span></span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-text">Never draft replies to <span>newsletters</span></span>
+          <span class="toggle active" onclick="toggleSetting(this)"><span class="thumb"></span></span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-text">Always schedule meetings with <span>clients</span></span>
+          <span class="toggle" onclick="toggleSetting(this)"><span class="thumb"></span></span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-text">Flag emails with <span>"urgent"</span> as high priority</span>
+          <span class="toggle active" onclick="toggleSetting(this)"><span class="thumb"></span></span>
+        </div>
+        <div class="rule-item" style="border-bottom: none;">
+          <span class="rule-text">Draft replies only during <span>9 AM — 6 PM</span></span>
+          <span class="toggle" onclick="toggleSetting(this)"><span class="thumb"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODEL SELECTION -->
+    <div id="section-models" class="section">
+      <div class="settings-card">
+        <h3>Model Selection</h3>
+        <div class="model-option">
+          <span class="radio active" onclick="selectModel(this)"></span>
+          <span class="model-name">Phi-3</span>
+          <span class="model-desc">Balanced • 2.2 GB • Good quality</span>
+        </div>
+        <div class="model-option">
+          <span class="radio" onclick="selectModel(this)"></span>
+          <span class="model-name">Mistral 7B</span>
+          <span class="model-desc">Smartest • 4.5 GB • Slower</span>
+        </div>
+        <div class="model-option">
+          <span class="radio" onclick="selectModel(this)"></span>
+          <span class="model-name">TinyLlama</span>
+          <span class="model-desc">Fastest • 637 MB • Basic quality</span>
+        </div>
+        <div class="model-option" style="border-bottom: none;">
+          <span class="radio" onclick="selectModel(this)"></span>
+          <span class="model-name">Llama 3.2 1B</span>
+          <span class="model-desc">Fast • 1.3 GB • Fair quality</span>
+        </div>
       </div>
     </div>
 
@@ -458,7 +509,7 @@ Just tell me what you need.</div>
     // ============================================
     const user = JSON.parse(localStorage.getItem('rpire_user'));
     if (!user) { window.location.href = 'index.html'; }
-    const name = user.email.split('@')[0];
+    const name = user.username || user.email.split('@')[0];
     document.getElementById('sidebarName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
 
     const hour = new Date().getHours();
@@ -470,10 +521,22 @@ Just tell me what you need.</div>
     function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
 
     // ============================================
+    // NAVIGATION
+    // ============================================
+    document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const section = this.dataset.section;
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.getElementById(`section-${section}`).classList.add('active');
+        document.querySelectorAll('.sidebar nav a[data-section]').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // ============================================
     // CHAT
     // ============================================
-    function setCommand(text) { document.getElementById('sylvieInput').value = text; sendToSylvie(); }
-
     function addMessage(avatar, name, text, isUser = false) {
       const container = document.getElementById('chatMessages');
       const div = document.createElement('div');
@@ -512,7 +575,6 @@ Just tell me what you need.</div>
         const data = await res.json();
         document.getElementById('typingIndicator')?.remove();
         addMessage('sylvie', 'Sylvie', data.response);
-        loadDashboard();
       } catch (error) {
         document.getElementById('typingIndicator')?.remove();
         addMessage('sylvie', 'Sylvie', 'Error connecting to backend.');
@@ -525,62 +587,29 @@ Just tell me what you need.</div>
     });
 
     // ============================================
-    // LOAD REAL DATA
+    // SETTINGS
+    // ============================================
+    function toggleSetting(el) {
+      el.classList.toggle('active');
+    }
+
+    function selectModel(el) {
+      document.querySelectorAll('.radio').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // ============================================
+    // LOAD DASHBOARD DATA
     // ============================================
     async function loadDashboard() {
       try {
         const res = await fetch('http://localhost:3001/api/sylvie/inbox');
         const data = await res.json();
         
-        document.getElementById('emailCount').textContent = data.total || 0;
-        document.getElementById('urgentCount').textContent = data.urgent || 0;
         document.getElementById('draftCount').textContent = data.drafts || 0;
+        document.getElementById('sortedCount').textContent = data.total || 0;
         document.getElementById('meetingCount').textContent = data.meetings || 0;
-
-        // Inbox list
-        const list = document.getElementById('inboxList');
-        list.innerHTML = '';
-        if (data.emails && data.emails.length > 0) {
-          data.emails.slice(0, 5).forEach(email => {
-            const item = document.createElement('div');
-            item.className = 'inbox-item';
-            const tag = email.classification || 'basic';
-            const tagClass = tag === 'urgent' ? 'urgent' : tag === 'draft' ? 'draft' : tag === 'scam' ? 'scam' : 'basic';
-            const displayTag = tag === 'draft' ? 'Draft Ready' : tag.charAt(0).toUpperCase() + tag.slice(1);
-            item.innerHTML = `
-              <span class="from">${email.from.split('<')[0].trim()}</span>
-              <span class="subject">${email.subject}</span>
-              ${tag === 'draft' ? `<button class="btn-approve" onclick="approveDraft('${email.id}')">Approve</button>` : ''}
-              <span class="tag ${tagClass}">${displayTag}</span>
-            `;
-            list.appendChild(item);
-          });
-        } else {
-          list.innerHTML = '<div class="inbox-item"><span class="from">No emails</span></div>';
-        }
-
-        // Meeting requests
-        const meetingList = document.getElementById('meetingList');
-        meetingList.innerHTML = '';
-        if (data.meetings && data.meetings.length > 0) {
-          data.meetings.forEach(m => {
-            const item = document.createElement('div');
-            item.className = 'inbox-item';
-            item.innerHTML = `
-              <span class="from">${m.from}</span>
-              <span class="subject">${m.subject}</span>
-              <div class="time-options">
-                ${m.slots ? m.slots.map(s => `<span class="option" onclick="selectMeetingTime('${m.id}', '${s}')">${s}</span>`).join('') : ''}
-              </div>
-              <span class="tag urgent">Pending</span>
-            `;
-            meetingList.appendChild(item);
-          });
-        } else {
-          meetingList.innerHTML = '<div class="inbox-item"><span class="from">No pending requests</span></div>';
-        }
-
-        // Credits
+        document.getElementById('urgentCount').textContent = data.urgent || 0;
         document.getElementById('creditDisplay').textContent = data.credits || 50;
 
       } catch (error) {
@@ -588,33 +617,7 @@ Just tell me what you need.</div>
       }
     }
 
-    function approveDraft(emailId) {
-      alert('Draft approved! (Send to Gmail)');
-    }
-
-    function selectMeetingTime(requestId, time) {
-      alert(`Meeting confirmed for ${time}`);
-    }
-
-    // ============================================
-    // NAVIGATION
-    // ============================================
-    document.querySelectorAll('.sidebar nav a[data-section]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = this.dataset.section;
-        document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
-        document.getElementById(`section-${section}`).style.display = 'block';
-        document.querySelectorAll('.sidebar nav a[data-section]').forEach(el => el.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // ============================================
-    // INIT
-    // ============================================
     loadDashboard();
-    // Refresh every 30 seconds
     setInterval(loadDashboard, 30000);
   </script>
 </body>
