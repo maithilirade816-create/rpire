@@ -56,7 +56,7 @@
     }
 
     .sidebar {
-      width: 190px;
+      width: 200px;
       background: rgba(18, 22, 32, 0.85);
       backdrop-filter: blur(24px);
       border-right: 1px solid rgba(255,255,255,0.04);
@@ -119,13 +119,13 @@
     .sidebar .bottom .logout:hover { background: rgba(248,113,113,0.06); }
 
     .main {
-      margin-left: 190px;
+      margin-left: 200px;
       flex: 1;
       padding: 28px 36px 36px 36px;
-      max-width: calc(100% - 190px);
+      max-width: calc(100% - 200px);
       position: relative;
       z-index: 1;
-      max-width: 780px;
+      max-width: 820px;
     }
 
     .main-header {
@@ -139,7 +139,6 @@
     .main-header .credit-badge { font-size: 13px; color: #8892a8; background: rgba(255,255,255,0.03); padding: 4px 16px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.04); }
     .main-header .credit-badge strong { color: #2ea043; }
 
-    /* --- Stats Row --- */
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -160,14 +159,13 @@
     .stat-card .label { font-size: 11px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px; }
     .stat-card .number.urgent { background: linear-gradient(135deg, #f87171, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    /* --- Live Activity Feed --- */
     .live-feed {
       background: rgba(18,22,32,0.6);
       backdrop-filter: blur(16px);
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.04);
       padding: 16px 20px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .live-feed .header {
       display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
@@ -188,8 +186,7 @@
     .feed-item .dot.yellow { background: #eab308; }
     .feed-item .time { margin-left: auto; font-size: 11px; color: #484f58; }
 
-    /* --- Draft Approval Queue --- */
-    .draft-queue {
+    .chat-container {
       background: rgba(18,22,32,0.6);
       backdrop-filter: blur(16px);
       border-radius: 14px;
@@ -197,42 +194,107 @@
       padding: 16px 20px;
       margin-bottom: 12px;
     }
-    .draft-queue .header {
+    .chat-container .chat-header {
       display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
     }
-    .draft-queue .header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-    .draft-item {
+    .chat-container .chat-header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+    .chat-messages {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      padding-right: 4px;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: rgba(108,63,155,0.3); border-radius: 4px; }
+    .chat-message {
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .chat-message.user {
+      background: rgba(108,63,155,0.2);
+      border: 1px solid rgba(108,63,155,0.1);
+      color: #e6edf3;
+      margin-left: 20px;
+    }
+    .chat-message.sylvie {
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.04);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      transition: all 0.25s;
+      color: #e6edf3;
+      margin-right: 20px;
     }
-    .draft-item:hover { border-color: rgba(108,63,155,0.1); }
-    .draft-item .draft-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
+    .chat-message.sylvie .draft-card {
+      margin-top: 8px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 12px;
     }
-    .draft-item .draft-header .from { font-weight: 500; color: #e6edf3; font-size: 14px; }
-    .draft-item .draft-header .subject { color: #8892a8; font-size: 13px; }
-    .draft-item .draft-body {
-      color: #8892a8; font-size: 13px; margin: 6px 0 10px 0; padding: 8px 12px; background: rgba(0,0,0,0.2); border-radius: 8px; line-height: 1.6;
+    .chat-message.sylvie .draft-card .draft-body {
+      color: #8892a8;
+      font-size: 13px;
+      margin: 6px 0 10px 0;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      line-height: 1.6;
     }
-    .draft-item .draft-actions {
-      display: flex; gap: 8px;
+    .chat-message.sylvie .draft-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
     }
-    .draft-item .draft-actions .btn-approve {
-      background: rgba(46,160,67,0.1); color: #2ea043; border: 1px solid rgba(46,160,67,0.1); padding: 4px 16px; border-radius: 30px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    .chat-message.sylvie .draft-actions button {
+      padding: 4px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
     }
-    .draft-item .draft-actions .btn-approve:hover { background: rgba(46,160,67,0.2); }
-    .draft-item .draft-actions .btn-edit {
-      background: rgba(255,255,255,0.04); color: #8892a8; border: 1px solid rgba(255,255,255,0.04); padding: 4px 16px; border-radius: 30px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    .chat-message.sylvie .draft-actions .btn-approve {
+      background: rgba(46,160,67,0.1);
+      color: #2ea043;
+      border: 1px solid rgba(46,160,67,0.1);
     }
-    .draft-item .draft-actions .btn-edit:hover { background: rgba(255,255,255,0.08); }
-    .draft-item .draft-actions .btn-delete {
-      background: rgba(248,113,113,0.05); color: #f87171; border: 1px solid rgba(248,113,113,0.05); padding: 4px 16px; border-radius: 30px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    .chat-message.sylvie .draft-actions .btn-approve:hover { background: rgba(46,160,67,0.2); }
+    .chat-message.sylvie .draft-actions .btn-edit {
+      background: rgba(255,255,255,0.04);
+      color: #8892a8;
+      border: 1px solid rgba(255,255,255,0.04);
     }
-    .draft-item .draft-actions .btn-delete:hover { background: rgba(248,113,113,0.1); }
+    .chat-message.sylvie .draft-actions .btn-edit:hover { background: rgba(255,255,255,0.08); }
+
+    .chat-input-area {
+      display: flex;
+      gap: 10px;
+    }
+    .chat-input-area input {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 30px;
+      padding: 10px 16px;
+      color: #e6edf3;
+      font-size: 14px;
+      outline: none;
+    }
+    .chat-input-area input::placeholder { color: #484f58; }
+    .chat-input-area input:focus { border-color: #6c3f9b; }
+    .chat-input-area button {
+      background: #6c3f9b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-input-area button:hover { background: #5a3180; }
 
     .section { display: none; animation: fadeIn 0.3s ease; }
     .section.active { display: block; }
@@ -251,125 +313,104 @@
     }
     @media (max-width: 480px) {
       .stats-row { grid-template-columns: 1fr 1fr; }
-      .draft-item .draft-actions { flex-wrap: wrap; }
+      .chat-input-area { flex-direction: column; }
+      .chat-input-area button { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ICE BACKGROUND -->
   <div class="bg-ice">
     <div class="ice ice1"></div>
     <div class="ice ice2"></div>
   </div>
 
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="logo">Rp<span>.</span></div>
     <div class="user">
-      <div class="avatar">M</div>
+      <div class="avatar" id="avatarLetter">M</div>
       <div>
         <div class="name" id="sidebarName">Maithili</div>
         <div class="plan">Free Plan</div>
       </div>
     </div>
     <nav>
-      <a class="active" data-section="dashboard"><span>Dashboard</span></a>
-      <a data-section="drafts"><span>Drafts</span></a>
+      <a class="active" data-section="dashboard" onclick="switchSection('dashboard')"><span>Dashboard</span></a>
+      <a data-section="settings" onclick="switchSection('settings')"><span>Settings</span></a>
     </nav>
     <div class="bottom">
       <a class="logout" onclick="logout()"><span>Logout</span></a>
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
-    <!-- HEADER -->
     <div class="main-header">
       <h1 id="greetingText">Good morning, <span>Maithili</span></h1>
       <span class="credit-badge"><strong id="creditDisplay">50</strong> credits remaining</span>
     </div>
 
-    <!-- STATS -->
-    <div class="stats-row">
-      <div class="stat-card"><div class="number" id="draftCount">0</div><div class="label">Drafts</div></div>
-      <div class="stat-card"><div class="number" id="sortedCount">0</div><div class="label">Sorted</div></div>
-      <div class="stat-card"><div class="number" id="meetingCount">0</div><div class="label">Meetings</div></div>
-      <div class="stat-card"><div class="number urgent" id="urgentCount">0</div><div class="label">Urgent</div></div>
+    <div id="dashboardSection" class="section active">
+      <div class="stats-row">
+        <div class="stat-card"><div class="number" id="draftCount">0</div><div class="label">Drafts</div></div>
+        <div class="stat-card"><div class="number" id="sortedCount">0</div><div class="label">Sorted</div></div>
+        <div class="stat-card"><div class="number" id="meetingCount">0</div><div class="label">Meetings</div></div>
+        <div class="stat-card"><div class="number urgent" id="urgentCount">0</div><div class="label">Urgent</div></div>
+      </div>
+
+      <div class="live-feed">
+        <div class="header">
+          <h3>Live Activity Feed</h3>
+          <span class="live-dot"></span>
+        </div>
+        <div id="activityList"></div>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-header">
+          <h3>💬 Chat with Sylvie</h3>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Ask Sylvie to draft an email..." />
+          <button onclick="sendChatMessage()">Send</button>
+        </div>
+      </div>
     </div>
 
-    <!-- LIVE ACTIVITY FEED -->
-    <div class="live-feed">
-      <div class="header">
-        <h3>Live Activity Feed</h3>
-        <span class="live-dot"></span>
-      </div>
-      <div id="activityList">
-        <div class="feed-item"><span class="dot green"></span><span><strong>Sylvie</strong> drafted reply to <strong>Sarah Johnson</strong></span><span class="time">2 min ago</span></div>
-        <div class="feed-item"><span class="dot blue"></span><span><strong>Sylvie</strong> sorted 12 emails</span><span class="time">15 min ago</span></div>
-        <div class="feed-item"><span class="dot purple"></span><span><strong>Sylvie</strong> scheduled meeting with <strong>Michael Chen</strong></span><span class="time">1 hour ago</span></div>
-        <div class="feed-item"><span class="dot yellow"></span><span><strong>Sylvie</strong> flagged 3 urgent emails</span><span class="time">2 hours ago</span></div>
-      </div>
-    </div>
-
-    <!-- DRAFT APPROVAL QUEUE -->
-    <div class="draft-queue" id="draftQueue">
-      <div class="header">
-        <h3>Draft Approval Queue</h3>
-        <span style="font-size: 11px; color: #484f58;">2 drafts waiting</span>
-      </div>
-
-      <!-- Draft 1 -->
-      <div class="draft-item">
-        <div class="draft-header">
-          <span class="from">Sarah Johnson</span>
-          <span class="subject">Q4 Budget Review</span>
+    <div id="settingsSection" class="section">
+      <h2 style="margin-bottom: 12px;">Settings</h2>
+      <div style="background: rgba(18,22,32,0.6); backdrop-filter: blur(16px); border-radius: 14px; border: 1px solid rgba(255,255,255,0.04); padding: 20px;">
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Display Name</label>
+          <input type="text" id="settingsName" value="Maithili" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;" />
         </div>
-        <div class="draft-body">
-          Hi Sarah,<br>
-          I've reviewed the Q4 budget numbers and everything looks good. I'll send the final version to the team by Friday.
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Email Signature</label>
+          <input type="text" id="settingsSignature" value="Best, Maithili" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;" />
         </div>
-        <div class="draft-actions">
-          <button class="btn-approve" onclick="approveDraft(this)">✅ Approve & Send</button>
-          <button class="btn-edit" onclick="editDraft(this)">✏️ Edit</button>
-          <button class="btn-delete" onclick="deleteDraft(this)">🗑️ Delete</button>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Default Reply Tone</label>
+          <select id="settingsTone" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;">
+            <option value="professional">Professional</option>
+            <option value="friendly">Friendly</option>
+            <option value="concise">Concise</option>
+            <option value="warm">Warm</option>
+          </select>
         </div>
-      </div>
-
-      <!-- Draft 2 -->
-      <div class="draft-item">
-        <div class="draft-header">
-          <span class="from">Michael Chen</span>
-          <span class="subject">Project Timeline Update</span>
-        </div>
-        <div class="draft-body">
-          Hi Michael,<br>
-          The project is on track for the Q4 deadline. I'll share the updated timeline by Friday.
-        </div>
-        <div class="draft-actions">
-          <button class="btn-approve" onclick="approveDraft(this)">✅ Approve & Send</button>
-          <button class="btn-edit" onclick="editDraft(this)">✏️ Edit</button>
-          <button class="btn-delete" onclick="deleteDraft(this)">🗑️ Delete</button>
-        </div>
-      </div>
-
-      <!-- Draft 3 (Empty State) -->
-      <div id="emptyDrafts" style="display: none; text-align: center; padding: 20px; color: #484f58; font-size: 14px;">
-        ✅ All caught up! No drafts waiting for approval.
+        <button onclick="saveSettings()" style="background: #6c3f9b; color: white; border: none; padding: 8px 24px; border-radius: 30px; font-weight: 500; cursor: pointer;">Save Settings</button>
       </div>
     </div>
 
   </div>
 
   <script>
-    // ============================================
-    // USER
-    // ============================================
+    // ─── USER ──────────────────────────────────────────────────────────────
     const user = JSON.parse(localStorage.getItem('rpire_user'));
     if (!user) { window.location.href = 'index.html'; }
     const name = user.username || user.email.split('@')[0];
     document.getElementById('sidebarName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+    document.getElementById('avatarLetter').textContent = name.charAt(0).toUpperCase();
 
     const hour = new Date().getHours();
     let greeting = 'Good evening';
@@ -379,95 +420,190 @@
 
     function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
 
-    // ============================================
-    // DRAFT ACTIONS
-    // ============================================
-    let draftCount = 2;
-
-    function approveDraft(btn) {
-      const item = btn.closest('.draft-item');
-      item.style.opacity = '0.5';
-      item.style.transition = 'opacity 0.3s';
-      item.querySelector('.draft-actions').innerHTML = '<span style="color: #2ea043;">✅ Sent!</span>';
-      draftCount--;
-      updateDraftCount();
-      addActivity('green', 'You approved a draft to <strong>' + item.querySelector('.from').textContent + '</strong>');
+    function switchSection(section) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(section + 'Section').classList.add('active');
+      document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+      document.querySelector(`.sidebar nav a[data-section="${section}"]`).classList.add('active');
     }
 
-    function editDraft(btn) {
-      const item = btn.closest('.draft-item');
-      const body = item.querySelector('.draft-body');
-      const newText = prompt('Edit the draft:', body.textContent.trim());
-      if (newText !== null) {
-        body.innerHTML = newText.replace(/\n/g, '<br>');
-        addActivity('yellow', 'You edited a draft to <strong>' + item.querySelector('.from').textContent + '</strong>');
-      }
-    }
-
-    function deleteDraft(btn) {
-      const item = btn.closest('.draft-item');
-      if (confirm('Delete this draft?')) {
-        item.style.opacity = '0';
-        item.style.transition = 'opacity 0.3s';
-        setTimeout(() => { item.style.display = 'none'; }, 300);
-        draftCount--;
-        updateDraftCount();
-        addActivity('red', 'You deleted a draft to <strong>' + item.querySelector('.from').textContent + '</strong>');
-      }
-    }
-
-    function updateDraftCount() {
-      const countEl = document.querySelector('.draft-queue .header span');
-      if (draftCount === 0) {
-        countEl.textContent = 'All caught up!';
-        document.getElementById('emptyDrafts').style.display = 'block';
-      } else {
-        countEl.textContent = draftCount + ' drafts waiting';
-      }
-    }
-
-    // ============================================
-    // ACTIVITY FEED
-    // ============================================
+    // ─── ACTIVITY FEED ────────────────────────────────────────────────────
     function addActivity(color, text) {
       const list = document.getElementById('activityList');
       const item = document.createElement('div');
       item.className = 'feed-item';
       const colors = { green: '#2ea043', blue: '#3b82f6', purple: '#6c3f9b', yellow: '#eab308', red: '#f87171' };
       const dotColor = colors[color] || '#8892a8';
-      item.innerHTML = `
-        <span class="dot" style="background: ${dotColor};"></span>
-        <span>${text}</span>
-        <span class="time">Just now</span>
-      `;
+      item.innerHTML = `<span class="dot" style="background: ${dotColor};"></span><span>${text}</span><span class="time">Just now</span>`;
       list.prepend(item);
-      // Keep list manageable
-      while (list.children.length > 10) {
-        list.removeChild(list.lastChild);
+      while (list.children.length > 10) list.removeChild(list.lastChild);
+    }
+
+    // ─── CHAT WITH SYLVIE ────────────────────────────────────────────────
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+
+    function addChatMessage(type, content, draftData = null) {
+      const div = document.createElement('div');
+      div.className = `chat-message ${type}`;
+
+      if (type === 'user') {
+        div.textContent = content;
+      } else if (type === 'sylvie') {
+        if (draftData) {
+          div.innerHTML = `
+            <div>${content}</div>
+            <div class="draft-card">
+              <div><strong>To:</strong> ${draftData.to}</div>
+              <div><strong>Subject:</strong> ${draftData.subject}</div>
+              <div class="draft-body">${draftData.body.replace(/\n/g, '<br>')}</div>
+              <div class="draft-actions">
+                <button class="btn-approve" onclick="sendDraft('${draftData.draftId}')">📤 Send Now</button>
+                <button class="btn-edit" onclick="editDraft('${draftData.draftId}')">✏️ Edit</button>
+              </div>
+            </div>
+          `;
+        } else {
+          div.textContent = content;
+        }
+      }
+
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendChatMessage() {
+      const message = chatInput.value.trim();
+      if (!message) return;
+      chatInput.value = '';
+
+      addChatMessage('user', message);
+      addChatMessage('sylvie', '✍️ Sylvie is thinking...');
+
+      try {
+        const response = await fetch('http://localhost:3001/api/sylvie/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+        const data = await response.json();
+
+        // Remove "thinking" message
+        chatMessages.removeChild(chatMessages.lastChild);
+
+        if (data.type === 'draft') {
+          addChatMessage('sylvie', '✅ Draft ready!', {
+            to: data.to,
+            subject: data.subject,
+            body: data.body,
+            draftId: data.draftId
+          });
+          addActivity('purple', 'Sylvie drafted an email to <strong>' + data.to + '</strong>');
+        } else {
+          addChatMessage('sylvie', data.response || '✅ Done.');
+        }
+
+        // Update stats
+        loadDashboard();
+
+      } catch (error) {
+        chatMessages.removeChild(chatMessages.lastChild);
+        addChatMessage('sylvie', '❌ Error: Could not reach Sylvie. Make sure the backend is running.');
+        console.error('Chat error:', error);
       }
     }
 
-    // ============================================
-    // LOAD DASHBOARD DATA
-    // ============================================
+    // ─── DRAFT ACTIONS ────────────────────────────────────────────────────
+    async function sendDraft(draftId) {
+      if (!confirm('Send this email now?')) return;
+      try {
+        const res = await fetch('http://localhost:3001/api/sylvie/draft/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draftId })
+        });
+        if (res.ok) {
+          alert('✅ Email sent successfully!');
+          addActivity('green', 'You sent an email via Sylvie');
+          // Remove the draft card from chat
+          const lastMsg = chatMessages.lastChild;
+          if (lastMsg && lastMsg.classList.contains('sylvie')) {
+            chatMessages.removeChild(lastMsg);
+          }
+          loadDashboard();
+        } else {
+          alert('❌ Failed to send. Check console.');
+        }
+      } catch (e) {
+        alert('❌ Network error.');
+        console.error(e);
+      }
+    }
+
+    function editDraft(draftId) {
+      // Find the draft body in the last Sylvie message
+      const lastMsg = chatMessages.lastChild;
+      if (!lastMsg || !lastMsg.classList.contains('sylvie')) {
+        alert('No draft to edit.');
+        return;
+      }
+      const draftBodyEl = lastMsg.querySelector('.draft-body');
+      if (!draftBodyEl) {
+        alert('No draft found.');
+        return;
+      }
+      const currentText = draftBodyEl.textContent.trim();
+      const newText = prompt('Edit your reply:', currentText);
+      if (newText === null) return;
+      draftBodyEl.innerHTML = newText.replace(/\n/g, '<br>');
+      addActivity('yellow', 'You edited a draft');
+    }
+
+    // ─── LOAD DASHBOARD ──────────────────────────────────────────────────
     async function loadDashboard() {
       try {
         const res = await fetch('http://localhost:3001/api/sylvie/inbox');
         const data = await res.json();
-        
         document.getElementById('draftCount').textContent = data.drafts || 0;
         document.getElementById('sortedCount').textContent = data.total || 0;
         document.getElementById('meetingCount').textContent = data.meetings || 0;
         document.getElementById('urgentCount').textContent = data.urgent || 0;
         document.getElementById('creditDisplay').textContent = data.credits || 50;
-
       } catch (error) {
         console.error('Dashboard load error:', error);
       }
     }
 
+    // ─── SETTINGS ─────────────────────────────────────────────────────────
+    const savedSettings = JSON.parse(localStorage.getItem('rpire_settings'));
+    if (savedSettings) {
+      document.getElementById('settingsName').value = savedSettings.name || 'Maithili';
+      document.getElementById('settingsSignature').value = savedSettings.signature || 'Best, Maithili';
+      document.getElementById('settingsTone').value = savedSettings.tone || 'professional';
+    }
+
+    function saveSettings() {
+      const name = document.getElementById('settingsName').value.trim() || 'Maithili';
+      const signature = document.getElementById('settingsSignature').value.trim() || 'Best, Maithili';
+      const tone = document.getElementById('settingsTone').value;
+      localStorage.setItem('rpire_settings', JSON.stringify({ name, signature, tone }));
+      document.getElementById('sidebarName').textContent = name;
+      document.getElementById('greetingText').innerHTML = greeting + ', <span>' + name + '</span>';
+      addActivity('blue', 'Settings updated successfully');
+      alert('✅ Settings saved!');
+    }
+
+    // ─── ENTER KEY ──────────────────────────────────────────────────────
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendChatMessage();
+    });
+
+    // ─── LOAD ─────────────────────────────────────────────────────────────
     loadDashboard();
     setInterval(loadDashboard, 30000);
+
+    // Add welcome message
+    addChatMessage('sylvie', '👋 Hey, I\'m Sylvie. Tell me what you need — I can draft emails, schedule meetings, or just chat.');
   </script>
 </body>
 </html>
