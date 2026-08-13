@@ -3,607 +3,527 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rpire — Dashboard</title>
+  <title>Sylvie — AI Assistant</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: #0b0f1a;
-      color: #e6edf3;
-      display: flex;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .bg-ice {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bg-ice .ice {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      animation: float 20s infinite alternate ease-in-out;
-      opacity: 0.06;
-    }
-    .bg-ice .ice1 {
-      width: 500px;
-      height: 500px;
-      top: -10%;
-      left: -10%;
-      background: radial-gradient(circle, #6c3f9b, transparent 70%);
-      animation-duration: 25s;
-    }
-    .bg-ice .ice2 {
-      width: 600px;
-      height: 600px;
-      bottom: -20%;
-      right: -10%;
-      background: radial-gradient(circle, #1a7a8a, transparent 70%);
-      animation-duration: 30s;
-      animation-delay: 5s;
-    }
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -40px) scale(1.1); }
-      100% { transform: translate(-30px, 30px) scale(0.9); }
-    }
-
-    .sidebar {
-      width: 200px;
-      background: rgba(18, 22, 32, 0.85);
-      backdrop-filter: blur(24px);
-      border-right: 1px solid rgba(255,255,255,0.04);
-      padding: 28px 16px;
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      z-index: 2;
-    }
-    .sidebar .logo { font-size: 22px; font-weight: 700; color: #ffffff; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 24px; }
-    .sidebar .logo span { background: linear-gradient(135deg, #6c3f9b, #2ea043); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .sidebar .user {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #faf0f5;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255,255,255,0.03);
+      justify-content: center;
+      min-height: 100vh;
+      color: #2d1b2e;
+      padding: 20px;
     }
-    .sidebar .user .avatar {
-      width: 34px;
-      height: 34px;
-      background: linear-gradient(135deg, #6c3f9b, #2ea043);
-      border-radius: 50%;
+
+    .dashboard {
+      width: 100%;
+      max-width: 740px;
+      background: rgba(255, 245, 248, 0.65);
+      backdrop-filter: blur(24px);
+      border-radius: 40px;
+      padding: 28px 32px 32px;
+      box-shadow: 0 20px 40px rgba(180, 120, 160, 0.08), 0 8px 16px rgba(180, 120, 160, 0.04);
+      border: 1px solid rgba(255, 220, 235, 0.5);
+      transition: all 0.2s;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .avatar {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #e8b4d8, #c9a0dc);
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 14px;
-      color: #fff;
+      font-size: 22px;
+      color: #4a2b4a;
+      box-shadow: 0 8px 16px rgba(200, 150, 200, 0.12);
     }
-    .sidebar .user .name { font-size: 14px; font-weight: 500; color: #e6edf3; }
-    .sidebar .user .plan { font-size: 11px; color: #2ea043; opacity: 0.8; }
-    .sidebar nav { flex: 1; }
-    .sidebar nav a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #8892a8;
-      font-weight: 500;
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #3d2a3d;
+    }
+    .header .status {
       font-size: 13px;
-      transition: all 0.25s;
-      margin-bottom: 2px;
+      color: #b5838d;
+      background: rgba(200, 150, 170, 0.1);
+      padding: 2px 14px;
+      border-radius: 40px;
+      border: 1px solid rgba(200, 150, 170, 0.1);
+    }
+    .header .settings-btn {
+      background: rgba(200, 150, 170, 0.08);
+      border: none;
+      border-radius: 40px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #5a3d5a;
       cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid rgba(200, 150, 170, 0.05);
     }
-    .sidebar nav a:hover { background: rgba(255,255,255,0.04); color: #e6edf3; }
-    .sidebar nav a.active { background: rgba(108,63,155,0.15); color: #b388d4; font-weight: 600; border: 1px solid rgba(108,63,155,0.1); }
-    .sidebar .bottom { border-top: 1px solid rgba(255,255,255,0.04); padding-top: 16px; margin-top: auto; }
-    .sidebar .bottom a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; text-decoration: none; color: #8892a8; font-weight: 500; font-size: 13px; transition: all 0.25s; cursor: pointer; }
-    .sidebar .bottom a:hover { background: rgba(255,255,255,0.04); color: #e6edf3; }
-    .sidebar .bottom .logout { color: #f87171; }
-    .sidebar .bottom .logout:hover { background: rgba(248,113,113,0.06); }
-
-    .main {
-      margin-left: 200px;
-      flex: 1;
-      padding: 28px 36px 36px 36px;
-      max-width: calc(100% - 200px);
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
+    .header .settings-btn:hover {
+      background: rgba(200, 150, 170, 0.15);
     }
 
-    .main-header {
+    .quick-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    .main-header h1 { font-size: 24px; font-weight: 600; color: #ffffff; }
-    .main-header h1 span { background: linear-gradient(135deg, #6c3f9b, #2ea043); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .main-header .credit-badge { font-size: 13px; color: #8892a8; background: rgba(255,255,255,0.03); padding: 4px 16px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.04); }
-    .main-header .credit-badge strong { color: #2ea043; }
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 18px;
     }
-    .stat-card {
-      background: rgba(18,22,32,0.6);
-      backdrop-filter: blur(16px);
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
-      text-align: center;
-      transition: all 0.25s;
+    .quick-actions button {
+      background: rgba(255, 240, 245, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 220, 235, 0.5);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #3d2a3d;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .stat-card:hover { border-color: rgba(108,63,155,0.2); transform: translateY(-2px); }
-    .stat-card .number { font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #b388d4, #2ea043); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-card .label { font-size: 11px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px; }
-    .stat-card .number.urgent { background: linear-gradient(135deg, #f87171, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .quick-actions button:hover {
+      background: #fff5f8;
+      box-shadow: 0 4px 12px rgba(180, 120, 160, 0.06);
+      transform: translateY(-1px);
+    }
 
-    .live-feed {
-      background: rgba(18,22,32,0.6);
-      backdrop-filter: blur(16px);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
-      padding: 16px 20px;
-      margin-bottom: 16px;
+    .chat {
+      background: rgba(255, 245, 248, 0.45);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 16px 18px;
+      min-height: 300px;
+      border: 1px solid rgba(255, 220, 235, 0.3);
+      display: flex;
+      flex-direction: column;
     }
-    .live-feed .header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
-    }
-    .live-feed .header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-    .live-feed .header .live-dot {
-      width: 8px; height: 8px; background: #2ea043; border-radius: 50%; animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-    .feed-item {
-      display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 13px; color: #8892a8; border-bottom: 1px solid rgba(255,255,255,0.02);
-    }
-    .feed-item:last-child { border-bottom: none; }
-    .feed-item .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .feed-item .dot.green { background: #2ea043; }
-    .feed-item .dot.purple { background: #6c3f9b; }
-    .feed-item .dot.blue { background: #3b82f6; }
-    .feed-item .dot.yellow { background: #eab308; }
-    .feed-item .time { margin-left: auto; font-size: 11px; color: #484f58; }
-
-    .chat-container {
-      background: rgba(18,22,32,0.6);
-      backdrop-filter: blur(16px);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.04);
-      padding: 16px 20px;
-      margin-bottom: 12px;
-    }
-    .chat-container .chat-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
-    }
-    .chat-container .chat-header h3 { font-size: 13px; color: #8892a8; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
-    .chat-messages {
-      max-height: 300px;
+    .messages {
+      flex: 1;
+      max-height: 340px;
       overflow-y: auto;
-      margin-bottom: 12px;
       padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
-    .chat-messages::-webkit-scrollbar-thumb { background: rgba(108,63,155,0.3); border-radius: 4px; }
-    .chat-message {
-      margin-bottom: 10px;
-      padding: 10px 14px;
-      border-radius: 12px;
+    .messages::-webkit-scrollbar { width: 4px; }
+    .messages::-webkit-scrollbar-thumb { background: #e8d0dc; border-radius: 4px; }
+
+    .message {
+      padding: 12px 16px;
+      border-radius: 18px;
+      max-width: 82%;
       font-size: 14px;
       line-height: 1.6;
+      animation: fadeIn 0.25s ease;
+      word-wrap: break-word;
     }
-    .chat-message.user {
-      background: rgba(108,63,155,0.2);
-      border: 1px solid rgba(108,63,155,0.1);
-      color: #e6edf3;
-      margin-left: 20px;
+    .message.user {
+      background: #3d2a3d;
+      color: #fcf0f5;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
     }
-    .chat-message.sylvie {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.04);
-      color: #e6edf3;
-      margin-right: 20px;
+    .message.sylvie {
+      background: #fffafc;
+      border: 1px solid rgba(255, 220, 235, 0.3);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(180, 120, 160, 0.04);
+      color: #2d1b2e;
     }
-    .chat-message.sylvie .draft-card {
+    .message.sylvie .draft-card {
       margin-top: 8px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 8px;
+      background: #fcf0f7;
       padding: 12px;
-    }
-    .chat-message.sylvie .draft-card .draft-body {
-      color: #8892a8;
+      border-radius: 12px;
+      border-left: 3px solid #c9a0dc;
       font-size: 13px;
-      margin: 6px 0 10px 0;
-      padding: 8px 12px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 8px;
-      line-height: 1.6;
+      color: #2d1b2e;
     }
-    .chat-message.sylvie .draft-actions {
+    .message.sylvie .draft-card .actions {
+      margin-top: 8px;
       display: flex;
       gap: 8px;
-      margin-top: 8px;
     }
-    .chat-message.sylvie .draft-actions button {
-      padding: 4px 16px;
+    .message.sylvie .draft-card .actions button {
+      background: none;
+      border: 1px solid #e8d0dc;
+      padding: 4px 14px;
       border-radius: 30px;
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
+      transition: all 0.15s;
+      color: #3d2a3d;
+    }
+    .message.sylvie .draft-card .actions .send {
+      background: #3d2a3d;
+      color: #fcf0f5;
+      border: none;
+    }
+    .message.sylvie .draft-card .actions .send:hover { background: #5a3d5a; }
+    .message.sylvie .draft-card .actions .edit:hover { background: #f5e8f0; }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+    }
+    .input-area input {
+      flex: 1;
+      background: rgba(255, 245, 248, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 220, 235, 0.4);
+      border-radius: 40px;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: #2d1b2e;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .input-area input:focus {
+      border-color: #c9a0dc;
+      box-shadow: 0 0 0 3px rgba(200, 150, 200, 0.06);
+    }
+    .input-area input::placeholder { color: #b08a9a; }
+    .input-area button {
+      background: #3d2a3d;
+      border: none;
+      border-radius: 40px;
+      padding: 10px 22px;
+      color: #fcf0f5;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .input-area button:hover { background: #5a3d5a; }
+
+    .typing {
+      font-size: 13px;
+      color: #b08a9a;
+      padding: 4px 0 8px 0;
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
+
+    .footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #b08a9a;
+    }
+    .footer .badge {
+      background: rgba(200, 150, 170, 0.06);
+      padding: 2px 12px;
+      border-radius: 40px;
+    }
+
+    /* ─── SETTINGS PANEL ─── */
+    .settings-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(30, 20, 30, 0.2);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .settings-overlay.active { display: flex; }
+    .settings-panel {
+      background: #fcf5f9;
+      border-radius: 32px;
+      padding: 32px 36px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 32px 64px rgba(120, 80, 120, 0.12);
+      border: 1px solid rgba(255, 220, 235, 0.4);
+      animation: fadeIn 0.2s ease;
+    }
+    .settings-panel h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3d2a3d;
+      margin-bottom: 20px;
+    }
+    .settings-panel label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #5a3d5a;
+      margin-bottom: 4px;
+    }
+    .settings-panel input, .settings-panel select {
+      width: 100%;
+      background: rgba(255, 245, 248, 0.6);
+      border: 1px solid rgba(200, 150, 170, 0.15);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #2d1b2e;
+      margin-bottom: 16px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .settings-panel input:focus, .settings-panel select:focus {
+      border-color: #c9a0dc;
+      box-shadow: 0 0 0 3px rgba(200, 150, 200, 0.06);
+    }
+    .settings-panel .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .settings-panel .actions button {
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
       transition: all 0.2s;
       border: none;
     }
-    .chat-message.sylvie .draft-actions .btn-approve {
-      background: rgba(46,160,67,0.1);
-      color: #2ea043;
-      border: 1px solid rgba(46,160,67,0.1);
+    .settings-panel .actions .save {
+      background: #3d2a3d;
+      color: #fcf0f5;
     }
-    .chat-message.sylvie .draft-actions .btn-approve:hover { background: rgba(46,160,67,0.2); }
-    .chat-message.sylvie .draft-actions .btn-edit {
-      background: rgba(255,255,255,0.04);
-      color: #8892a8;
-      border: 1px solid rgba(255,255,255,0.04);
+    .settings-panel .actions .save:hover { background: #5a3d5a; }
+    .settings-panel .actions .close {
+      background: rgba(200, 150, 170, 0.1);
+      color: #5a3d5a;
     }
-    .chat-message.sylvie .draft-actions .btn-edit:hover { background: rgba(255,255,255,0.08); }
-
-    .chat-input-area {
-      display: flex;
-      gap: 10px;
-    }
-    .chat-input-area input {
-      flex: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 30px;
-      padding: 10px 16px;
-      color: #e6edf3;
-      font-size: 14px;
-      outline: none;
-    }
-    .chat-input-area input::placeholder { color: #484f58; }
-    .chat-input-area input:focus { border-color: #6c3f9b; }
-    .chat-input-area button {
-      background: #6c3f9b;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .chat-input-area button:hover { background: #5a3180; }
-
-    .section { display: none; animation: fadeIn 0.3s ease; }
-    .section.active { display: block; }
-
-    @media (max-width: 820px) {
-      .sidebar { width: 64px; padding: 20px 10px; }
-      .sidebar .logo { font-size: 18px; text-align: center; padding-bottom: 14px; }
-      .sidebar .logo span { display: none; }
-      .sidebar .user { display: none; }
-      .sidebar nav a span { display: none; }
-      .sidebar nav a { justify-content: center; padding: 12px; }
-      .sidebar .bottom a span { display: none; }
-      .sidebar .bottom a { justify-content: center; padding: 12px; }
-      .main { margin-left: 64px; padding: 20px; max-width: 100%; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .chat-input-area { flex-direction: column; }
-      .chat-input-area button { width: 100%; }
-    }
+    .settings-panel .actions .close:hover { background: rgba(200, 150, 170, 0.2); }
   </style>
 </head>
 <body>
 
-  <div class="bg-ice">
-    <div class="ice ice1"></div>
-    <div class="ice ice2"></div>
-  </div>
-
-  <div class="sidebar">
-    <div class="logo">Rp<span>.</span></div>
-    <div class="user">
-      <div class="avatar" id="avatarLetter">M</div>
+<div class="dashboard">
+  <div class="header">
+    <div class="header-left">
+      <div class="avatar">✦</div>
       <div>
-        <div class="name" id="sidebarName">Maithili</div>
-        <div class="plan">Free Plan</div>
+        <h1>Sylvie</h1>
+        <span class="status">● Online</span>
       </div>
     </div>
-    <nav>
-      <a class="active" data-section="dashboard" onclick="switchSection('dashboard')"><span>Dashboard</span></a>
-      <a data-section="settings" onclick="switchSection('settings')"><span>Settings</span></a>
-    </nav>
-    <div class="bottom">
-      <a class="logout" onclick="logout()"><span>Logout</span></a>
+    <button class="settings-btn" onclick="toggleSettings()">⚙️ Settings</button>
+  </div>
+
+  <div class="quick-actions">
+    <button onclick="sendQuick('Show my inbox')">📥 Inbox</button>
+    <button onclick="sendQuick('Show urgent emails')">⚠️ Urgent</button>
+    <button onclick="sendQuick('Draft an email to Sarah about the project')">✏️ Draft</button>
+    <button onclick="sendQuick('Schedule a meeting with Rahul')">📅 Meeting</button>
+  </div>
+
+  <div class="chat">
+    <div class="messages" id="messages">
+      <div class="message sylvie">👋 Hey, I'm Sylvie. Ask me anything — emails, calendar, tasks, or just chat.</div>
+    </div>
+    <div id="typingIndicator" class="typing" style="display:none;">Sylvie is thinking...</div>
+    <div class="input-area">
+      <input type="text" id="chatInput" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
-  <div class="main">
-
-    <div class="main-header">
-      <h1 id="greetingText">Good morning, <span>Maithili</span></h1>
-      <span class="credit-badge"><strong id="creditDisplay">50</strong> credits remaining</span>
-    </div>
-
-    <div id="dashboardSection" class="section active">
-      <div class="stats-row">
-        <div class="stat-card"><div class="number" id="draftCount">0</div><div class="label">Drafts</div></div>
-        <div class="stat-card"><div class="number" id="sortedCount">0</div><div class="label">Sorted</div></div>
-        <div class="stat-card"><div class="number" id="meetingCount">0</div><div class="label">Meetings</div></div>
-        <div class="stat-card"><div class="number urgent" id="urgentCount">0</div><div class="label">Urgent</div></div>
-      </div>
-
-      <div class="live-feed">
-        <div class="header">
-          <h3>Live Activity Feed</h3>
-          <span class="live-dot"></span>
-        </div>
-        <div id="activityList"></div>
-      </div>
-
-      <div class="chat-container">
-        <div class="chat-header">
-          <h3>💬 Chat with Sylvie</h3>
-        </div>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input-area">
-          <input type="text" id="chatInput" placeholder="Ask Sylvie to draft an email..." />
-          <button onclick="sendChatMessage()">Send</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="settingsSection" class="section">
-      <h2 style="margin-bottom: 12px;">Settings</h2>
-      <div style="background: rgba(18,22,32,0.6); backdrop-filter: blur(16px); border-radius: 14px; border: 1px solid rgba(255,255,255,0.04); padding: 20px;">
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Display Name</label>
-          <input type="text" id="settingsName" value="Maithili" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;" />
-        </div>
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Email Signature</label>
-          <input type="text" id="settingsSignature" value="Best, Maithili" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;" />
-        </div>
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 13px; color: #8892a8; margin-bottom: 4px;">Default Reply Tone</label>
-          <select id="settingsTone" style="width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; color: #e6edf3; font-size: 14px;">
-            <option value="professional">Professional</option>
-            <option value="friendly">Friendly</option>
-            <option value="concise">Concise</option>
-            <option value="warm">Warm</option>
-          </select>
-        </div>
-        <button onclick="saveSettings()" style="background: #6c3f9b; color: white; border: none; padding: 8px 24px; border-radius: 30px; font-weight: 500; cursor: pointer;">Save Settings</button>
-      </div>
-    </div>
-
+  <div class="footer">
+    <span class="badge">🔒 Private & local</span>
+    <span class="badge">Mistral 7B</span>
   </div>
+</div>
 
-  <script>
-    // ─── USER ──────────────────────────────────────────────────────────────
-    const user = JSON.parse(localStorage.getItem('rpire_user'));
-    if (!user) { window.location.href = 'index.html'; }
-    const name = user.username || user.email.split('@')[0];
-    document.getElementById('sidebarName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
-    document.getElementById('avatarLetter').textContent = name.charAt(0).toUpperCase();
+<!-- ─── SETTINGS OVERLAY ─── -->
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-panel">
+    <h2>⚙️ Settings</h2>
+    <label>Display Name</label>
+    <input type="text" id="settingsName" placeholder="Maithili" />
 
-    const hour = new Date().getHours();
-    let greeting = 'Good evening';
-    if (hour < 12) greeting = 'Good morning';
-    else if (hour < 17) greeting = 'Good afternoon';
-    document.getElementById('greetingText').innerHTML = greeting + ', <span>' + name.charAt(0).toUpperCase() + name.slice(1) + '</span>';
+    <label>Email Signature</label>
+    <input type="text" id="settingsSignature" placeholder="Best, Maithili" />
 
-    function logout() { localStorage.removeItem('rpire_user'); window.location.href = 'index.html'; }
+    <label>Default Tone</label>
+    <select id="settingsTone">
+      <option value="professional">Professional</option>
+      <option value="friendly">Friendly</option>
+      <option value="concise">Concise</option>
+      <option value="warm">Warm</option>
+    </select>
 
-    function switchSection(section) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(section + 'Section').classList.add('active');
-      document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
-      document.querySelector(`.sidebar nav a[data-section="${section}"]`).classList.add('active');
+    <label>Model</label>
+    <select id="settingsModel">
+      <option value="sylvie-nova">NovaForge Mistral (fast)</option>
+      <option value="sylvie-mistral">Mistral 7B (smart)</option>
+      <option value="sylvie-phi">Phi-3 (balanced)</option>
+    </select>
+
+    <div class="actions">
+      <button class="save" onclick="saveSettings()">Save</button>
+      <button class="close" onclick="toggleSettings()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── LOAD SAVED SETTINGS ──────────────────────────────────────
+  function loadSettings() {
+    const saved = JSON.parse(localStorage.getItem('sylvie_settings'));
+    if (saved) {
+      document.getElementById('settingsName').value = saved.name || 'Maithili';
+      document.getElementById('settingsSignature').value = saved.signature || 'Best, Maithili';
+      document.getElementById('settingsTone').value = saved.tone || 'professional';
+      document.getElementById('settingsModel').value = saved.model || 'sylvie-nova';
     }
+  }
+  loadSettings();
 
-    // ─── ACTIVITY FEED ────────────────────────────────────────────────────
-    function addActivity(color, text) {
-      const list = document.getElementById('activityList');
-      const item = document.createElement('div');
-      item.className = 'feed-item';
-      const colors = { green: '#2ea043', blue: '#3b82f6', purple: '#6c3f9b', yellow: '#eab308', red: '#f87171' };
-      const dotColor = colors[color] || '#8892a8';
-      item.innerHTML = `<span class="dot" style="background: ${dotColor};"></span><span>${text}</span><span class="time">Just now</span>`;
-      list.prepend(item);
-      while (list.children.length > 10) list.removeChild(list.lastChild);
-    }
+  // ─── TOGGLE SETTINGS ───────────────────────────────────────────
+  function toggleSettings() {
+    document.getElementById('settingsOverlay').classList.toggle('active');
+  }
 
-    // ─── CHAT WITH SYLVIE ────────────────────────────────────────────────
-    const chatMessages = document.getElementById('chatMessages');
-    const chatInput = document.getElementById('chatInput');
+  // ─── SAVE SETTINGS ─────────────────────────────────────────────
+  function saveSettings() {
+    const settings = {
+      name: document.getElementById('settingsName').value.trim() || 'Maithili',
+      signature: document.getElementById('settingsSignature').value.trim() || 'Best, Maithili',
+      tone: document.getElementById('settingsTone').value,
+      model: document.getElementById('settingsModel').value
+    };
+    localStorage.setItem('sylvie_settings', JSON.stringify(settings));
+    alert('✅ Settings saved!');
+    toggleSettings();
+  }
 
-    function addChatMessage(type, content, draftData = null) {
-      const div = document.createElement('div');
-      div.className = `chat-message ${type}`;
+  // ─── SEND MESSAGE ──────────────────────────────────────────────
+  async function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
 
-      if (type === 'user') {
-        div.textContent = content;
-      } else if (type === 'sylvie') {
-        if (draftData) {
-          div.innerHTML = `
-            <div>${content}</div>
-            <div class="draft-card">
-              <div><strong>To:</strong> ${draftData.to}</div>
-              <div><strong>Subject:</strong> ${draftData.subject}</div>
-              <div class="draft-body">${draftData.body.replace(/\n/g, '<br>')}</div>
-              <div class="draft-actions">
-                <button class="btn-approve" onclick="sendDraft('${draftData.draftId}')">📤 Send Now</button>
-                <button class="btn-edit" onclick="editDraft('${draftData.draftId}')">✏️ Edit</button>
-              </div>
-            </div>
-          `;
-        } else {
-          div.textContent = content;
-        }
+    addMessage('user', msg);
+    setTyping(true);
+
+    try {
+      const res = await fetch('http://localhost:3001/api/sylvie/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+
+      if (data.type === 'draft') {
+        addDraft(data.to, data.subject, data.body, data.draftId);
+      } else {
+        addMessage('sylvie', data.response || '✅ Done.');
       }
-
-      chatMessages.appendChild(div);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+    } catch (e) {
+      addMessage('sylvie', '❌ Could not reach Sylvie. Make sure the backend is running.');
     }
+    setTyping(false);
+  }
 
-    async function sendChatMessage() {
-      const message = chatInput.value.trim();
-      if (!message) return;
-      chatInput.value = '';
+  // ─── QUICK ACTIONS ──────────────────────────────────────────────
+  function sendQuick(msg) {
+    document.getElementById('chatInput').value = msg;
+    sendMessage();
+  }
 
-      addChatMessage('user', message);
-      addChatMessage('sylvie', '✍️ Sylvie is thinking...');
+  // ─── ADD MESSAGE ────────────────────────────────────────────────
+  function addMessage(type, text) {
+    const container = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = `message ${type}`;
+    div.textContent = text;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
 
-      try {
-        const response = await fetch('http://localhost:3001/api/sylvie/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
-        const data = await response.json();
+  // ─── ADD DRAFT CARD ─────────────────────────────────────────────
+  function addDraft(to, subject, body, draftId) {
+    const container = document.getElementById('messages');
+    const div = document.createElement('div');
+    div.className = 'message sylvie';
+    div.innerHTML = `
+      <div><strong>✉️ Draft ready</strong></div>
+      <div class="draft-card">
+        <div><strong>To:</strong> ${to}</div>
+        <div><strong>Subject:</strong> ${subject}</div>
+        <div style="margin:6px 0; white-space:pre-wrap;">${body}</div>
+        <div class="actions">
+          <button class="send" onclick="sendDraft('${draftId}')">📤 Send</button>
+          <button class="edit" onclick="editDraft('${draftId}')">✏️ Edit</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
 
-        // Remove "thinking" message
-        chatMessages.removeChild(chatMessages.lastChild);
-
-        if (data.type === 'draft') {
-          addChatMessage('sylvie', '✅ Draft ready!', {
-            to: data.to,
-            subject: data.subject,
-            body: data.body,
-            draftId: data.draftId
-          });
-          addActivity('purple', 'Sylvie drafted an email to <strong>' + data.to + '</strong>');
-        } else {
-          addChatMessage('sylvie', data.response || '✅ Done.');
-        }
-
-        // Update stats
-        loadDashboard();
-
-      } catch (error) {
-        chatMessages.removeChild(chatMessages.lastChild);
-        addChatMessage('sylvie', '❌ Error: Could not reach Sylvie. Make sure the backend is running.');
-        console.error('Chat error:', error);
+  // ─── SEND DRAFT ─────────────────────────────────────────────────
+  async function sendDraft(draftId) {
+    try {
+      const res = await fetch('http://localhost:3001/api/sylvie/draft/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ draftId })
+      });
+      if (res.ok) {
+        addMessage('sylvie', '✅ Email sent successfully!');
+      } else {
+        addMessage('sylvie', '❌ Failed to send.');
       }
+    } catch (e) {
+      addMessage('sylvie', '❌ Network error.');
     }
+  }
 
-    // ─── DRAFT ACTIONS ────────────────────────────────────────────────────
-    async function sendDraft(draftId) {
-      if (!confirm('Send this email now?')) return;
-      try {
-        const res = await fetch('http://localhost:3001/api/sylvie/draft/send', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ draftId })
-        });
-        if (res.ok) {
-          alert('✅ Email sent successfully!');
-          addActivity('green', 'You sent an email via Sylvie');
-          // Remove the draft card from chat
-          const lastMsg = chatMessages.lastChild;
-          if (lastMsg && lastMsg.classList.contains('sylvie')) {
-            chatMessages.removeChild(lastMsg);
-          }
-          loadDashboard();
-        } else {
-          alert('❌ Failed to send. Check console.');
-        }
-      } catch (e) {
-        alert('❌ Network error.');
-        console.error(e);
-      }
-    }
+  // ─── EDIT DRAFT ──────────────────────────────────────────────────
+  function editDraft(draftId) {
+    alert('✏️ Edit feature coming soon — you can also edit directly in Gmail drafts.');
+  }
 
-    function editDraft(draftId) {
-      // Find the draft body in the last Sylvie message
-      const lastMsg = chatMessages.lastChild;
-      if (!lastMsg || !lastMsg.classList.contains('sylvie')) {
-        alert('No draft to edit.');
-        return;
-      }
-      const draftBodyEl = lastMsg.querySelector('.draft-body');
-      if (!draftBodyEl) {
-        alert('No draft found.');
-        return;
-      }
-      const currentText = draftBodyEl.textContent.trim();
-      const newText = prompt('Edit your reply:', currentText);
-      if (newText === null) return;
-      draftBodyEl.innerHTML = newText.replace(/\n/g, '<br>');
-      addActivity('yellow', 'You edited a draft');
-    }
+  // ─── TYPING INDICATOR ──────────────────────────────────────────
+  function setTyping(active) {
+    document.getElementById('typingIndicator').style.display = active ? 'block' : 'none';
+  }
 
-    // ─── LOAD DASHBOARD ──────────────────────────────────────────────────
-    async function loadDashboard() {
-      try {
-        const res = await fetch('http://localhost:3001/api/sylvie/inbox');
-        const data = await res.json();
-        document.getElementById('draftCount').textContent = data.drafts || 0;
-        document.getElementById('sortedCount').textContent = data.total || 0;
-        document.getElementById('meetingCount').textContent = data.meetings || 0;
-        document.getElementById('urgentCount').textContent = data.urgent || 0;
-        document.getElementById('creditDisplay').textContent = data.credits || 50;
-      } catch (error) {
-        console.error('Dashboard load error:', error);
-      }
-    }
+  // ─── ENTER KEY ──────────────────────────────────────────────────
+  document.getElementById('chatInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
 
-    // ─── SETTINGS ─────────────────────────────────────────────────────────
-    const savedSettings = JSON.parse(localStorage.getItem('rpire_settings'));
-    if (savedSettings) {
-      document.getElementById('settingsName').value = savedSettings.name || 'Maithili';
-      document.getElementById('settingsSignature').value = savedSettings.signature || 'Best, Maithili';
-      document.getElementById('settingsTone').value = savedSettings.tone || 'professional';
-    }
-
-    function saveSettings() {
-      const name = document.getElementById('settingsName').value.trim() || 'Maithili';
-      const signature = document.getElementById('settingsSignature').value.trim() || 'Best, Maithili';
-      const tone = document.getElementById('settingsTone').value;
-      localStorage.setItem('rpire_settings', JSON.stringify({ name, signature, tone }));
-      document.getElementById('sidebarName').textContent = name;
-      document.getElementById('greetingText').innerHTML = greeting + ', <span>' + name + '</span>';
-      addActivity('blue', 'Settings updated successfully');
-      alert('✅ Settings saved!');
-    }
-
-    // ─── ENTER KEY ──────────────────────────────────────────────────────
-    chatInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') sendChatMessage();
-    });
-
-    // ─── LOAD ─────────────────────────────────────────────────────────────
-    loadDashboard();
-    setInterval(loadDashboard, 30000);
-
-    // Add welcome message
-    addChatMessage('sylvie', '👋 Hey, I\'m Sylvie. Tell me what you need — I can draft emails, schedule meetings, or just chat.');
-  </script>
+  // ─── CLOSE SETTINGS ON OVERLAY CLICK ──────────────────────────
+  document.getElementById('settingsOverlay').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) toggleSettings();
+  });
+</script>
 </body>
 </html>
