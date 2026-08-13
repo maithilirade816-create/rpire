@@ -19,55 +19,133 @@
 
     .dashboard {
       width: 100%;
-      max-width: 740px;
-      background: rgba(255, 245, 248, 0.65);
+      max-width: 1024px;
+      display: flex;
+      gap: 20px;
+      background: rgba(255, 245, 248, 0.55);
       backdrop-filter: blur(24px);
       border-radius: 40px;
-      padding: 28px 32px 32px;
+      padding: 20px;
       box-shadow: 0 20px 40px rgba(180, 120, 160, 0.08), 0 8px 16px rgba(180, 120, 160, 0.04);
-      border: 1px solid rgba(255, 220, 235, 0.5);
-      transition: all 0.2s;
+      border: 1px solid rgba(255, 220, 235, 0.4);
     }
 
-    .header {
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
+      flex-direction: column;
+      gap: 16px;
+      padding: 8px 4px;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .sidebar .profile {
+      background: rgba(255, 245, 248, 0.5);
+      border-radius: 24px;
+      padding: 20px 16px;
+      text-align: center;
+      border: 1px solid rgba(255, 220, 235, 0.2);
     }
-    .avatar {
-      width: 52px;
-      height: 52px;
+    .sidebar .profile .avatar {
+      width: 64px;
+      height: 64px;
       background: linear-gradient(135deg, #e8b4d8, #c9a0dc);
-      border-radius: 20px;
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 22px;
+      font-size: 28px;
       color: #4a2b4a;
-      box-shadow: 0 8px 16px rgba(200, 150, 200, 0.12);
+      margin: 0 auto 10px;
+      box-shadow: 0 8px 16px rgba(200, 150, 200, 0.08);
     }
-    .header h1 {
-      font-size: 22px;
+    .sidebar .profile .name {
       font-weight: 600;
-      letter-spacing: -0.3px;
+      font-size: 16px;
       color: #3d2a3d;
     }
-    .header .status {
+    .sidebar .profile .status {
       font-size: 13px;
       color: #b5838d;
-      background: rgba(200, 150, 170, 0.1);
-      padding: 2px 14px;
-      border-radius: 40px;
-      border: 1px solid rgba(200, 150, 170, 0.1);
     }
-    .header .settings-btn {
+
+    .sidebar .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sidebar .stats .stat {
+      background: rgba(255, 245, 248, 0.4);
+      border-radius: 16px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 220, 235, 0.15);
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #3d2a3d;
+    }
+    .sidebar .stats .stat span:last-child {
+      font-weight: 600;
+      color: #5a3d5a;
+    }
+
+    .sidebar .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .sidebar .nav button {
+      background: rgba(255, 245, 248, 0.3);
+      border: none;
+      border-radius: 16px;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5a3d5a;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .sidebar .nav button:hover {
+      background: rgba(255, 245, 248, 0.6);
+      border-color: rgba(200, 150, 170, 0.1);
+    }
+    .sidebar .nav button.active {
+      background: rgba(255, 245, 248, 0.8);
+      border-color: rgba(200, 150, 170, 0.15);
+      color: #3d2a3d;
+    }
+
+    .sidebar .footer-badge {
+      margin-top: auto;
+      font-size: 12px;
+      color: #b08a9a;
+      padding: 8px 4px;
+      text-align: center;
+      border-top: 1px solid rgba(200, 150, 170, 0.08);
+    }
+
+    /* ─── MAIN CHAT ─── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .main .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .main .header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3d2a3d;
+    }
+    .main .header .settings-btn {
       background: rgba(200, 150, 170, 0.08);
       border: none;
       border-radius: 40px;
@@ -79,7 +157,7 @@
       transition: all 0.2s;
       border: 1px solid rgba(200, 150, 170, 0.05);
     }
-    .header .settings-btn:hover {
+    .main .header .settings-btn:hover {
       background: rgba(200, 150, 170, 0.15);
     }
 
@@ -87,13 +165,13 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .quick-actions button {
-      background: rgba(255, 240, 245, 0.6);
+      background: rgba(255, 240, 245, 0.5);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 220, 235, 0.5);
-      padding: 8px 18px;
+      border: 1px solid rgba(255, 220, 235, 0.3);
+      padding: 6px 16px;
       border-radius: 40px;
       font-size: 13px;
       font-weight: 500;
@@ -103,23 +181,23 @@
     }
     .quick-actions button:hover {
       background: #fff5f8;
-      box-shadow: 0 4px 12px rgba(180, 120, 160, 0.06);
       transform: translateY(-1px);
     }
 
     .chat {
-      background: rgba(255, 245, 248, 0.45);
+      background: rgba(255, 245, 248, 0.4);
       backdrop-filter: blur(8px);
       border-radius: 24px;
       padding: 16px 18px;
-      min-height: 300px;
-      border: 1px solid rgba(255, 220, 235, 0.3);
+      min-height: 320px;
+      border: 1px solid rgba(255, 220, 235, 0.2);
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
     .messages {
       flex: 1;
-      max-height: 340px;
+      max-height: 360px;
       overflow-y: auto;
       padding-right: 4px;
       display: flex;
@@ -193,9 +271,9 @@
     }
     .input-area input {
       flex: 1;
-      background: rgba(255, 245, 248, 0.6);
+      background: rgba(255, 245, 248, 0.5);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 220, 235, 0.4);
+      border: 1px solid rgba(255, 220, 235, 0.3);
       border-radius: 40px;
       padding: 10px 16px;
       font-size: 14px;
@@ -230,20 +308,7 @@
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     @keyframes fadeIn { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    .footer {
-      margin-top: 16px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #b08a9a;
-    }
-    .footer .badge {
-      background: rgba(200, 150, 170, 0.06);
-      padding: 2px 12px;
-      border-radius: 40px;
-    }
-
-    /* ─── SETTINGS PANEL ─── */
+    /* ─── SETTINGS OVERLAY ─── */
     .settings-overlay {
       display: none;
       position: fixed;
@@ -318,44 +383,73 @@
       color: #5a3d5a;
     }
     .settings-panel .actions .close:hover { background: rgba(200, 150, 170, 0.2); }
+
+    @media (max-width: 768px) {
+      .dashboard { flex-direction: column; padding: 16px; }
+      .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 0; }
+      .sidebar .profile { flex: 1; min-width: 140px; }
+      .sidebar .stats { flex-direction: row; flex-wrap: wrap; }
+      .sidebar .stats .stat { flex: 1; min-width: 80px; }
+      .sidebar .nav { flex-direction: row; flex-wrap: wrap; }
+      .sidebar .nav button { flex: 1; min-width: 70px; text-align: center; }
+      .sidebar .footer-badge { display: none; }
+      .main .header h2 { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
 
 <div class="dashboard">
-  <div class="header">
-    <div class="header-left">
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="profile">
       <div class="avatar">✦</div>
-      <div>
-        <h1>Sylvie</h1>
-        <span class="status">● Online</span>
+      <div class="name" id="sidebarName">Maithili</div>
+      <div class="status">● Online</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span>📥 Inbox</span><span id="inboxCount">0</span></div>
+      <div class="stat"><span>📝 Drafts</span><span id="draftCount">0</span></div>
+      <div class="stat"><span>📅 Meetings</span><span id="meetingCount">0</span></div>
+      <div class="stat"><span>⚠️ Urgent</span><span id="urgentCount">0</span></div>
+    </div>
+
+    <nav class="nav">
+      <button class="active" onclick="sendQuick('Show my inbox')">📬 Inbox</button>
+      <button onclick="sendQuick('Show urgent emails')">⚠️ Urgent</button>
+      <button onclick="sendQuick('Draft an email to Sarah about the project')">✏️ Draft</button>
+      <button onclick="sendQuick('Schedule a meeting with Rahul')">📅 Meeting</button>
+    </nav>
+
+    <div class="footer-badge">🔒 Private & local · Mistral 7B</div>
+  </aside>
+
+  <!-- ─── MAIN CHAT ─── -->
+  <main class="main">
+    <div class="header">
+      <h2>Chat with Sylvie</h2>
+      <button class="settings-btn" onclick="toggleSettings()">⚙️ Settings</button>
+    </div>
+
+    <div class="quick-actions">
+      <button onclick="sendQuick('Show my inbox')">📥 Inbox</button>
+      <button onclick="sendQuick('Show urgent emails')">⚠️ Urgent</button>
+      <button onclick="sendQuick('Draft an email to Sarah about the project')">✏️ Draft</button>
+      <button onclick="sendQuick('Schedule a meeting with Rahul')">📅 Meeting</button>
+    </div>
+
+    <div class="chat">
+      <div class="messages" id="messages">
+        <div class="message sylvie">👋 Hey, I'm Sylvie. Ask me anything — emails, calendar, tasks, or just chat.</div>
+      </div>
+      <div id="typingIndicator" class="typing" style="display:none;">Sylvie is thinking...</div>
+      <div class="input-area">
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
       </div>
     </div>
-    <button class="settings-btn" onclick="toggleSettings()">⚙️ Settings</button>
-  </div>
-
-  <div class="quick-actions">
-    <button onclick="sendQuick('Show my inbox')">📥 Inbox</button>
-    <button onclick="sendQuick('Show urgent emails')">⚠️ Urgent</button>
-    <button onclick="sendQuick('Draft an email to Sarah about the project')">✏️ Draft</button>
-    <button onclick="sendQuick('Schedule a meeting with Rahul')">📅 Meeting</button>
-  </div>
-
-  <div class="chat">
-    <div class="messages" id="messages">
-      <div class="message sylvie">👋 Hey, I'm Sylvie. Ask me anything — emails, calendar, tasks, or just chat.</div>
-    </div>
-    <div id="typingIndicator" class="typing" style="display:none;">Sylvie is thinking...</div>
-    <div class="input-area">
-      <input type="text" id="chatInput" placeholder="Type your message..." />
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-
-  <div class="footer">
-    <span class="badge">🔒 Private & local</span>
-    <span class="badge">Mistral 7B</span>
-  </div>
+  </main>
 </div>
 
 <!-- ─── SETTINGS OVERLAY ─── -->
@@ -391,7 +485,7 @@
 </div>
 
 <script>
-  // ─── LOAD SAVED SETTINGS ──────────────────────────────────────
+  // ─── LOAD SETTINGS ─────────────────────────────────────────────
   function loadSettings() {
     const saved = JSON.parse(localStorage.getItem('sylvie_settings'));
     if (saved) {
@@ -399,6 +493,7 @@
       document.getElementById('settingsSignature').value = saved.signature || 'Best, Maithili';
       document.getElementById('settingsTone').value = saved.tone || 'professional';
       document.getElementById('settingsModel').value = saved.model || 'sylvie-nova';
+      document.getElementById('sidebarName').textContent = saved.name || 'Maithili';
     }
   }
   loadSettings();
@@ -417,6 +512,7 @@
       model: document.getElementById('settingsModel').value
     };
     localStorage.setItem('sylvie_settings', JSON.stringify(settings));
+    document.getElementById('sidebarName').textContent = settings.name;
     alert('✅ Settings saved!');
     toggleSettings();
   }
@@ -497,6 +593,7 @@
       });
       if (res.ok) {
         addMessage('sylvie', '✅ Email sent successfully!');
+        updateStats();
       } else {
         addMessage('sylvie', '❌ Failed to send.');
       }
@@ -515,6 +612,20 @@
     document.getElementById('typingIndicator').style.display = active ? 'block' : 'none';
   }
 
+  // ─── UPDATE STATS ──────────────────────────────────────────────
+  async function updateStats() {
+    try {
+      const res = await fetch('http://localhost:3001/api/sylvie/inbox');
+      const data = await res.json();
+      document.getElementById('inboxCount').textContent = data.total || 0;
+      document.getElementById('draftCount').textContent = data.drafts || 0;
+      document.getElementById('meetingCount').textContent = data.meetings || 0;
+      document.getElementById('urgentCount').textContent = data.urgent || 0;
+    } catch (e) {
+      // silently ignore
+    }
+  }
+
   // ─── ENTER KEY ──────────────────────────────────────────────────
   document.getElementById('chatInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessage();
@@ -524,6 +635,10 @@
   document.getElementById('settingsOverlay').addEventListener('click', (e) => {
     if (e.target === e.currentTarget) toggleSettings();
   });
+
+  // ─── LOAD STATS ON START ──────────────────────────────────────
+  updateStats();
+  setInterval(updateStats, 30000);
 </script>
 </body>
 </html>
